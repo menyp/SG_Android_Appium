@@ -5,7 +5,7 @@ import org.testng.TestNG;
 
 
 
-public class RunIos {
+public class RunAdnroid {
 	
 	public static void main(String[] args) throws Exception, Throwable {
 		// TODO Auto-generated method stub
@@ -24,7 +24,7 @@ public class RunIos {
 		//Run the first suite
 //		
 		TestNG testng1 = new TestNG();
-		testng1.setTestClasses(new Class[] { SanityIos.class });
+		testng1.setTestClasses(new Class[] { SanityAndroid.class });
 		testng1.setGroups("Sanity IOS");
 		testng1.addListener(tla);
 		testng1.run();

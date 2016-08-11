@@ -15,7 +15,7 @@
 			<BTNsettingsIconXpth>//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAButton[3]</BTNsettingsIconXpth>
 			<BTNBackName>Back</BTNBackName>
 			<BTNClearName>Clear</BTNClearName>
-			<BTNSlicer>BTNSlicer</BTNSlicer>
+			<BTNSlicer>com.skygiraffe.operationaldata:id/action_slicer</BTNSlicer>
 			<BTNmapphoneiconID>mapphoneicon</BTNmapphoneiconID>
 			<BTNCancelName>Cancel</BTNCancelName>					
 			<BTNdirection>BTNdirection</BTNdirection>
@@ -79,8 +79,8 @@
 		<ContactsPermissionsName>“SkyGiraffe” Would Like to Access Your Contacts</ContactsPermissionsName>
 		<MallOfAmerica_Id>Mall of America</MallOfAmerica_Id>
 		<OrderLookup_ID>Order Lookup</OrderLookup_ID>
-		<TabBarTitle_Name>BarTitle</TabBarTitle_Name>
-
+		<TabBarTitle_Name>android:id/action_bar_spinner</TabBarTitle_Name>
+		
 	
 	<Icon>
 	<IconBackToApplicationList_xpth>//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAButton[2]</IconBackToApplicationList_xpth>
@@ -89,8 +89,10 @@
 	<IconBack_Name>Back</IconBack_Name>
 	<IconBack_Nav_Name>back nav</IconBack_Nav_Name>
 	<IconApplicationInfo_Name>Icon_i</IconApplicationInfo_Name>
+	<IconHome>android:id/home</IconHome>
+	<IconRefresh>com.skygiraffe.operationaldata:id/action_refresh_btn</IconRefresh>
 	
-	</Icon>
+	</Icon>	
 	
 	
 		   	

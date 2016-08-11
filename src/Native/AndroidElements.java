@@ -6,7 +6,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import jdk.internal.org.xml.sax.SAXException;
 
-public class IosElements {
+public class AndroidElements {
 	
 	
 	//Buttons
@@ -89,7 +89,8 @@ public class IosElements {
 	String IconBack_Name;
 	String IconBack_Nav_Name;
 	String IconApplicationInfo_Name;
-	
+	String IconHome;
+	String IconRefresh;
 	//General Info
 	String ConnectionAIRPLANE_MODE;
 	String ConnectionWIFI;
@@ -105,7 +106,7 @@ public class IosElements {
 	String badPassword;
 	String StartupApplication;
 	
-	public IosElements(String langXml, String xmlPath ) throws ParserConfigurationException, SAXException, IOException, InterruptedException, org.xml.sax.SAXException{
+	public AndroidElements(String langXml, String xmlPath ) throws ParserConfigurationException, SAXException, IOException, InterruptedException, org.xml.sax.SAXException{
 		this.BTNloginID = XmlHandel.readAndroidXml("BTNloginID", langXml, xmlPath);
 		this.BTNforgotPasswordID = XmlHandel.readAndroidXml("BTNforgotPasswordID", langXml, xmlPath);
 		this.BTNsettingsLoginScreenID = XmlHandel.readAndroidXml("BTNsettingsLoginScreenID", langXml, xmlPath);
@@ -181,7 +182,12 @@ public class IosElements {
 		this.IconBack_Name = XmlHandel.readAndroidXml("IconBack_Name", langXml, xmlPath);	
 		this.IconBack_Nav_Name = XmlHandel.readAndroidXml("IconBack_Nav_Name", langXml, xmlPath);	
 		this.IconApplicationInfo_Name = XmlHandel.readAndroidXml("IconApplicationInfo_Name", langXml, xmlPath);	
+		this.IconRefresh = XmlHandel.readAndroidXml("IconRefresh", langXml, xmlPath);	
+		this.IconHome = XmlHandel.readAndroidXml("IconHome", langXml, xmlPath);	
 
+
+		
+		
 		
 		
 		
