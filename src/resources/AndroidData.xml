@@ -17,8 +17,8 @@
 			<BTNClearName>Clear</BTNClearName>
 			<BTNSlicer>com.skygiraffe.operationaldata:id/action_slicer</BTNSlicer>
 			<BTNmapphoneiconID>mapphoneicon</BTNmapphoneiconID>
-			<BTNCancelName>Cancel</BTNCancelName>					
-			<BTNdirection>BTNdirection</BTNdirection>
+			<BTNCancelName>com.skygiraffe.operationaldata:id/base_dialog_cancel_button</BTNCancelName>					
+			<BTNdirection>com.skygiraffe.operationaldata:id/map_add_info_icon</BTNdirection>
 			<BTNokName>OK</BTNokName>
 			<BTNpriority_Name>Priority</BTNpriority_Name>
 			<BTNnewServiceCallId>New Service Call</BTNnewServiceCallId>

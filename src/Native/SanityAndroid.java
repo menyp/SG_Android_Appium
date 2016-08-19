@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeSuite;
 import org.xml.sax.SAXException;
@@ -120,11 +121,9 @@ import com.applitools.eyes.Eyes;
 		}
 
 	
-		
-
 	
 	@Test(enabled = true, testName = "URL Tab", retryAnalyzer = Retry.class, description = "Check the URL tab",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android" })
 
 	public void Tabs_URL() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -138,15 +137,13 @@ import com.applitools.eyes.Eyes;
 		//go to URL data Item
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
 		genMeth.clickXpthName_CheckedTextView(genMeth, "URL Constant");
-		//genMeth.eyesCheckWindow(eyes, "Tabs (Droid) - URL Constant", useEye, skipfailure);
 		genMeth.eyesCheckWindow("Tabs (Droid) - URL Constant", useEye, genMeth, skipfailure);
 		
 		//Go Back to Startup screen
 		genMeth.clickId(genMeth, DroidData.IconHome);
 		Thread.sleep(4000);
 		//Verify Startup screen is open
-//		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
-		genMeth.eyesCheckWindow("Default app is open - SQL Golden App", useEye, genMeth, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 
 	}
 		
@@ -160,29 +157,29 @@ import com.applitools.eyes.Eyes;
 		// go to News 
 
 		genMeth.clickXpthName_TextView(genMeth, "URL / News");
-		Thread.sleep(5000);
 
 		//go to URL data Item
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		Thread.sleep(2000);
 		genMeth.clickXpthName_CheckedTextView(genMeth, "News");
-		genMeth.eyesCheckWindow(eyes, "Tabs (Droid) - News", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Tabs (Droid) - News", useEye, genMeth, skipfailure);
 		genMeth.clickXpthName_TextView(genMeth, "www.milliondollarhomepage.com");
 
 		Thread.sleep(10000);
 
-		genMeth.eyesCheckWindow(eyes, "All Tabs (Droid)- The milliion $ home page", useEye, skipfailure);
+		genMeth.eyesCheckWindow("All Tabs (Droid)- The milliion $ home page", useEye, genMeth, skipfailure);
+
 		genMeth.clickId(genMeth, DroidData.IconHome);
 		
-
-		genMeth.eyesCheckWindow(eyes, "All Tabs- News Landscape", useEye, skipfailure);
+		genMeth.rotateLandscape();
+		genMeth.eyesCheckWindow("All Tabs- News Landscape", useEye, genMeth, skipfailure);
 		genMeth.rotatePortrait();
 
 		//Go Back to Startup screen
 		genMeth.clickId(genMeth, DroidData.IconHome);
 
 		//Verify Startup screen is open
-		genMeth.eyesCheckWindow(eyes, "Default app is open (Droid) - SQL Golden App",useEye, skipfailure);
-		
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 	}
 
 	
@@ -195,13 +192,16 @@ import com.applitools.eyes.Eyes;
 
 		
 		//Open Dashboard  Tab
+		Thread.sleep(8000);
 		genMeth.clickXpthName_TextView(genMeth, "DashB/Cards/Employee");
-		Thread.sleep(5000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs (Droid)- Dashboard Default Layout", useEye, skipfailure);
+		Thread.sleep(10000);
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Dashboard Default Layout", useEye, genMeth, skipfailure);
+
 		
 		//Navigate to Employee directory tab
 		genMeth.clickXpthName_TextView(genMeth, "Service Call ID1");
-		genMeth.eyesCheckWindow(eyes, "All Tabs (Droid)- Dashboard Default Layout- Navigate to Employee Directory", useEye, skipfailure);
+		Thread.sleep(10000);
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Dashboard Default Layout- Navigate to Employee Directory", useEye, genMeth, skipfailure);
 
 		//Navigate back to Dashboard
 		genMeth.pressBackDroidButton();
@@ -219,24 +219,24 @@ import com.applitools.eyes.Eyes;
 		genMeth.swipedownMeizuLong(1000);
 		genMeth.swipedownMeizuLong(1000);
 
-		genMeth.eyesCheckWindow(eyes, "All Tabs (Droid)- Dashboard Advanced columns (Scroll down)", useEye, skipfailure);
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Dashboard Advanced columns (Scroll down)", useEye, genMeth, skipfailure);
 
 		//Gauge
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
 		genMeth.clickXpthName_CheckedTextView(genMeth, "Dash with Gauge");
-		genMeth.eyesCheckWindow(eyes, "All Tabs (Droid)- Dashboard- Gauge Half", useEye, skipfailure);
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Dashboard- Gauge Half", useEye, genMeth, skipfailure);
 		
 		//Navigate
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/dashboard_item_bottom_label_container_view");
 		
-		Thread.sleep(2000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs (Droid)- Dashboard- Navigate to Map By GPS", useEye, skipfailure);
+		Thread.sleep(10000);
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Dashboard- Navigate to Map By GPS", useEye, genMeth, skipfailure);
 		genMeth.pressBackDroidButton();
 		
 		genMeth.swipedownMeizuLong(1000);
 		genMeth.swipedownMeizuLong(1000);
 
-		genMeth.eyesCheckWindow(eyes, "All Tabs (Droid)- Dashboard- Gauge Full/Solid", useEye, skipfailure);
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Dashboard- Gauge Full/Solid", useEye, genMeth, skipfailure);
 
 		//Back to Startup screen
 		genMeth.clickId(genMeth, DroidData.IconHome);
@@ -250,165 +250,185 @@ import com.applitools.eyes.Eyes;
 	public void Tabs_Map() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 
-
 		//Open Map By Address Tab
-		genMeth.clickId(genMeth, "Map");
+		genMeth.clickXpthName_TextView(genMeth, "Map");
+		Thread.sleep(5000);
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Map By GPS", useEye, genMeth, skipfailure);
+
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickId(genMeth, "Map By Address");
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Map By Address");
+
 		                    
 		Thread.sleep(3000);
 		//genMeth.eyesCheckWindow(eyes, "All Tabs- Map By Address", useEye, skipfailure);
-		genMeth.clickId(genMeth,"19501 Biscayne Blvd, Aventura, FL 33180, 1 item");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Map By Address- Aventura", useEye, skipfailure);
+//		genMeth.clickId(genMeth,"19501 Biscayne Blvd, Aventura, FL 33180. 19501 Biscayne Boulevard,Aventura, FL 33180.");
+		//genMeth.clickXpthName_TextView(genMeth, "19501 Biscayne Blvd, Aventura, FL 33180. 19501 Biscayne Boulevard,Aventura, FL 33180.");
+		
+
+		By by = By.xpath("//android.view.View[@content-desc='19501 Biscayne Blvd, Aventura, FL 33180. 19501 Biscayne Boulevard,Aventura, FL 33180.']");
+		driver.findElement(by).click();
+		
+		
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Map By Address- Aventura", useEye, genMeth, skipfailure);
 		
 		//Driving Directions
 		genMeth.clickId(genMeth, DroidData.BTNdirection);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Map By Address- Driving directions", useEye, skipfailure);
+		
+	//	genMeth.eyesCheckWindow("All Tabs (Droid)- Map By Address- Driving directions", useEye, genMeth, skipfailure);
+
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
 		//Phone
-		genMeth.clickId(genMeth, DroidData.BTNmapphoneiconID);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Map By Address- Phone", useEye, skipfailure);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_adress_container");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_item_phone");
+//		genMeth.eyesCheckWindow("All Tabs (Droid)- Map By Address- Phone", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 
 		//Navigation to URL tab
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAButton[1]" );
-		genMeth.eyesCheckWindow(eyes, "Tabs- URL Data Item", useEye, skipfailure);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_item_jump_to");
+		Thread.sleep(8000);
+		genMeth.eyesCheckWindow("Tabs (Droid)- URL Data Item", useEye, genMeth, skipfailure);
+
 		
 		//Navigation Back
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
+		genMeth.pressBackDroidButton();
 		
 		
 		//Open Map By GPS
 		Thread.sleep(10000);
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickId(genMeth, "Map By GPS");
-		genMeth.clickId(genMeth, "1160 Garden State Plz,Paramus, 3 items");
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Map By GPS");
+
+		by = By.xpath("//android.view.View[@content-desc='40.918116,-74.076363. 1 Garden State Plaza Boulevard,Paramus, NJ 07652.']");
+		genMeth.clickBy(driver, genMeth, by);
+		
 		Thread.sleep(3000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Map By GPS- Press pin map", useEye, skipfailure);
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIAButton[3]");
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Map By GPS- Press pin map", useEye, genMeth, skipfailure);
+
+		
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_adress_container");
+		//All addresses 
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Map By GPS- All Addresses", useEye, genMeth, skipfailure);
 		
 		//Back to Startup screen
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
+		genMeth.clickId(genMeth, DroidData.IconHome);
 
 	}
 	
 	@Test(enabled = true, testName = "Map Charts Tabs", retryAnalyzer = Retry.class, description = "Check the URL tab",
-			groups = { "Sanity IOS" })
+			groups = { "Sanity Android" })
 
 	public void Tabs_Chart() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 		//Open Bar Chart
-		genMeth.clickId(genMeth, "Chart/CoverF/ActionC");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Bar Chart", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Chart/CoverF/ActionC");
+		Thread.sleep(4000);
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Bar Chart", useEye, genMeth, skipfailure);
 		
 		//Filter data
-		genMeth.clickId(genMeth, "Sales");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Bar Chart- Returns & Net Sales", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Sales");
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Bar Chart- Returns & Net Sales", useEye, genMeth, skipfailure);
 		
-		genMeth.clickId(genMeth, "Returns");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Bar Chart- Net Sales", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Returns");
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Bar Chart- Net Sales", useEye, genMeth, skipfailure);
 		
+		genMeth.clickXpthName_TextView(genMeth, "Sales");
+		genMeth.clickXpthName_TextView(genMeth, "Returns");
 		//genMeth.clickId(genMeth, "Net Sales");
-		//genMeth.eyesCheckWindow(eyes, "All Tabs- Bar Chart- No data", useEye, skipfailure);
-		
-		genMeth.clickId(genMeth, "Sales");
-		genMeth.clickId(genMeth, "Returns");
-		//genMeth.clickId(genMeth, "Net Sales");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Bar Chart", useEye, skipfailure);
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Bar Chart", useEye, genMeth, skipfailure);
+
 
 		//Navigation to pie chart
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAImage[2]");
-		Thread.sleep(8000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Bar Chart- Navigate to Dashboard", useEye, skipfailure);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/column_chart_selected_title_nav_icon");
+		Thread.sleep(15000);
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Bar Chart- Navigate to Dashboard", useEye, genMeth, skipfailure);
 		
 		//Navigate back to the Bar chart
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
-		Thread.sleep(8000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Bar Chart", useEye, skipfailure);
+		genMeth.pressBackDroidButton();
+		Thread.sleep(5000);
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Bar Chart", useEye, genMeth, skipfailure);
 		
 		//Pie Chart
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickId(genMeth, "Pie Chart");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Pie Chart", useEye, skipfailure);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Pie Chart");
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Pie Chart", useEye, genMeth, skipfailure);
 		
-		//Filter data	
-		genMeth.clickId(genMeth, "Returns");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Pie Chart- Returns", useEye, skipfailure);
+		//Filter data Returen	
+		genMeth.clickXpthName_TextView(genMeth, "Returns");
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Pie Chart- Returns", useEye, genMeth, skipfailure);
 		
-		genMeth.clickId(genMeth, "Net Sales");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Pie Chart- Net Sales", useEye, skipfailure);
+		//Filter data Net Sales	
+		genMeth.clickXpthName_TextView(genMeth, "Net Sales");
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Pie Chart- Net Sales", useEye, genMeth, skipfailure);
 		
 		//Navigation to Bar chart
-		genMeth.clickId(genMeth, "   Aventura Mall         ");
-		Thread.sleep(15000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Pie Chart- Navigate to Bar Chart", useEye, skipfailure);
-		
-		//Navigation back to the Pie chart
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
-
-		Thread.sleep(10000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Pie Chart", useEye, skipfailure);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/pie_chart_slicer_name");
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Bar Chart", useEye, genMeth, skipfailure);
 		
 		//Go Back to Startup screen
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
-
-		//Verify Startup screen is open
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
-
+		genMeth.clickId(genMeth, DroidData.IconHome);
 		
 	}
 	
 	
 	@Test(enabled = true, testName = "Cover Flow", retryAnalyzer = Retry.class, description = "Check the Cover Flow tab",
-			groups = { "Sanity IOS" })
+			groups = { "Sanity Android1" })
 
 	public void Tabs_CoverFlow() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 
 		// go to CoverFlow
-		genMeth.clickId(genMeth, "Chart/CoverF/ActionC");
+		genMeth.clickXpthName_TextView(genMeth, "Chart/CoverF/ActionC");
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickId(genMeth, "Cover Flow");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Cover Flow", useEye, skipfailure);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Cover Flow");
+		Thread.sleep(4000);
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow", useEye, genMeth, skipfailure);
 		genMeth.swipeRightMeizuShort(1000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Cover Flow- swipe John Grant", useEye, skipfailure);
-		
-		genMeth.swipedownMeizuShorter(1000);
-		//genMeth.swipedownIphone5Short(1000);
-
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Cover Flow- swipe down", useEye, skipfailure);
-		
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- swipe John Grant", useEye, genMeth, skipfailure);
+				
 		//Address
-		genMeth.clickId(genMeth, "Address");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Cover Flow- Address", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Address");
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Address", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
+		genMeth.swipedownMeizuLong(1000);
+		genMeth.swipedownMeizuLong(1000);
+
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Scroll Down", useEye, genMeth, skipfailure);
+
+		//Address mini map
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/list_template_map_address_icon");
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Address Mini Map", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, DroidData.BTNCancelName);
+
 		//Phone
-		genMeth.swipedownMeizuShorter(1000);
-		genMeth.clickId(genMeth, "Phone");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Cover Flow- Phone", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Phone");
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Phone", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
 		//Email
-		genMeth.clickId(genMeth, "Email");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Cover Flow- Email", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Email");
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Email", useEye, genMeth, skipfailure);
+
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
-		genMeth.clickId(genMeth, DroidData.BTNdeleteDraft_Name);
 		
 		//URL
-		genMeth.clickId(genMeth, "URL");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Cover Flow- URL", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
-		genMeth.swipedownMeizuLong(1000);
+		genMeth.clickXpthName_TextView(genMeth, "URL");
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- URL", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/base_dialog_submit_button");
+		Thread.sleep(4000);
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Go to URL", useEye, genMeth, skipfailure);
+		genMeth.pressBackDroidButton();
+		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
 		
 		// Landline
-		genMeth.clickId(genMeth, "Landline");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Cover Flow- Landline", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Landline");
+		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Landline", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
-
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
+		
+		//Go to Startup screen
+		genMeth.pressBackDroidButton();
 		
 	}
 
@@ -1753,6 +1773,7 @@ import com.applitools.eyes.Eyes;
 	public void tearDown() throws Exception {
 		try {
 			driver.removeApp(appIdentifier);
+			driver.quit();
 			/*
 			boolean isAppInstalled = driver.isAppInstalled(appIdentifier);
 			if (isAppInstalled) {

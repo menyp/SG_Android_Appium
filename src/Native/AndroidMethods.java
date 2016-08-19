@@ -10,7 +10,11 @@ import io.appium.java_client.android.AndroidDriver;
 
 
 
+
+
+
 import com.applitools.eyes.Eyes;
+import com.applitools.eyes.MatchLevel;
 import com.applitools.eyes.RectangleSize;
 
 import io.appium.java_client.android.AndroidKeyCode;
@@ -25,8 +29,6 @@ import java.net.URL;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -36,20 +38,14 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.ScreenOrientation;
-import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.CapabilityType;
-
-import io.appium.java_client.remote.AndroidMobileCapabilityType;
-import io.appium.java_client.remote.IOSMobileCapabilityType;
-
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -67,13 +63,7 @@ public class AndroidMethods {
 	Boolean useEye = true;
 	Boolean skipfailure;;
 	
-	public AndroidMethods(){
-		
-		
-		
-		
-		
-	}
+	
 	
 	
 
@@ -165,12 +155,13 @@ public class AndroidMethods {
 	        // Define the OS and hosting application to identify the baseline
 	        eyes.setHostOS("Mac");
 	        eyes.setHostApp("My maxthon browser");
+	        eyes.setMatchTimeout(5);
 
 	        BufferedImage img;
 
 	        try {
-	        	
-	            eyes.open("SG_Studio", testName , new RectangleSize(785, 1087));
+	        	eyes.setMatchLevel(MatchLevel.STRICT);
+	            eyes.open("SG_Android", testName , new RectangleSize(785, 1087));
 	            
 
 	            // Load page image and validate
@@ -217,20 +208,36 @@ public class AndroidMethods {
 		// Login with an existing account
  
 		DesiredCapabilities capabilities =  DesiredCapabilities.android();
-		capabilities.setCapability("appium-version", genMeth.getValueFromPropFile("appiumVersion"));
-		capabilities.setCapability("platformName", genMeth.getValueFromPropFile("platformName"));
-		capabilities.setCapability("platformVersion", genMeth.getValueFromPropFile("platformVersion"));
-		capabilities.setCapability("deviceName", genMeth.getValueFromPropFile("deviceName"));
-		capabilities.setCapability("app",genMeth.getValueFromPropFile("appPath"));
-		capabilities.setCapability("newCommandTimeout", 1200);
+	   // DesiredCapabilities capabilities = new DesiredCapabilities();
 
-		capabilities.setCapability("appPackage", genMeth.getValueFromPropFile("appPackage"));
-		capabilities.setCapability("appActivity", genMeth.getValueFromPropFile("appLauncherActivity"));
+		//capabilities.setCapability("appium-version", genMeth.getValueFromPropFile("appiumVersion"));
+	    capabilities.setCapability(MobileCapabilityType.APPIUM_VERSION, genMeth.getValueFromPropFile("appiumVersion"));
+	    
+		//capabilities.setCapability("platformName", genMeth.getValueFromPropFile("platformName"));
+	    capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, genMeth.getValueFromPropFile("platformName"));
+
+		//capabilities.setCapability("platformVersion", genMeth.getValueFromPropFile("platformVersion"));
+	    capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, genMeth.getValueFromPropFile("platformVersion"));
+
+		//capabilities.setCapability("deviceName", genMeth.getValueFromPropFile("deviceName"));
+	    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, genMeth.getValueFromPropFile("deviceName"));
+		
+		//capabilities.setCapability("app",genMeth.getValueFromPropFile("appPath"));
+	    capabilities.setCapability(MobileCapabilityType.APP, genMeth.getValueFromPropFile("appPath"));
+
+		//capabilities.setCapability("newCommandTimeout", 1200);
+	    capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 1200);
+
+
+		//capabilities.setCapability("appPackage", genMeth.getValueFromPropFile("appPackage"));
+		//capabilities.setCapability("appActivity", genMeth.getValueFromPropFile("appLauncherActivity"));
 		//capabilities.setCapability(AndroidMobileCapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
 
 
 		try {
 
+			//AppiumDriverLocalService service = AppiumDriverLocalService.buildDefaultService();
+		   // service.start();
 			driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
 		}
 
