@@ -372,7 +372,7 @@ import com.applitools.eyes.Eyes;
 	
 	
 	@Test(enabled = true, testName = "Cover Flow", retryAnalyzer = Retry.class, description = "Check the Cover Flow tab",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android" })
 
 	public void Tabs_CoverFlow() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -415,7 +415,7 @@ import com.applitools.eyes.Eyes;
 		//URL
 		genMeth.clickXpthName_TextView(genMeth, "URL");
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- URL", useEye, genMeth, skipfailure);
-		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/base_dialog_submit_button");
+		genMeth.clickId(genMeth, DroidData.BTNsubmit);
 		Thread.sleep(4000);
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Go to URL", useEye, genMeth, skipfailure);
 		genMeth.pressBackDroidButton();
@@ -434,153 +434,161 @@ import com.applitools.eyes.Eyes;
 
 	
 	@Test(enabled = true, testName = "List", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity IOS" })
+			groups = { "Sanity Android" })
 
 	public void Tabs_List_AdvancedColumns() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 
 		// go to List
-		genMeth.clickId(genMeth, "List / Grid");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- List", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "List / Grid");
+		Thread.sleep(3000);
+		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List", useEye, genMeth, skipfailure);
 
 		//Phone
-		genMeth.clickId(genMeth, "Phone");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- List Phone", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Call");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List Phone", useEye, genMeth, skipfailure);
+		//genMeth.eyesCheckWindow(eyes, "All Tabs- List Phone", useEye, skipfailure);
 		
 		//Email
-		genMeth.clickId(genMeth, "Email");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- List Email", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNsend_Name);
+		genMeth.clickXpthName_TextView(genMeth, "Email");
 		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List Email", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, DroidData.BTNCancelName);
+		Thread.sleep(2000);
+		
 		//URL
-		genMeth.clickId(genMeth, "URL");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- List URL", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);		
-		Thread.sleep(3000);
+		genMeth.clickXpthName_TextView(genMeth, "URL");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List URL", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, DroidData.BTNCancelName);
+	//	Thread.sleep(3000);
 		
 		// Landline
-		genMeth.clickId(genMeth, "Landline");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- List Landline", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Landline");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List Landline", useEye, genMeth, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Landline");
+
 		
 		//Address
-		genMeth.clickId(genMeth, "Address");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- List Address", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Address");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List Address", useEye, genMeth, skipfailure);
+		//genMeth.eyesCheckWindow(eyes, "All Tabs- List Address", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Address");
+
 		
 		//Mini Map
-		genMeth.swipedownMeizuShort(3000);
-		genMeth.clickId(genMeth, "Address Mini Map");
-		//genMeth.eyesCheckWindow(eyes, "All Tabs- List (Address Mini Map options)", useEye, skipfailure);
+		genMeth.swipedownMeizuShort(1000);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/template_view_item_map_layout");
+		genMeth.clickId(genMeth, DroidData.BTNsubmit);
+		Thread.sleep(3000);
+		genMeth.pressBackDroidButton();
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
+		
+		genMeth.swipedownMeizuShort(1000);
+		genMeth.swipedownMeizuShort(1000);
 
+		genMeth.clickId(genMeth, DroidData.BTNseeAll_ID);
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List See All", useEye, genMeth, skipfailure);		
 		
+		//Folder
+		genMeth.clickXpthName_TextView(genMeth, "Folder");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List Folder", useEye, genMeth, skipfailure);
 
-		
-		genMeth.clickId(genMeth, DroidData.BTNseeAll_ID);		
-		genMeth.eyesCheckWindow(eyes, "All Tabs- List See All", useEye, skipfailure);
-		
 		genMeth.swipedownMeizuLong(1000);
 		Thread.sleep(2000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- List See All scroll down", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List See All scroll down", useEye, genMeth, skipfailure);
+		//genMeth.eyesCheckWindow(eyes, "All Tabs- List See All scroll down", useEye, skipfailure);
 		
 		
-		genMeth.clickId(genMeth, DroidData.IconBack_Name);
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);	
-		
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		Thread.sleep(2000);
+
 		//Verify Startup screen is open
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 
 	}
 	
 	
 	
 	@Test(enabled = true, testName = "Grid two layer Advanced", retryAnalyzer = Retry.class, description = "Check the Grid two layer tab",
-			groups = { "Sanity IOS" })
+			groups = { "Sanity Android" })
 
 	public void Tabs_Grid_Two_Layers() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 
 		// go to Grid
-		genMeth.clickId(genMeth, "List / Grid");
+		genMeth.clickXpthName_TextView(genMeth, "List / Grid");
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickId(genMeth, "Grid - Two Layers");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid two layers", useEye, skipfailure);
-		genMeth.clickId(genMeth, "kpi_green");
-		
-		//Second layer
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid two layers- Second layer", useEye, skipfailure);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Grid - Two Layers");		
+		Thread.sleep(3000);
+		genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- List Address", useEye, genMeth, skipfailure);
+
+		//Open the second layer
+		genMeth.clickXpthName_TextView(genMeth, "$200");
+		Thread.sleep(1000);
+		genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- Second layer", useEye, genMeth, skipfailure);
 		genMeth.swipedownMeizuShorter(1000);
 		genMeth.setLandscapeMode();
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid two layers- Second layer - Landscape ", useEye, skipfailure);
+		genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- Second layer - Landscape", useEye, genMeth, skipfailure);
 		genMeth.setPortraitMode();
 		
 	
 		//Phone
-		genMeth.clickId(genMeth, "Phone");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid two layers- Phone options open", useEye, skipfailure);
-		
-		
-		//genMeth.clickId(genMeth, "Phone");
-		//genMeth.eyesCheckWindow(eyes, "All Tabs- Grid two layers- Phone options closed", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Phone");
+		Thread.sleep(1000);
+		genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- Phone options open", useEye, genMeth, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Phone");
 
 		
 		// Landline
-		genMeth.clickId(genMeth, "Landline");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid two layers- Landline", useEye, skipfailure);
-		
+		genMeth.clickXpthName_TextView(genMeth, "Landline");
+		Thread.sleep(1000);
+		genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- Landline", useEye, genMeth, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Landline");
+	
 		//URL
-		genMeth.clickId(genMeth, "URL");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid two layers- URL", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
-		
-		/*
-		isVisible = genMeth.checkIsElementVisible(By.id("Text"));
-
-		if (isVisible != true){
-			org.testng.Assert.fail("Phone options are missing");
-			
-		}
-		*/
-		
-
-
-		
-		/*
-		Boolean isVisible = genMeth.checkIsElementVisible(By.id("Apple maps"));
-		if (isVisible != true){
-			org.testng.Assert.fail("Address options are missing");
-			
-		}
-		*/
-		
-		//Email
-		genMeth.clickId(genMeth, "Email");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid two layers- Email", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "URL");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- List URL", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
-		genMeth.clickId(genMeth, DroidData.BTNdeleteDraft_Name);
 
-		//genMeth.clickId(genMeth, DroidData.BTNsend_Name);
-		//Thread.sleep(3000);
-		
+		//Email
+		genMeth.clickXpthName_TextView(genMeth, "Email");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- List Email", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, DroidData.BTNCancelName);
+		Thread.sleep(2000);
 		
 		//Address
-		genMeth.clickId(genMeth, "Address");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid two layers-  Address", useEye, skipfailure);
-		genMeth.swipedownMeizuShort(1000);
-		
-		//MiniMap
-		genMeth.clickId(genMeth, "Address Mini Map");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid two layers-  Mini Map", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNCancelName);
-		
-				
-		genMeth.clickId(genMeth, DroidData.IconBack_Name);
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
-		
-		//Verify Startup screen is open
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Address");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- Address", useEye, genMeth, skipfailure);
+		//genMeth.eyesCheckWindow(eyes, "All Tabs- List Address", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Address");
 
 		
+		//Mini Map
+		genMeth.swipedownMeizuShort(1000);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/template_view_item_map_layout");
+		genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- Mini Map", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, DroidData.BTNsubmit);
+		Thread.sleep(3000);
+		genMeth.pressBackDroidButton();
+		genMeth.clickId(genMeth, DroidData.BTNCancelName);
+				
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.clickId(genMeth, DroidData.IconHome);
 		
+		//Verify Startup screen is open		
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
+	
 	}
 	
 	@Test(enabled = true, testName = "Grid one layer", retryAnalyzer = Retry.class, description = "Check the Grid one layer tab Advanced & navigation",

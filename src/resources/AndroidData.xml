@@ -22,7 +22,6 @@
 			<BTNokName>OK</BTNokName>
 			<BTNpriority_Name>Priority</BTNpriority_Name>
 			<BTNnewServiceCallId>New Service Call</BTNnewServiceCallId>
-			<BTNsubmit_ID>Submit</BTNsubmit_ID>
 			<BTNplaceNewOrder_Xpth>//UIACollectionCell[@name='Place New Order']</BTNplaceNewOrder_Xpth>
 			<BTNaddContact_Name>Add contact</BTNaddContact_Name>
 			<BTNdeleteDraft_Name>Delete Draft</BTNdeleteDraft_Name>
@@ -32,8 +31,9 @@
 			<BtnkeyboardMoreNumbers>more, numbers</BtnkeyboardMoreNumbers>
 			<BTNrefresh_Name>Refresh</BTNrefresh_Name>
 			<BTNsend_Name>Send</BTNsend_Name>
-			<BTNseeAll_ID>See All</BTNseeAll_ID>
+			<BTNseeAll_ID>com.skygiraffe.operationaldata:id/one_lvls_item_seemore_btn</BTNseeAll_ID>
 			<BTNsave>Save</BTNsave>
+			<BTNsubmit>com.skygiraffe.operationaldata:id/base_dialog_submit_button</BTNsubmit>
 			
 		</Buttons>
 		

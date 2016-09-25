@@ -569,6 +569,7 @@ public class AndroidMethods {
 
 		By by = By.xpath("//android.widget.ImageView[@text='" + xpthName + "']");
 
+
 		try {
 
 			MobileElement myElement = genMeth.fluentwait(driver, by);

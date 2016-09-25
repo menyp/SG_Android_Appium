@@ -31,7 +31,6 @@ public class AndroidElements {
 	String BTNdirection;
 	String BTNpriority_Name;
 	String BTNnewServiceCallId;
-	String BTNsubmit_ID;
 	String BTNplaceNewOrder_Xpth;
 	String BTNaddContact_Name;
 	String BTNdeleteDraft_Name;
@@ -43,6 +42,7 @@ public class AndroidElements {
 	String BTNkeyboardDelete;
 	String BtnkeyboardMoreNumbers;
 	String BTNsave;
+	String BTNsubmit;
 	
 	
 	
@@ -127,7 +127,6 @@ public class AndroidElements {
 		this.BTNokName = XmlHandel.readAndroidXml("BTNokName", langXml, xmlPath);
 		this.BTNpriority_Name = XmlHandel.readAndroidXml("BTNpriority_Name", langXml, xmlPath);
 		this.BTNnewServiceCallId = XmlHandel.readAndroidXml("BTNnewServiceCallId", langXml, xmlPath);
-		this.BTNsubmit_ID = XmlHandel.readAndroidXml("BTNsubmit_ID", langXml, xmlPath);
 		this.BTNplaceNewOrder_Xpth = XmlHandel.readAndroidXml("BTNplaceNewOrder_Xpth", langXml, xmlPath);
 		this.BTNaddContact_Name = XmlHandel.readAndroidXml("BTNaddContact_Name", langXml, xmlPath);
 		this.BTNdeleteDraft_Name = XmlHandel.readAndroidXml("BTNdeleteDraft_Name", langXml, xmlPath);
@@ -139,10 +138,9 @@ public class AndroidElements {
 		this.BTNkeyboardDelete = XmlHandel.readAndroidXml("BTNkeyboardDelete", langXml, xmlPath);
 		this.BtnkeyboardMoreNumbers = XmlHandel.readAndroidXml("BtnkeyboardMoreNumbers", langXml, xmlPath);
 		this.BTNsave = XmlHandel.readAndroidXml("BTNsave", langXml, xmlPath);
+		this.BTNsubmit = XmlHandel.readAndroidXml("BTNsubmit", langXml, xmlPath);
 
-		
-		
-		
+
 		
 		
 		this.TEXTFIELDemailXpth = XmlHandel.readAndroidXml("TEXTFIELDemailXpth", langXml, xmlPath);
