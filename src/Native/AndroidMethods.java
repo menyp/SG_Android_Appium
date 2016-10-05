@@ -504,19 +504,32 @@ public class AndroidMethods {
 
 	public void clickXpth(AndroidMethods genMeth, String xpth)
 			throws InterruptedException, IOException {
-
+		
+		int i= 0;
 		By by = By.xpath(xpth);
+		
+		
+		while (i < 2){
+			
+			try {
 
-		try {
+				MobileElement myElement = genMeth.fluentwait(driver, by);
+				myElement.click();
+				i=3;
+				// driver.findElementByXPath(xpth).click();
 
-			MobileElement myElement = genMeth.fluentwait(driver, by);
-			myElement.click();
-			// driver.findElementByXPath(xpth).click();
+			}
+
+			catch (Exception e) {
+				// genMeth.takeScreenShot(driver, genMeth, xpth);
+				// org.testng.Assert.fail(xpth + " didn't display");
+				i++;
+			}
 
 		}
-
-		catch (Exception e) {
-			genMeth.takeScreenShot(driver, genMeth, xpth);
+		
+		if (i==2){
+			
 			org.testng.Assert.fail(xpth + " didn't display");
 
 		}
@@ -840,7 +853,7 @@ public class AndroidMethods {
 	public MobileElement fluentwait(AndroidDriver driver, final By byType) {
 		Wait<AndroidDriver> wait = new FluentWait<AndroidDriver>(driver)
 
-		.withTimeout(30, TimeUnit.SECONDS).pollingEvery(5, TimeUnit.SECONDS)
+		.withTimeout(45, TimeUnit.SECONDS).pollingEvery(5, TimeUnit.SECONDS)
 				.ignoring(NoSuchElementException.class);
 
 		MobileElement foo = (MobileElement) wait
@@ -1246,13 +1259,24 @@ public class AndroidMethods {
 	}
 	
 	
-	 public void pressBackDroidButton() { 
+	 public void backDroidButton() { 
 		 
 	 driver.pressKeyCode(AndroidKeyCode.BACK);
 	  
 	  }
 	 
 
+	public void deleteKey(int nunOfDeleteTap) {
+
+		while (nunOfDeleteTap > 0) {
+
+			driver.pressKeyCode(AndroidKeyCode.DEL);
+			nunOfDeleteTap--;
+		}
+
+	}
+	 
+	 
 
 	  private BufferedImage cropImage(BufferedImage src, Rectangle rect) {
          BufferedImage dest = src.getSubimage(0, 75, rect.width, rect.height-100);

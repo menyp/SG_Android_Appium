@@ -88,10 +88,10 @@
 	<Icon_AllApps_Name>M</Icon_AllApps_Name>
 	<IconBack_Name>Back</IconBack_Name>
 	<IconBack_Nav_Name>back nav</IconBack_Nav_Name>
-	<IconApplicationInfo_Name>Icon_i</IconApplicationInfo_Name>
+	<IconApplicationInfo_Name>com.skygiraffe.operationaldata:id/left_menu_child_info_icon</IconApplicationInfo_Name>
 	<IconHome>android:id/home</IconHome>
 	<IconRefresh>com.skygiraffe.operationaldata:id/action_refresh_btn</IconRefresh>
-	
+	<IconSearch>android:id/search_bar</IconSearch>
 	</Icon>	
 	
 	

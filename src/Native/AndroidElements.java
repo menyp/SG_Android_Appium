@@ -97,7 +97,9 @@ public class AndroidElements {
 	String CoonectionDATA;
 	String ConnectionALL;
 	String TabBarTitle_Name;
+	String IconSearch;
 	
+
 	// Credentials
 	String UserProd;
 	String passwordProd;
@@ -182,8 +184,9 @@ public class AndroidElements {
 		this.IconApplicationInfo_Name = XmlHandel.readAndroidXml("IconApplicationInfo_Name", langXml, xmlPath);	
 		this.IconRefresh = XmlHandel.readAndroidXml("IconRefresh", langXml, xmlPath);	
 		this.IconHome = XmlHandel.readAndroidXml("IconHome", langXml, xmlPath);	
+		this.IconSearch = XmlHandel.readAndroidXml("IconSearch", langXml, xmlPath);	
 
-
+		
 		
 		
 		

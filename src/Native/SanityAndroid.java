@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.WithTimeout;
 import io.appium.java_client.pagefactory.iOSFindBy;
@@ -204,7 +205,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Dashboard Default Layout- Navigate to Employee Directory", useEye, genMeth, skipfailure);
 
 		//Navigate back to Dashboard
-		genMeth.pressBackDroidButton();
+		genMeth.backDroidButton();
 		genMeth.clickXpthName_TextView(genMeth, "DashB/Cards/Employee");
 
 		
@@ -231,7 +232,7 @@ import com.applitools.eyes.Eyes;
 		
 		Thread.sleep(10000);
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Dashboard- Navigate to Map By GPS", useEye, genMeth, skipfailure);
-		genMeth.pressBackDroidButton();
+		genMeth.backDroidButton();
 		
 		genMeth.swipedownMeizuLong(1000);
 		genMeth.swipedownMeizuLong(1000);
@@ -291,7 +292,7 @@ import com.applitools.eyes.Eyes;
 
 		
 		//Navigation Back
-		genMeth.pressBackDroidButton();
+		genMeth.backDroidButton();
 		
 		
 		//Open Map By GPS
@@ -344,7 +345,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Bar Chart- Navigate to Dashboard", useEye, genMeth, skipfailure);
 		
 		//Navigate back to the Bar chart
-		genMeth.pressBackDroidButton();
+		genMeth.backDroidButton();
 		Thread.sleep(5000);
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Bar Chart", useEye, genMeth, skipfailure);
 		
@@ -418,7 +419,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickId(genMeth, DroidData.BTNsubmit);
 		Thread.sleep(4000);
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Go to URL", useEye, genMeth, skipfailure);
-		genMeth.pressBackDroidButton();
+		genMeth.backDroidButton();
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
 		
@@ -428,7 +429,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
 		//Go to Startup screen
-		genMeth.pressBackDroidButton();
+		genMeth.backDroidButton();
 		
 	}
 
@@ -484,7 +485,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/template_view_item_map_layout");
 		genMeth.clickId(genMeth, DroidData.BTNsubmit);
 		Thread.sleep(3000);
-		genMeth.pressBackDroidButton();
+		genMeth.backDroidButton();
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
 		genMeth.swipedownMeizuShort(1000);
@@ -579,7 +580,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- Mini Map", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNsubmit);
 		Thread.sleep(3000);
-		genMeth.pressBackDroidButton();
+		genMeth.backDroidButton();
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 				
 		genMeth.clickId(genMeth, DroidData.IconHome);
@@ -592,194 +593,206 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	@Test(enabled = true, testName = "Grid one layer", retryAnalyzer = Retry.class, description = "Check the Grid one layer tab Advanced & navigation",
-			groups = { "Sanity IOS" })
+			groups = { "Sanity Android123" })
 
 	public void Tabs_Grid_One_Layer_Advance_Navigation() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 
+		
+		//Need to find a solution to the find element by xpath for the Address/Mobile Phone etc sonce it keeps failing (seems like Appium bug)
+		
 		// go to Grid
-		genMeth.clickId(genMeth, "List / Grid");
+		genMeth.clickXpthName_TextView(genMeth, "List / Grid");
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		
-		genMeth.clickId(genMeth, "Grid - One Layer");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid one layer (Advanced - Part 1)", useEye, skipfailure);
-		
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Grid - One Layer");		
+		Thread.sleep(3000);
+		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) -  (Advanced - Part 1)", useEye, genMeth, skipfailure);
+				
 		// Address
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAScrollView[1]/UIAScrollView[2]/UIAImage[11]");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid one layer-  Address", useEye, skipfailure);
+		genMeth.clickXpth(genMeth, "//android.view.View[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[4]");
+		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Address", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
 
 		// Mobile Phone
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAScrollView[1]/UIAScrollView[2]/UIAImage[14]");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid one layer- Phone", useEye, skipfailure);
+		genMeth.clickXpth(genMeth, "//android.view.View[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[5]");
+		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Phone", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
-		genMeth.swipeRightMeizuLong(1000);
-		genMeth.swipeRightMeizuLong(1000);
-		//genMeth.swipeRightIphone5Long(1000);
+		genMeth.swipeRightMeizuLong(2000);
+		genMeth.swipeRightMeizuLong(2000);
+		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Swipe to the right", useEye, genMeth, skipfailure);
+
 
 
 		// MiniMap - Navigation to slicer report
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAScrollView[1]/UIAScrollView[2]/UIAImage[6]");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid one layer-  Mini Map", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
+		genMeth.clickXpth(genMeth, "//android.view.View[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.ImageView[1]");
+		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Mini Map Navigation", useEye, genMeth, skipfailure);
+		genMeth.backDroidButton();
 		
-		genMeth.swipeRightMeizuLong(1000);
-		genMeth.swipeRightMeizuLong(1000);
+
 
 		// Email
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAScrollView[1]/UIAScrollView[2]/UIAImage[7]");
-		
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid one layer- Email", useEye, skipfailure);
+		genMeth.clickXpth(genMeth, "//android.view.View[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[3]");
+		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Email", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
-		genMeth.clickId(genMeth, DroidData.BTNdeleteDraft_Name);
 
 		// URL
-		Thread.sleep(1000);
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAScrollView[1]/UIAScrollView[2]/UIAImage[10]");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid one layer- URL", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
+		//genMeth.clickXpth(genMeth, "//android.view.View[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[4]");
+		genMeth.clickXpth(genMeth, "//android.view.View[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[4]/android.widget.ImageView[1]");
+		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - URL", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, DroidData.BTNsubmit);
+		Thread.sleep(4000);
+		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Go To URL", useEye, genMeth, skipfailure);
+		genMeth.backDroidButton();
+		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
 		// Landline
-		genMeth.clickXpth(genMeth,"//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAScrollView[1]/UIAScrollView[2]/UIAImage[13]");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid one layer- Landline", useEye, skipfailure);
+		genMeth.clickXpth(genMeth, "//android.view.View[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[5]/android.widget.ImageView[1]");
+		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Landline", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
+		genMeth.clickId(genMeth, DroidData.IconHome);
 				
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Grid one layer- Swipe right", useEye, skipfailure);
-
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
-		
 		//Verify Startup screen is open
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);	
-		genMeth.swipeUpMeizuLong(1000);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 	
 	
 	}
 	
 	
 	@Test(enabled = true, testName = "Employee Directory", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
-			groups = { "Sanity IOS" })
+			groups = { "Sanity Android" })
 
 	public void Tabs_Employee_Directory() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 
 
 		// go to Employee Directory tab
-		genMeth.clickId(genMeth, "DashB/Cards/Employee");
+		genMeth.clickXpthName_TextView(genMeth, "DashB/Cards/Employee");
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		//genMeth.swipedownIphone5Short(1000);
-		
-		genMeth.clickId(genMeth, "Employee Directory");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory main", useEye, skipfailure);
-		
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Employee Directory");
+		Thread.sleep(3000);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Main",useEye, genMeth, skipfailure);
+								
 		//Search an employee (Empty search)
-		genMeth.clickId(genMeth, "Search");
-		genMeth.sendId(genMeth, "Search", "no emplyees found");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory - empty search", useEye, skipfailure);
+		genMeth.clickId(genMeth, DroidData.IconSearch);
+		genMeth.sendId(genMeth, DroidData.IconSearch , "no emplyees found");
 		
-		genMeth.clickId(genMeth, DroidData.BTNclearText_Name);
+		
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - empty search",useEye, genMeth, skipfailure);		
+		genMeth.deleteKey(17);
+
+		genMeth.clearId(genMeth, DroidData.IconSearch);
 		
 		//Search an employee
-		genMeth.sendId(genMeth, "Search" , "Lane" );
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory - search Specific employee", useEye, skipfailure);
-		
-		genMeth.clickId(genMeth, DroidData.BTNCancelName);
+		genMeth.clickId(genMeth, DroidData.IconSearch);
+		genMeth.sendId(genMeth, DroidData.IconSearch , "Lane");
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - search Specific employee",useEye, genMeth, skipfailure);		
+		genMeth.backDroidButton();	
 		
 		//second layer
-		genMeth.clickId(genMeth, "Lane R. Barlow");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory - Second layer", useEye, skipfailure);
-		
+		genMeth.clickXpthName_TextView(genMeth, "Lane R. Barlow");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Second layer",useEye, genMeth, skipfailure);				
 
 		// Phone
-		genMeth.clickId(genMeth, "Phone");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory - Phone", useEye, skipfailure);
+		Thread.sleep(1000);
+		genMeth.clickXpthName_TextView(genMeth, "Phone");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Phone",useEye, genMeth, skipfailure);				
 	
 		// Email
-		genMeth.clickId(genMeth, "Email");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory - Email", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Email");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Email",useEye, genMeth, skipfailure);				
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
-		genMeth.clickId(genMeth, DroidData.BTNdeleteDraft_Name);
 		
 		//Map
 		genMeth.swipedownMeizuShorter(1000);
-		genMeth.clickId(genMeth, "Address First");
-		genMeth.eyesCheckWindow(eyes,"All Tabs- Employee Directory - Address First", useEye, skipfailure);
-
+		genMeth.clickXpthName_TextView(genMeth, "Address First");
+		Thread.sleep(1000);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Address First",useEye, genMeth, skipfailure);				
 		
 		// Mini Map
 		genMeth.swipedownMeizuShorter(1000);
-		genMeth.clickId(genMeth, "Address (Second)");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory - Address second", useEye, skipfailure);
+		
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/template_view_item_map_layout");
+		Thread.sleep(1000);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Address second",useEye, genMeth, skipfailure);				
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 
 		// URL
 		genMeth.swipedownMeizuLong(1000);
-		genMeth.clickId(genMeth, "google.com");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory - URL", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
+		genMeth.clickXpthName_TextView(genMeth, "google.com");
+		Thread.sleep(1000);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - URL",useEye, genMeth, skipfailure);	
+		genMeth.clickId(genMeth, DroidData.BTNsubmit);
+		genMeth.backDroidButton();
+		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
-		//Social Networks
-		genMeth.swipedownMeizuShorter(1000);
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIAButton[1]");
-		Thread.sleep(3000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory - FaceBook", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
+		//Social Networks - Facebook
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/employee_directory_detail_person_social_net_facebook");
+		Thread.sleep(5000);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Facebook",useEye, genMeth, skipfailure);				
+		genMeth.backDroidButton();
 
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIAButton[2]");
-		Thread.sleep(3000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory - Twitter", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
+		//Twitter
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/employee_directory_detail_person_social_net_twitter");
+		Thread.sleep(5000);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Twitter",useEye, genMeth, skipfailure);				
+		genMeth.backDroidButton();
 
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIAButton[3]");
+		//LinkedIn
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/employee_directory_detail_person_social_net_linkidin");
 		Thread.sleep(3000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory - Linkein", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - LinkedIn",useEye, genMeth, skipfailure);				
+		genMeth.backDroidButton();
 
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIAButton[4]");
-		Thread.sleep(3000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory - Google+", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
+		//Google+
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/employee_directory_detail_person_social_net_google_plus");
+		Thread.sleep(5000);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Google+",useEye, genMeth, skipfailure);				
+		genMeth.backDroidButton();
 		
 		//Navigation
-		genMeth.swipedownMeizuShorter(1000);
-		genMeth.clickId(genMeth, "First_Name");
+		genMeth.clickXpthName_TextView(genMeth, "First_Name");
 		Thread.sleep(8000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory - Navigation to Param report ed", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNCancelName);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory, Back from navigation", useEye, skipfailure);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Navigation to Param report ed",useEye, genMeth, skipfailure);				
+		genMeth.backDroidButton();
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Back from navigation",useEye, genMeth, skipfailure);				
 		
 		//No Social Networks available
-		genMeth.clickId(genMeth, DroidData.BTNBackName);
-		genMeth.clickId(genMeth, DroidData.BTNclearText_Name);
-		genMeth.clickId(genMeth, "Callum R. Aguirre");
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory, No Social Networks", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNBackName);
+		genMeth.sendId(genMeth, DroidData.IconSearch , "Callum R. Aguirre");
+		Thread.sleep(1000);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - No Social Networks",useEye, genMeth, skipfailure);				
+		genMeth.backDroidButton();
 		
 		//No Google+ 
-		genMeth.clickId(genMeth, "Caldwell Alexander");
+		genMeth.sendId(genMeth, DroidData.IconSearch , "Caldwell Alexander");
 		genMeth.swipedownMeizuLong(1000);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory, No Google+", useEye, skipfailure);
+		Thread.sleep(1000);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - No Google+",useEye, genMeth, skipfailure);				
 		
 		//Back to Startup screen
-		genMeth.clickId(genMeth, DroidData.BTNBackName);
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
-		genMeth.clickId(genMeth, DroidData.Icon_AllApps_Name);
+		genMeth.backDroidButton();
+		genMeth.clickId(genMeth, DroidData.IconHome);
 		
 		//Press info for the app
-		genMeth.clickId(genMeth, DroidData.IconApplicationInfo_Name);
-		genMeth.eyesCheckWindow(eyes, "All Tabs- Employee Directory, Golden App info screen", useEye, skipfailure);
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIAButton[2]");
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/left_menu_child_info_icon");
+		Thread.sleep(1000);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Golden App info screen",useEye, genMeth, skipfailure);	
+		genMeth.clickXpthName_TextView(genMeth, "SQL Golden App");
+		genMeth.clickXpthName_TextView(genMeth, "SQL Golden App");
 				
 		//Verify Startup screen is open
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
-		
+		Thread.sleep(1000);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
+
 	}
 
 	
 	@Test(enabled = true, testName = "Parameterized report Grid", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
-			groups = { "Sanity IOS" })
+			groups = { "Sanity Android1" })
 
 	public void Param_Report_Grid() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -787,41 +800,42 @@ import com.applitools.eyes.Eyes;
 
 		// go to parameterized report - Grid tab
 		genMeth.swipedownMeizuShort(1000);
-		//genMeth.swipedownIphone5Short(1000);
-
-		genMeth.clickId(genMeth, "Param Report Grid");
 		
-		genMeth.eyesCheckWindow(eyes, "Param Report Grid- add Parameters", useEye, skipfailure);
 		
+		// go to Employee Directory tab
+		genMeth.clickXpthName_TextView(genMeth, "Param Report Grid");
+		Thread.sleep(3000);
+		genMeth.eyesCheckWindow("Param Report Grid (Droid)- add Parameters",useEye, genMeth, skipfailure);
+		
+				
 		//Attempt to submit while mandatory is missing
 		genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
-		genMeth.eyesCheckWindow(eyes, "Param Report Grid- Mandatory field is missing", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Param Report Grid (Droid)- Mandatory field is missing",useEye, genMeth, skipfailure);
 
 		//Insert parameters
 		genMeth.clickId(genMeth, "SL-Device Types");
-		genMeth.eyesCheckWindow(eyes, "Param Report Grid- SL param", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Param Report Grid (Droid)- SL param",useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, "Laptop");
 		Thread.sleep(12000);
 		
 		genMeth.clickId(genMeth, "PSL- Device Model");
-		genMeth.eyesCheckWindow(eyes, "Param Report Grid- PSL param", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Param Report Grid (Droid)- PSL param",useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, "Lenovo");
 		
-		genMeth.eyesCheckWindow(eyes, "Param Report Grid- All params were filled", useEye, skipfailure);
-		
+		genMeth.eyesCheckWindow("Param Report Grid (Droid)- All params were filled",useEye, genMeth, skipfailure);		
 		genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		
 		Thread.sleep(4000);
-		genMeth.eyesCheckWindow(eyes, "Param Report Grid- Grid first layer", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Param Report Grid (Droid)- Grid first layer",useEye, genMeth, skipfailure);		
 		//Go To second layer
 		genMeth.clickId(genMeth, "Laptop");
-		genMeth.eyesCheckWindow(eyes, "Param Report Grid- Grid second layer", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Param Report Grid (Droid)- Grid second layer",useEye, genMeth, skipfailure);		
 		
 		//Back to startup screen
 		genMeth.clickId(genMeth, DroidData.BTNBackName);
 		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
 		genMeth.swipeUpMeizuLong(1000);
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
 
@@ -840,7 +854,7 @@ import com.applitools.eyes.Eyes;
 		//Back to startup screen
 		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
 		genMeth.swipeUpMeizuLong(1000);
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
 
@@ -893,7 +907,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.swipeUpMeizuLong(1000);
 		genMeth.swipeUpMeizuLong(1000);
 
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
 
@@ -937,7 +951,7 @@ import com.applitools.eyes.Eyes;
 		//Back to startup screen
 		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
 		genMeth.swipeUpMeizuLong(1000);
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
 	
@@ -973,7 +987,7 @@ import com.applitools.eyes.Eyes;
 		//Back to startup screen
 		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
 		genMeth.swipeUpMeizuLong(1000);
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
 	
@@ -1016,7 +1030,7 @@ import com.applitools.eyes.Eyes;
 		//Back to startup screen
 		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
 		genMeth.swipeUpMeizuLong(1000);
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
 
@@ -1052,7 +1066,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
 		genMeth.swipeUpMeizuLong(1000);
 		genMeth.swipeUpMeizuLong(1000);
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
 
@@ -1082,7 +1096,7 @@ import com.applitools.eyes.Eyes;
 		//Back to startup screen
 		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
 		genMeth.swipeUpMeizuLong(1000);
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
 
@@ -1123,7 +1137,7 @@ import com.applitools.eyes.Eyes;
 		//Back to startup screen
 		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
 		genMeth.swipeUpMeizuLong(1000);
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
 
@@ -1332,7 +1346,7 @@ import com.applitools.eyes.Eyes;
 		//Verify Startup screen is open
 		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
 		genMeth.swipeUpMeizuShort(1000);
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 
 	}
 
@@ -1389,7 +1403,7 @@ import com.applitools.eyes.Eyes;
 		//Verify Startup screen is open
 		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
 		genMeth.swipeUpMeizuShort(1000);
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 
 	}
 	
@@ -1525,7 +1539,7 @@ import com.applitools.eyes.Eyes;
 		// Verify Startup screen is open
 		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
 		genMeth.swipeUpMeizuShort(1000);
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 
 	}
 	
@@ -1576,7 +1590,7 @@ import com.applitools.eyes.Eyes;
 		// Verify Startup screen is open
 		genMeth.clickId(genMeth, DroidData.BTNBackName);
 		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 	}
 
 	
@@ -1639,7 +1653,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
 		genMeth.swipeUpMeizuLong(1000);
 		genMeth.swipeUpMeizuLong(1000);
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
 	
@@ -1690,7 +1704,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
 		genMeth.swipeUpMeizuLong(1000);
 		genMeth.swipeUpMeizuLong(1000);
-		genMeth.eyesCheckWindow(eyes, "Default app is open - SQL Golden App", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
 	
