@@ -148,7 +148,7 @@ public class AndroidMethods {
 
 		if (useEye) {
 
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			eyes.setApiKey("Hbh6716cKDCgn8a9bMAREPM105nbW109PQe0993So5GwFpNM110");
 			 //Switch between the versions to generate test failure.
 	        String version = "0.2";
@@ -1277,6 +1277,7 @@ public class AndroidMethods {
 
 	}
 	 
+	
 	 
 
 	  private BufferedImage cropImage(BufferedImage src, Rectangle rect) {

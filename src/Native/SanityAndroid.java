@@ -842,19 +842,20 @@ import com.applitools.eyes.Eyes;
 	}
 
 	@Test(enabled = true, testName = "Parameterized report With all variables", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
-			groups = { "Sanity IOS" })
+			groups = { "Sanity Android" })
 
 	public void Param_Report_AllVariables() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 
 
 		genMeth.swipedownMeizuShort(1000);
-		genMeth.clickId(genMeth, "Param Variables only");
-		genMeth.eyesCheckWindow(eyes, "Param Report with All Variables - SQL Golden App", useEye, skipfailure);
-
+		genMeth.clickXpthName_TextView(genMeth, "Param Variables only");
+		genMeth.eyesCheckWindow("Param Report with All Variables (Droid) - SQL Golden App",useEye, genMeth, skipfailure);		
 		
 		//Back to startup screen
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+//		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
+		genMeth.swipeUpMeizuLong(1000);
 		genMeth.swipeUpMeizuLong(1000);
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
@@ -862,7 +863,7 @@ import com.applitools.eyes.Eyes;
 
 	
 	@Test(enabled = true, testName = "Parameterized report List", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
-			groups = { "Sanity IOS" })
+			groups = { "Sanity Android" })
 
 	public void Param_Report_List() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -872,40 +873,42 @@ import com.applitools.eyes.Eyes;
 		genMeth.swipedownMeizuShort(1000);
 		genMeth.swipedownMeizuShort(1000);
 
-		genMeth.clickId(genMeth, "Param Report List");
-		
-		genMeth.eyesCheckWindow(eyes, "Param Report List- add Parameters", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Param Report List");
+		genMeth.eyesCheckWindow("Param Report List (Droid)- add Parameters", useEye, genMeth, skipfailure);
 		
 		//Attempt to submit while mandatory is missing
-		genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
-		genMeth.eyesCheckWindow(eyes, "Param Report List- Mandatory field is missing", useEye, skipfailure);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");		
+		genMeth.eyesCheckWindow("Param Report List (Droid)- Mandatory field is missing", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/app_message_dialog_cancel_button");
 
 		//Insert parameters
-		genMeth.clickId(genMeth, "FreeText  (Priority)");
-		genMeth.clickId(genMeth, DroidData.BtnkeyboardMoreNumbers);
-		genMeth.clickId(genMeth, "1");
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
+		genMeth.clickXpthName_TextView(genMeth, "FreeText  (Priority)");
+		driver.pressKeyCode(AndroidKeyCode.KEYCODE_1);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_submit_button");
 
-		genMeth.clickId(genMeth, "SL_ML (Priority)");
-		genMeth.eyesCheckWindow(eyes, "Param Report List- SL ML  Priority", useEye, skipfailure);
-		genMeth.clickId(genMeth, "2");
-		genMeth.eyesCheckWindow(eyes, "Param Report List- All params were filled", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "SL_ML (Priority)");
+		genMeth.eyesCheckWindow("Param Report List (Droid)- SL ML  Priority", useEye, genMeth, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "2");
+		//genMeth.clickId(genMeth, "2");
+		genMeth.eyesCheckWindow("Param Report List (Droid)- All params were filled", useEye, genMeth, skipfailure);
 		
-		genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
 		Thread.sleep(2000);
-		genMeth.eyesCheckWindow(eyes, "Param Report List- FreeText Priority = 1", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Param Report List (Droid)- FreeText Priority = 1", useEye, genMeth, skipfailure);
 
-		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickId(genMeth, "SL_ML (Priority)");
-		genMeth.eyesCheckWindow(eyes, "Param Report List- FreeText Priority = 2", useEye, skipfailure);
 		
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		
+		genMeth.clickXpthName_CheckedTextView(genMeth, "SL_ML (Priority)");
+		genMeth.eyesCheckWindow("Param Report List (Droid)- FreeText Priority = 2", useEye, genMeth, skipfailure);
+
 
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickId(genMeth, "SC(Up_Date<=MobDate)");
-		genMeth.eyesCheckWindow(eyes, "Param Report List- SC(Up_Date<=MobDate)", useEye, skipfailure);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "SC(Up_Date<=MobDate)");
+		genMeth.eyesCheckWindow("Param Report List (Droid)- SC(Up_Date<=MobDate)", useEye, genMeth, skipfailure);
 		
 		//Back to startup screen
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
+		genMeth.clickId(genMeth, DroidData.IconHome);
 		genMeth.swipeUpMeizuLong(1000);
 		genMeth.swipeUpMeizuLong(1000);
 
