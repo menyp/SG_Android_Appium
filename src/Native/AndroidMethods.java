@@ -13,6 +13,7 @@ import io.appium.java_client.android.AndroidDriver;
 
 
 
+
 import com.applitools.eyes.Eyes;
 import com.applitools.eyes.MatchLevel;
 import com.applitools.eyes.RectangleSize;
@@ -147,7 +148,7 @@ public class AndroidMethods {
 
 		if (useEye) {
 
-			
+			Thread.sleep(2000);
 			eyes.setApiKey("Hbh6716cKDCgn8a9bMAREPM105nbW109PQe0993So5GwFpNM110");
 			 //Switch between the versions to generate test failure.
 	        String version = "0.2";

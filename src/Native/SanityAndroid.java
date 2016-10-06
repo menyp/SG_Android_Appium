@@ -792,7 +792,7 @@ import com.applitools.eyes.Eyes;
 
 	
 	@Test(enabled = true, testName = "Parameterized report Grid", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android" })
 
 	public void Param_Report_Grid() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -804,36 +804,38 @@ import com.applitools.eyes.Eyes;
 		
 		// go to Employee Directory tab
 		genMeth.clickXpthName_TextView(genMeth, "Param Report Grid");
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 		genMeth.eyesCheckWindow("Param Report Grid (Droid)- add Parameters",useEye, genMeth, skipfailure);
 		
 				
 		//Attempt to submit while mandatory is missing
-		genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
 		genMeth.eyesCheckWindow("Param Report Grid (Droid)- Mandatory field is missing",useEye, genMeth, skipfailure);
+		
 
 		//Insert parameters
-		genMeth.clickId(genMeth, "SL-Device Types");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/app_message_dialog_cancel_button");
+		genMeth.clickXpthName_TextView(genMeth, "SL-Device Types");
 		genMeth.eyesCheckWindow("Param Report Grid (Droid)- SL param",useEye, genMeth, skipfailure);
-		genMeth.clickId(genMeth, "Laptop");
-		Thread.sleep(12000);
-		
-		genMeth.clickId(genMeth, "PSL- Device Model");
+		genMeth.clickXpthName_TextView(genMeth, "Laptop");
+
+		genMeth.clickXpthName_TextView(genMeth, "PSL- Device Model");
 		genMeth.eyesCheckWindow("Param Report Grid (Droid)- PSL param",useEye, genMeth, skipfailure);
-		genMeth.clickId(genMeth, "Lenovo");
-		
+		genMeth.clickXpthName_TextView(genMeth, "PSL- Device Model");
+		genMeth.clickXpthName_TextView(genMeth, "Lenovo");		
 		genMeth.eyesCheckWindow("Param Report Grid (Droid)- All params were filled",useEye, genMeth, skipfailure);		
-		genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
 		
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		genMeth.eyesCheckWindow("Param Report Grid (Droid)- Grid first layer",useEye, genMeth, skipfailure);		
 		//Go To second layer
-		genMeth.clickId(genMeth, "Laptop");
+		genMeth.clickXpthName_TextView(genMeth, "Laptop");		
 		genMeth.eyesCheckWindow("Param Report Grid (Droid)- Grid second layer",useEye, genMeth, skipfailure);		
 		
 		//Back to startup screen
-		genMeth.clickId(genMeth, DroidData.BTNBackName);
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.swipeUpMeizuLong(1000);
 		genMeth.swipeUpMeizuLong(1000);
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
