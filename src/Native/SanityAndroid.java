@@ -916,7 +916,7 @@ import com.applitools.eyes.Eyes;
 		
 	}
 
-	@Test(enabled = true, groups = { "Sanity IOS" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
+	@Test(enabled = true, groups = { "Sanity Android1" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
 	public void Param_Report_DL_Dashboard()
 			throws ParserConfigurationException, SAXException, IOException,
 			InterruptedException {
@@ -924,37 +924,41 @@ import com.applitools.eyes.Eyes;
 
 		// go to parameterized report dashboard - DL- Device Info tab
 		genMeth.swipedownMeizuLong(1000);
-		genMeth.clickId(genMeth, "Param DL-Dashboard");
 		
-		genMeth.eyesCheckWindow(eyes, "Param Report Dashboard DL- add Parameters", useEye, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Param DL-Dashboard");
+												 
+		
+		genMeth.eyesCheckWindow("Param Report Dashboard DL (Droid)- add Parameters",useEye, genMeth, skipfailure);		
 
 		//Insert parameters
-		genMeth.clickId(genMeth, "SL- Devices Type");
-		genMeth.eyesCheckWindow(eyes, "Param Report Dashboard DL- SL param", useEye, skipfailure);
-		genMeth.clickId(genMeth, "Laptop");
+		genMeth.clickXpthName_TextView(genMeth, "SL- Devices Type");
+		genMeth.eyesCheckWindow("Param Report Dashboard DL (Droid)- SL param",useEye, genMeth, skipfailure);		
+		genMeth.clickXpthName_TextView(genMeth, "Laptop");
 		Thread.sleep(2000);
 		
-		genMeth.clickId(genMeth, "DL- Device Model");
-		genMeth.eyesCheckWindow(eyes, "Param Report Dashboard DL- DL param", useEye, skipfailure);
-		genMeth.clickId(genMeth, "Lenovo");
-		
-		genMeth.eyesCheckWindow(eyes, "Param Report Dashboard DL- All params were filled", useEye, skipfailure);
-		
-		genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
+		genMeth.clickXpthName_TextView(genMeth, "DL- Device Model");
+		genMeth.eyesCheckWindow("Param Report Dashboard DL (Droid)- DL param",useEye, genMeth, skipfailure);		
+		genMeth.clickXpthName_TextView(genMeth, "Lenovo");
+		genMeth.eyesCheckWindow("Param Report Dashboard DL (Droid)- All params were filled",useEye, genMeth, skipfailure);		
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
+		//genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		
 		Thread.sleep(5000);
-		genMeth.eyesCheckWindow(eyes, "Param Report Dashboard DL- Dashboard tab", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Param Report Dashboard DL (Droid)- Dashboard tab",useEye, genMeth, skipfailure);		
 		
 		//Navigate to Dashboard tab
-		genMeth.clickId(genMeth, "Device Type name (ParentName)");
+		genMeth.clickXpthName_TextView(genMeth, "Device Type Name (ParentName)");
 		Thread.sleep(5000);
-		genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
-		genMeth.eyesCheckWindow(eyes, "Param Report Dashboard DL- Navigate to SL- Devices by Type tab", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
-		genMeth.eyesCheckWindow(eyes, "Param Report Dashboard DL- Dashboard tab", useEye, skipfailure);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
+		genMeth.eyesCheckWindow("Param Report Dashboard DL (Droid)- Navigate to SL- Devices by Type tab",useEye, genMeth, skipfailure);		
+		genMeth.backDroidButton();
+		genMeth.backDroidButton();
+
+		genMeth.eyesCheckWindow("Param Report Dashboard DL (Droid)- Dashboard tab",useEye, genMeth, skipfailure);		
 		
 		//Back to startup screen
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.swipeUpMeizuLong(1000);
 		genMeth.swipeUpMeizuLong(1000);
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
