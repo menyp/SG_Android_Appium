@@ -916,7 +916,7 @@ import com.applitools.eyes.Eyes;
 		
 	}
 
-	@Test(enabled = true, groups = { "Sanity Android1" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
+	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
 	public void Param_Report_DL_Dashboard()
 			throws ParserConfigurationException, SAXException, IOException,
 			InterruptedException {
@@ -965,7 +965,7 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	
-	@Test(enabled = true, groups = { "Sanity IOS"}, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
+	@Test(enabled = true, groups = { "Sanity Android1"}, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
 	public void Param_Report_CoverFlow()
 			throws ParserConfigurationException, SAXException, IOException,
 			InterruptedException {
@@ -973,28 +973,31 @@ import com.applitools.eyes.Eyes;
 
 		// go to parameterized report dashboard - DL- Device Info tab
 		genMeth.swipedownMeizuLong(1000);
-		genMeth.clickId(genMeth, "Param Rep Cover Flow");
+		genMeth.clickXpthName_TextView(genMeth, "Param Rep Cover Flow");
 		
-		genMeth.eyesCheckWindow(eyes, "Param Rep Cover Flow - Parameters", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Param Rep Cover Flow (Droid) - Parameters",useEye, genMeth, skipfailure);		
 
 		//Insert parameters
-		genMeth.clickId(genMeth, "Insert Gender (F or M)");
-		genMeth.eyesCheckWindow(eyes, "Param Rep Cover Flow - QR", useEye, skipfailure);
-		genMeth.clickId(genMeth, "Insert Gender (F or M)");
-		genMeth.clickId(genMeth, DroidData.BTNClearName);
-		genMeth.clickId(genMeth, "m");
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
+		genMeth.clickXpthName_TextView(genMeth, "Insert Gender (F or M)");
+		genMeth.eyesCheckWindow("Param Rep Cover Flow (Droid) - QR",useEye, genMeth, skipfailure);		
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/barcode_activity_manual_input_button");
+		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/qr_scanner_view_finder", "m");
+		//genMeth.clickId(genMeth, "m");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/qr_manual_input_submit_btn");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
 
-		Thread.sleep(1000);
-		genMeth.eyesCheckWindow(eyes, "Param Rep Cover Flow - Males", useEye, skipfailure);
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("Param Rep Cover Flow (Droid) - Males",useEye, genMeth, skipfailure);		
 		
 		//Go To cover flow tab by const (females)
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickId(genMeth, "Const-Female Only");
-		genMeth.eyesCheckWindow(eyes, "Param Rep Cover Flow - Female", useEye, skipfailure);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Const-Female Only");
+		genMeth.eyesCheckWindow("Param Rep Cover Flow (Droid) - Female",useEye, genMeth, skipfailure);		
 		
 		//Back to startup screen
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.swipeUpMeizuLong(1000);
+		genMeth.swipeUpMeizuLong(1000);
 		genMeth.swipeUpMeizuLong(1000);
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
