@@ -1049,8 +1049,8 @@ import com.applitools.eyes.Eyes;
 		
 	}
 
-	@Test(enabled = true, groups = { "Sanity Android1" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
-	public void Param_Report_EmployeeDirectoryD()
+	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
+	public void Param_Report_EmployeeDirectory()
 			throws ParserConfigurationException, SAXException, IOException,
 			InterruptedException {
 
@@ -1058,34 +1058,38 @@ import com.applitools.eyes.Eyes;
 		// go to parameterized report-  Param report chart tab
 		genMeth.swipedownMeizuLong(1000);
 		genMeth.swipedownMeizuLong(1000);
+		genMeth.swipedownMeizuLong(1000);
 
-		genMeth.clickId(genMeth, "Param Report ED");
+
+		//genMeth.clickId(genMeth, "Param Report ED");
+		genMeth.clickXpthName_TextView(genMeth, "Param Report ED");
 		Thread.sleep(2000);
-		
-		genMeth.eyesCheckWindow(eyes, "Param Rep ED - Parameters", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Param Rep ED (Droid)- Parameters", useEye, genMeth, skipfailure);
 
 		//Insert parameters
-		genMeth.clickId(genMeth, "Choose Value");
-		genMeth.clickId(genMeth, "Female");
-		genMeth.eyesCheckWindow(eyes, "Param Rep ED -SL MB", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
+		genMeth.clickXpthName_TextView(genMeth, "Choose Value");
+		genMeth.clickXpthName_TextView(genMeth, "Female");
+		genMeth.eyesCheckWindow("Param Rep ED (Droid)- SL MB", useEye, genMeth, skipfailure);
+		
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
 		Thread.sleep(2000);
-		genMeth.eyesCheckWindow(eyes, "Param Rep ED - Female only", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Param Rep ED (Droid)- Female only", useEye, genMeth, skipfailure);
 		
 		//Go To Employee tab by Login variable
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickId(genMeth, "ED by Login");
-		genMeth.eyesCheckWindow(eyes, "Param Rep ED - ED by Login", useEye, skipfailure);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "ED by Login");
+		genMeth.eyesCheckWindow("Param Rep ED (Droid)- ED by Login", useEye, genMeth, skipfailure);
 
 		//Back to startup screen
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.swipeUpMeizuLong(1000);
 		genMeth.swipeUpMeizuLong(1000);
 		genMeth.swipeUpMeizuLong(1000);
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
 
-	@Test(enabled = true, groups = { "Sanity IOS" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
+	@Test(enabled = true, groups = { "Sanity Android1" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
 	public void Param_Report_Map()
 
 			throws ParserConfigurationException, SAXException, IOException,
