@@ -90,15 +90,15 @@ import com.applitools.eyes.Eyes;
 
 		else {
 			
-			skipfailure = false;
-			genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden Ap", useEye, genMeth, skipfailure);
-
-			/*
-	//		genMeth.clickName(genMeth, "DashB/Cards/Employee");
 			String Startup_Screen = "//android.widget.TextView[@text='All Tabs']";
-//			String Startup_Screen = "//android.widget.LinearLayout[@text='SQL Golden App']";
+			//String Startup_Screen = "//android.widget.LinearLayout[@text='SQL Golden App']";
 			
 			genMeth.swipeUpMeizuLong(1000);
+			genMeth.swipeUpMeizuLong(1000);
+			genMeth.swipeUpMeizuLong(1000);
+			genMeth.swipeUpMeizuLong(1000);
+
+
 			boolean StartUpScreenDisplay = genMeth.checkIsElementVisible( By.xpath(Startup_Screen));
 
 			if (StartUpScreenDisplay != true) {
@@ -115,12 +115,11 @@ import com.applitools.eyes.Eyes;
 				DroidData = genMeth.setElements(webElementXmlPath, webElementXmlLang);
 				genMeth.cleanLoginDroid( genMeth, DroidData.userQA, DroidData.passwordQA);
 
-*/
 
 			}
 
 		}
-
+	}
 	
 	
 	@Test(enabled = true, testName = "URL Tab", retryAnalyzer = Retry.class, description = "Check the URL tab",
@@ -390,7 +389,7 @@ import com.applitools.eyes.Eyes;
 		//Address
 		genMeth.clickXpthName_TextView(genMeth, "Address");
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Address", useEye, genMeth, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNCancelName);
+		//genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
 		genMeth.swipedownMeizuLong(1000);
 		genMeth.swipedownMeizuLong(1000);
@@ -398,19 +397,18 @@ import com.applitools.eyes.Eyes;
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Scroll Down", useEye, genMeth, skipfailure);
 
 		//Address mini map
-		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/list_template_map_address_icon");
+		genMeth.clickXpthName_TextView(genMeth, "Hermon 13 Kfar Vradim");
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Address Mini Map", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 
 		//Phone
 		genMeth.clickXpthName_TextView(genMeth, "Phone");
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Phone", useEye, genMeth, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNCancelName);
+		genMeth.clickXpthName_TextView(genMeth, "Phone");
 		
 		//Email
 		genMeth.clickXpthName_TextView(genMeth, "Email");
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Email", useEye, genMeth, skipfailure);
-
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
 		//URL
@@ -426,7 +424,7 @@ import com.applitools.eyes.Eyes;
 		// Landline
 		genMeth.clickXpthName_TextView(genMeth, "Landline");
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Cover Flow- Landline", useEye, genMeth, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNCancelName);
+		genMeth.clickXpthName_TextView(genMeth, "Landline");
 		
 		//Go to Startup screen
 		genMeth.backDroidButton();
@@ -516,7 +514,6 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	
-	
 	@Test(enabled = true, testName = "Grid two layer Advanced", retryAnalyzer = Retry.class, description = "Check the Grid two layer tab",
 			groups = { "Sanity Android" })
 
@@ -535,9 +532,17 @@ import com.applitools.eyes.Eyes;
 		Thread.sleep(1000);
 		genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- Second layer", useEye, genMeth, skipfailure);
 		genMeth.swipedownMeizuShorter(1000);
-		genMeth.setLandscapeMode();
-		genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- Second layer - Landscape", useEye, genMeth, skipfailure);
-		genMeth.setPortraitMode();
+	
+		/*
+		try {
+			genMeth.setLandscapeMode();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+		//genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- Second layer - Landscape", useEye, genMeth, skipfailure);
+		//genMeth.setPortraitMode();
 		
 	
 		//Phone
@@ -587,7 +592,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickId(genMeth, DroidData.IconHome);
 		
 		//Verify Startup screen is open		
-		Thread.sleep(2000);
+		genMeth.swipeUpMeizuLong(1000);
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 	
 	}
@@ -847,14 +852,12 @@ import com.applitools.eyes.Eyes;
 	public void Param_Report_AllVariables() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 
-
 		genMeth.swipedownMeizuShort(1000);
 		genMeth.clickXpthName_TextView(genMeth, "Param Variables only");
 		genMeth.eyesCheckWindow("Param Report with All Variables (Droid) - SQL Golden App",useEye, genMeth, skipfailure);		
 		
 		//Back to startup screen
 		genMeth.clickId(genMeth, DroidData.IconHome);
-//		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
 		genMeth.swipeUpMeizuLong(1000);
 		genMeth.swipeUpMeizuLong(1000);
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
@@ -1089,7 +1092,7 @@ import com.applitools.eyes.Eyes;
 		
 	}
 
-	@Test(enabled = true, groups = { "Sanity Android1" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
+	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
 	public void Param_Report_Map()
 
 			throws ParserConfigurationException, SAXException, IOException,
@@ -1098,28 +1101,32 @@ import com.applitools.eyes.Eyes;
 
 		// go to parameterized report-  Param report chart tab
 		genMeth.swipedownMeizuShort(1000);
-		genMeth.clickId(genMeth, "Param Report Map");
+		genMeth.swipedownMeizuShort(1000);
+		genMeth.clickXpthName_TextView(genMeth, "Param Report Map");
 		Thread.sleep(5000);
 		
-		genMeth.eyesCheckWindow(eyes, "Param Rep Map - Parameters", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Param Rep Map (Droid) - Parameters", useEye, genMeth, skipfailure);
 
 		//Insert parameters
-		genMeth.clickId(genMeth, "Choose Value");
-		genMeth.clickId(genMeth, "Mall of America");
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
-		genMeth.eyesCheckWindow(eyes, "Param Rep Map - Mall Of america chosen", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
+		genMeth.clickXpthName_TextView(genMeth, "Choose Value");
+		genMeth.clickXpthName_TextView(genMeth, "King of Prussia Mall");
+
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_submit_button");
+		genMeth.eyesCheckWindow("Param Rep Map (Droid) - King of Prussia Mall chosen", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
 		Thread.sleep(12000);
-		genMeth.eyesCheckWindow(eyes, "Param Rep Map - Mall Of america on map", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Param Rep Map (Droid) - King of Prussia Mall on map", useEye, genMeth, skipfailure);
 
 		//Back to startup screen
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
+		genMeth.clickId(genMeth, DroidData.IconHome);
 		genMeth.swipeUpMeizuLong(1000);
+		genMeth.swipeUpMeizuLong(1000);
+
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
 
-	@Test(enabled = true, groups = { "Sanity IOS" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
+	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Param_Report_Cards", retryAnalyzer = Retry.class, description = "Check the Param_Report_Cards")
 	public void Param_Report_Cards()
 			throws ParserConfigurationException, SAXException, IOException,
 			InterruptedException {
@@ -1127,34 +1134,26 @@ import com.applitools.eyes.Eyes;
 
 		// go to parameterized report-  Param report chart tab
 		genMeth.swipedownMeizuLong(1000);
-
-		genMeth.clickId(genMeth, "Param Report Cards");
+		genMeth.clickXpthName_TextView(genMeth, "Param Report Cards");
 		Thread.sleep(5000);
 		
-		genMeth.eyesCheckWindow(eyes, "Param Rep Cards - Parameters", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Param Rep Cards (Droid) - Parameters", useEye, genMeth, skipfailure);
 
 		//Insert parameters
-		genMeth.clickId(genMeth, "Default");
-		genMeth.clickId(genMeth, DroidData.BTNkeyboardDelete);
-		genMeth.clickId(genMeth, DroidData.BTNkeyboardDelete);
-		genMeth.clickId(genMeth, DroidData.BTNkeyboardDelete);
-		genMeth.clickId(genMeth, DroidData.BTNkeyboardDelete);
-		genMeth.clickId(genMeth, DroidData.BTNkeyboardDelete);
-		genMeth.clickId(genMeth, DroidData.BTNkeyboardDelete);
-		genMeth.clickId(genMeth, DroidData.BTNkeyboardDelete);
+		genMeth.clearXpthName_TextView(genMeth, "Default");
 		
-		genMeth.clickId(genMeth, DroidData.BtnkeyboardMoreNumbers);
-		genMeth.clickId(genMeth, "1");
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
+		genMeth.sendXpthName_EditText(genMeth, "Input text here", "1");
+		
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_submit_button");
 
-
-		genMeth.eyesCheckWindow(eyes, "Param Rep Cards - Priority = 1", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
+		genMeth.eyesCheckWindow("Param Rep Cards (Droid) - Priority = 1", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
 		Thread.sleep(10000);
-		genMeth.eyesCheckWindow(eyes, "Param Rep Cards - Priority = 1 service calls", useEye, skipfailure);
+		genMeth.eyesCheckWindow("Param Rep Cards (Droid) - Priority = 1 service calls", useEye, genMeth, skipfailure);
 
 		//Back to startup screen
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.swipeUpMeizuLong(1000);
 		genMeth.swipeUpMeizuLong(1000);
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		

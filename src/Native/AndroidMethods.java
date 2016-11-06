@@ -62,7 +62,7 @@ public class AndroidMethods {
 	AndroidElements DroidData;
 	Eyes eyes = new Eyes();
 	Boolean useEye = true;
-	Boolean skipfailure;;
+	Boolean skipfailure = true;
 	
 	
 	
@@ -111,7 +111,6 @@ public class AndroidMethods {
 
 		// Check if default app is open
 		Thread.sleep(5000);
-		skipfailure = false;
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden Ap", useEye, genMeth, skipfailure);
 
 	}
@@ -155,41 +154,42 @@ public class AndroidMethods {
 	        
 	        // Define the OS and hosting application to identify the baseline
 	        eyes.setHostOS("Mac");
-	        eyes.setHostApp("My maxthon browser");
-	        eyes.setMatchTimeout(5);
+			eyes.setHostApp("My maxthon browser");
+			eyes.setMatchTimeout(5);
 
-	        BufferedImage img;
+			BufferedImage img;
 
-	        try {
-	        	eyes.setMatchLevel(MatchLevel.STRICT);
-	            eyes.open("SG_Android", testName , new RectangleSize(785, 1087));
+			eyes.setMatchLevel(MatchLevel.STRICT);
+			eyes.open("SG_Android", testName, new RectangleSize(785, 1087));
+
+			// Load page image and validate
+			File scrFile = (driver.getScreenshotAs(OutputType.FILE));
+			img = ImageIO.read(scrFile);
+
+			// Visual validation point #1
+			Rectangle rect = new Rectangle(0, 0, 1080, 1940);
+
+			img = genMeth.cropImage(img, rect);
+			eyes.checkImage(img, "Sample");
 	            
 
-	            // Load page image and validate
-	    		File scrFile = (driver.getScreenshotAs(OutputType.FILE));
-	            img = ImageIO.read(scrFile);
-	            
-	            
-	            // Visual validation point #1
-	            Rectangle rect = new Rectangle(0,0,1080,1940);
-
-	            
-				img = genMeth.cropImage(img, rect);
-	            eyes.checkImage(img, "Sample");
-
+				if (skipfailure) {
 					// Use the below code instead of eyes.close(); --> It will allow to continue the test even if the UI testing will fail
-					com.applitools.eyes.TestResults testResult = eyes.close(skipfailure);
+					com.applitools.eyes.TestResults testResult = eyes.close(false);
+					
 
+				}
 
+				else {
+					
+					eyes.close();
 
-	            // End visual testing. Validate visual correctness.
-	            //eyes.close();
-	        } finally {
-	            eyes.abortIfNotClosed();
-	        }
-	    }
+			}
 
+		}
 	}
+
+	
 
 	
 
@@ -558,6 +558,7 @@ public class AndroidMethods {
 
 	}
 	
+	
 	public void clickXpthName_CheckedTextView(AndroidMethods genMeth,
 			String xpthName) throws InterruptedException, IOException {
 
@@ -701,6 +702,28 @@ public class AndroidMethods {
 
 	}
 
+	public void sendXpthName_EditText(AndroidMethods genMeth, String xpthName, String send)
+			throws InterruptedException, IOException {
+
+		By by = By.xpath("//android.widget.EditText[@text='" + xpthName + "']");
+
+		try {
+
+			MobileElement myElement = genMeth.fluentwait(driver, by);
+			myElement.sendKeys(send);
+
+		}
+
+		catch (Exception e) {
+			genMeth.takeScreenShot(driver, genMeth, xpthName);
+			org.testng.Assert.fail(xpthName + " didn't display");
+
+		}
+
+	}
+	
+	
+	
 	/*
 	 * public void sendXpth(AndroidDriver<MobileElement> driver, IosMethods genMeth,
 	 * String xpth, String send) throws IOException {
@@ -742,6 +765,26 @@ public class AndroidMethods {
 
 	}
 
+	
+	public void clearXpthName_TextView(AndroidMethods genMeth, String xpthName)
+			throws InterruptedException, IOException {
+
+		By by = By.xpath("//android.widget.TextView[@text='" + xpthName + "']");
+
+		try {
+
+			MobileElement myElement = genMeth.fluentwait(driver, by);
+			myElement.clear();
+
+		}
+
+		catch (Exception e) {
+			genMeth.takeScreenShot(driver, genMeth, xpthName);
+			org.testng.Assert.fail(xpthName + " didn't display");
+
+		}
+
+	}
 
 	public void clearId(AndroidMethods genMeth, String id)
 			throws InterruptedException {
