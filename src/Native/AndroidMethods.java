@@ -601,7 +601,27 @@ public class AndroidMethods {
 	}
 	
 	
-	
+	public void clickXpthName_EditText(AndroidMethods genMeth,
+			String xpthName) throws InterruptedException, IOException {
+
+		By by = By.xpath("//android.widget.EditText[@text='" + xpthName + "']");
+
+
+		try {
+
+			MobileElement myElement = genMeth.fluentwait(driver, by);
+			myElement.click();
+
+		}
+
+		catch (Exception e) {
+			genMeth.takeScreenShot(driver, genMeth, xpthName);
+			org.testng.Assert.fail(xpthName + " didn't display");
+
+		}
+
+	}
+
 	
 	public void tapXpth(AndroidMethods genMeth, String xpth)
 			throws InterruptedException, IOException {
@@ -786,6 +806,27 @@ public class AndroidMethods {
 
 	}
 
+	public void clearXpthName_EditText(AndroidMethods genMeth, String xpthName)
+			throws InterruptedException, IOException {
+
+		By by = By.xpath("//android.widget.EditText[@text='" + xpthName + "']");
+
+		try {
+
+			MobileElement myElement = genMeth.fluentwait(driver, by);
+			myElement.clear();
+
+		}
+
+		catch (Exception e) {
+			genMeth.takeScreenShot(driver, genMeth, xpthName);
+			org.testng.Assert.fail(xpthName + " didn't display");
+
+		}
+
+	}
+
+	
 	public void clearId(AndroidMethods genMeth, String id)
 			throws InterruptedException {
 
@@ -804,7 +845,10 @@ public class AndroidMethods {
 
 	}
 
-
+//===============================================================
+	
+	
+	
 	/*
 	 * ******************************************************************************
 	 * Avoid the Element not found exception *
