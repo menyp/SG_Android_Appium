@@ -1161,7 +1161,7 @@ import com.applitools.eyes.Eyes;
 
 	
 	@Test(enabled = true, testName = "List", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android" })
 
 	public void Actions_List() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -1185,12 +1185,17 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickXpthName_TextView(genMeth, "Description");
 		boolean checkAction = genMeth.checkIsElementVisible(By.xpath("//android.widget.EditText[@text='" + "Descrip 1" + "']"));
 		if (checkAction) {
-			genMeth.clearXpthName_EditText(genMeth, "Descrip 1");
-			genMeth.sendXpthName_EditText(genMeth, "Input text here", "Descrip 2");
+			driver.pressKeyCode(AndroidKeyCode.DEL);
+			driver.pressKeyCode(AndroidKeyCode.KEYCODE_2);
+
+			//genMeth.clearXpthName_EditText(genMeth, "Descrip 1");
+			//genMeth.sendXpthName_EditText(genMeth, "Input text here", "Descrip 2");
 
 		} else {
-			genMeth.clearXpthName_EditText(genMeth, "Descrip 2");
-			genMeth.sendXpthName_EditText(genMeth, "Input text here", "Descrip 1");
+			driver.pressKeyCode(AndroidKeyCode.DEL);
+			driver.pressKeyCode(AndroidKeyCode.KEYCODE_1);
+			//genMeth.clearXpthName_EditText(genMeth, "Descrip 2");
+			//genMeth.sendXpthName_EditText(genMeth, "Input text here", "Descrip 1");
 
 		}
 		
@@ -1233,7 +1238,10 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickXpth(genMeth, "//android.view.View[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[3]/android.widget.LinearLayout[1]/android.widget.ListView[1]/android.widget.RelativeLayout[8]");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/barcode_activity_manual_input_button");
 		Thread.sleep(2000);
-		genMeth.sendXpthName_EditText(genMeth, "QR/Bar code", "1");
+		driver.pressKeyCode(AndroidKeyCode.KEYCODE_1);
+		driver.hideKeyboard();
+		
+		//genMeth.sendXpthName_EditText(genMeth, "QR/Bar code", "1");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/qr_manual_input_submit_btn");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/qr_dialog_submit");
 		Thread.sleep(5000);
@@ -1269,7 +1277,8 @@ import com.applitools.eyes.Eyes;
 
 		genMeth.clickXpthName_TextView(genMeth, "QR default");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/barcode_activity_manual_input_button");
-		genMeth.sendXpthName_EditText(genMeth, "QR/Bar code", "1");
+		driver.pressKeyCode(AndroidKeyCode.KEYCODE_1);
+		driver.hideKeyboard();
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/qr_manual_input_submit_btn");
 		
 		genMeth.clickXpthName_TextView(genMeth, "SL_Manual_List");
@@ -1350,58 +1359,75 @@ import com.applitools.eyes.Eyes;
 
 	}
 
+	
 	@Test(enabled = true, testName = "Inline row action", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity IOS" })
+			groups = { "Sanity Android" })
 
 	public void Actions_List_Inline() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 		
-		genMeth.clickId(genMeth, "List / Grid Actions");
+		//genMeth.clickId(genMeth, "List / Grid Actions");
+		genMeth.clickXpthName_TextView(genMeth, "List / Grid Actions");
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickId(genMeth, "List (Inline)");
+		genMeth.clickXpthName_CheckedTextView(genMeth, "List (Inline)");
 
 		// go to List
-		genMeth.swipedownMeizuLong(1000);
-		genMeth.clickId(genMeth, "InLine- AddRow");
-		Thread.sleep(4000);
-		genMeth.eyesCheckWindow(eyes, "Actions_List_Inline- Inline parameters default", useEye, skipfailure);
-
-		genMeth.sendId(genMeth, "This is default value", "1");
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/one_lvl_outgird_action_btn");
 		
-		genMeth.clickId(genMeth, "Mobile");
-		genMeth.clickId(genMeth, "iPhone6");
+		genMeth.eyesCheckWindow("Actions_List_Inline- Inline parameters default", useEye, genMeth, skipfailure);
+		
+		genMeth.sendXpthName_EditText(genMeth, "This is default value", "1");
+		
+		genMeth.clickXpthName_TextView(genMeth, "Device_Type_SL_DI");
+		genMeth.clickXpthName_TextView(genMeth, "Mobile");
+		
+		genMeth.clickXpthName_TextView(genMeth, "Device_Model_DL");
+		genMeth.clickXpthName_TextView(genMeth, "iPhone6");
 
 		genMeth.swipedownMeizuShort(1000);
 
-		genMeth.clickId(genMeth, "Keyboard (Cat 1)");
-			
-		genMeth.clickId(genMeth, "QR");
-		genMeth.clickId(genMeth, DroidData.BTNdoneName);
+		genMeth.clickXpthName_TextView(genMeth, "Items_By_Category_PSL");
+		genMeth.clickXpthName_TextView(genMeth, "Keyboard (Cat 1)");
+		
+		//QR code
+		genMeth.clickXpthName_TextView(genMeth, "This is QR");
+		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/barcode_activity_manual_input_button");
+		Thread.sleep(2000);
+		driver.pressKeyCode(AndroidKeyCode.KEYCODE_1);
+		driver.hideKeyboard();
+		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/qr_manual_input_submit_btn");
 		
 		genMeth.swipedownMeizuShort(1000);
-			
-		genMeth.clickId(genMeth, "2");
 		genMeth.swipedownMeizuShort(1000);
+
+		genMeth.clickXpthName_TextView(genMeth, "SL_Manual_List");
+		genMeth.clickXpthName_TextView(genMeth, "2");
+		
 		//PSL with Variable
-		genMeth.clickId(genMeth, "7");
+		genMeth.clickXpthName_TextView(genMeth, "Items_SmallerThanMobileDate_PSL");
+		genMeth.clickXpthName_TextView(genMeth, "7");
 			
 		// image 
 		genMeth.swipedownMeizuLong(1000);
-		genMeth.swipedownMeizuLong(1000);
-
-
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[50]/UIAStaticText[1]");
-		genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAButton[5]");
-		genMeth.clickId(genMeth, "PhotoCapture");
-		genMeth.clickId(genMeth, "Use Photo");
-		genMeth.clickId(genMeth, "Done");
-		genMeth.eyesCheckWindow(eyes, "Actions_List_Inline- Inline Image set", useEye, skipfailure);
-		genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
+		genMeth.clickXpthName_TextView(genMeth, "Image");
+		genMeth.eyesCheckWindow("List Actions (Droid) - No Image selected", useEye, genMeth, skipfailure);
 		
-		
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/image_picker_fragment_open_camera_btn");
+		Thread.sleep(1000);
+		genMeth.backDroidButton();
+
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/image_picker_fragment_open_gallery_btn");
+		genMeth.eyesCheckWindow("List Actions (Droid) - Gallery opened", useEye, genMeth, skipfailure);
+		genMeth.backDroidButton();
+		Thread.sleep(1000);
+		genMeth.backDroidButton();
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_fragment_submit_button");
+		Thread.sleep(4000);
+		genMeth.eyesCheckWindow("List Actions (Droid) - PN success", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/push_notification_dialog_cancel_btn");
+
 		//Verify Startup screen is open
-		genMeth.clickId(genMeth, DroidData.IconBack_Nav_Name);
+		genMeth.clickId(genMeth, DroidData.IconHome);
 		genMeth.swipeUpMeizuShort(1000);
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 
@@ -1409,7 +1435,7 @@ import com.applitools.eyes.Eyes;
 	
 	
 	@Test(enabled = true, testName = "List", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity IOS" })
+			groups = { "Sanity Android1" })
 
 	public void Actions_Grid_One_Layer() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
