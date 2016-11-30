@@ -78,6 +78,8 @@ public class AndroidElements {
 	String ContactsPermissionsName;
 	String OrderLookup_ID;
 	
+	String ActionsReport;
+	
 	
 	//Checkbox
 	
@@ -91,6 +93,8 @@ public class AndroidElements {
 	String IconApplicationInfo_Name;
 	String IconHome;
 	String IconRefresh;
+	
+	
 	//General Info
 	String ConnectionAIRPLANE_MODE;
 	String ConnectionWIFI;
@@ -98,6 +102,7 @@ public class AndroidElements {
 	String ConnectionALL;
 	String TabBarTitle_Name;
 	String IconSearch;
+	String EnvironmentQA;
 	
 
 	// Credentials
@@ -175,6 +180,11 @@ public class AndroidElements {
 		this.ContactsPermissionsName = XmlHandel.readAndroidXml("ContactsPermissionsName", langXml, xmlPath);		
 		this.MallOfAmerica_Id = XmlHandel.readAndroidXml("MallOfAmerica_Id", langXml, xmlPath);		
 		this.OrderLookup_ID = XmlHandel.readAndroidXml("OrderLookup_ID", langXml, xmlPath);		
+		this.ActionsReport = XmlHandel.readAndroidXml("ActionsReport", langXml, xmlPath);		
+
+		
+		
+		
 
 		this.IconBackToApplicationList_xpth = XmlHandel.readAndroidXml("IconBackToApplicationList_xpth", langXml, xmlPath);		
 		this.Iconaction_icon_green_Name = XmlHandel.readAndroidXml("Iconaction_icon_green_Name", langXml, xmlPath);		
@@ -185,12 +195,6 @@ public class AndroidElements {
 		this.IconRefresh = XmlHandel.readAndroidXml("IconRefresh", langXml, xmlPath);	
 		this.IconHome = XmlHandel.readAndroidXml("IconHome", langXml, xmlPath);	
 		this.IconSearch = XmlHandel.readAndroidXml("IconSearch", langXml, xmlPath);	
-
-		
-		
-		
-		
-		
 		
 
 
@@ -199,6 +203,13 @@ public class AndroidElements {
 		this.passwordQA = XmlHandel.readAndroidXml("passwordQA", langXml, xmlPath);
 		this.StartupApplication = XmlHandel.readAndroidXml("StartupApplication", langXml, xmlPath);
 		this.TabBarTitle_Name = XmlHandel.readAndroidXml("TabBarTitle_Name", langXml, xmlPath);
+		this.EnvironmentQA = XmlHandel.readAndroidXml("EnvironmentQA", langXml, xmlPath);
+
+		
+		
+		
+		
+		
 
 		
 		

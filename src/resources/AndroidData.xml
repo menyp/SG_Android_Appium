@@ -80,6 +80,14 @@
 		<MallOfAmerica_Id>Mall of America</MallOfAmerica_Id>
 		<OrderLookup_ID>Order Lookup</OrderLookup_ID>
 		<TabBarTitle_Name>android:id/action_bar_spinner</TabBarTitle_Name>
+
+
+	<Reports>
+
+		<ActionsReport>L_G_C Actions</ActionsReport>
+
+	</Reports>
+		
 		
 	
 	<Icon>
@@ -103,6 +111,7 @@
 		<passwordQA>123</passwordQA>
 		<badPassword>incorrectPassword</badPassword>
 		<StartupApplication>SQL Golden App</StartupApplication>
+		<EnvironmentQA>true</EnvironmentQA>
 	
 	
 </Data>

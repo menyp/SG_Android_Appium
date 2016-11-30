@@ -14,6 +14,9 @@ import io.appium.java_client.android.AndroidDriver;
 
 
 
+
+
+
 import com.applitools.eyes.Eyes;
 import com.applitools.eyes.MatchLevel;
 import com.applitools.eyes.RectangleSize;
@@ -47,6 +50,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyException;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -63,45 +68,49 @@ public class AndroidMethods {
 	Eyes eyes = new Eyes();
 	Boolean useEye = true;
 	Boolean skipfailure = true;
-	
-	
+	Boolean qaENV = true;
 	
 	
 
-	public void cleanLoginDroid(AndroidMethods genMeth,String user, String password) throws ParserConfigurationException, SAXException,
+	public void cleanLoginDroid(AndroidMethods genMeth,String user, String password, boolean qaENV) throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 
 		
 		
-		//set Publisher & Authentication server
-		//genMeth.clickXpth(genMeth, "//UIAApplication[1]/UIAWindow[1]/UIAButton[2]");
+		//Check if QA ENV or Prod
+		if(qaENV){
+		
+		//----set Publisher & Authentication server
 		//Add publisher
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/login_screen_settings_image_btn");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/gserver_config_activity_add_new");
+		genMeth.clickXpthName_TextView(genMeth, "Create new");
 		
-		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/sgserver_config_dialog_server_name", "QA Publisher");
-		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/sgserver_config_dialog_server_url", "https://sgwin2012r2.skygiraffe.com/Publisher/api/V1");
-		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/sgserver_config_dialog_server_save_btn");
+		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/create_environment_name_ed", "QA ENV");
+		genMeth.clickXpthName_TextView(genMeth, "CREATE");
 		
 		//Add Authentication server
-		genMeth.clickXpth(genMeth, "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.TabHost[1]/android.widget.LinearLayout[1]/android.widget.TabWidget[1]/android.widget.LinearLayout[2]");
-		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/gserver_config_activity_add_new");
-		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/sgserver_config_dialog_server_name", "QA Authentication");
-		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/sgserver_config_dialog_server_url", "https://sgwin2012r2.skygiraffe.com/SkyGiraffeAuthorizationServer/oauth2/token");
+		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/environment_server_config_server_url", "https://sgwin2012r2.skygiraffe.com/SkyGiraffeAuthorizationServer/oauth2/token");
 		
-		//Add key & value
-		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/sgserver_config_dialog_server_add_new");
+		//Add Client ID
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/environment_server_config_server_add_new");
 		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_key", "client_id");
 		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_value", "099153c2625149bc8ecb3e85e03f0022");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_save");
-
-		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/sgserver_config_dialog_server_add_new");
+		
+		
+		//Add Client secret
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/environment_server_config_server_add_new");
 		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_key", "client_secret");
 		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_value", "IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_save");
-		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/sgserver_config_dialog_server_save_btn");
 		
+		genMeth.clickXpthName_TextView(genMeth, "Dist server");
+		genMeth.sendXpthName_EditText(genMeth, "Server URL", "https://sgwin2012r2.skygiraffe.com/Publisher/api/V1");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/environment_preview_activity_save");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/sgserver_config_activity_close_btn");
+		
+		}
 		
 
 
@@ -203,7 +212,8 @@ public class AndroidMethods {
 	}
 
 		
-	public AndroidDriver<MobileElement> setCapabilitiesAndroid(AndroidMethods genMeth)
+	@SuppressWarnings("unchecked")
+	public AndroidDriver<MobileElement> setCapabilitiesAndroid(AndroidMethods genMeth, AppiumDriverLocalService service)
 			throws IOException {
 		
 		// Login with an existing account
@@ -235,20 +245,39 @@ public class AndroidMethods {
 		//capabilities.setCapability(AndroidMobileCapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
 
 
+		
+
 		try {
+			/*
+			AppiumDriverLocalService service = AppiumDriverLocalService
+					.buildService(new AppiumServiceBuilder()
+							.usingDriverExecutable(
+									new File("/usr/local/bin/node"))
+							.withAppiumJS(
+									new File(
+											"/usr/local/lib/node_modules/appium/build/lib/appium.js"))
+							.withIPAddress("0.0.0.0").usingPort(4723));
+					*/		
+			
+			
+													
+			 driver = new AndroidDriver<MobileElement>(service.getUrl(),capabilities);
+	//		driver = new AndroidDriver<MobileElement>(service.getUrl(),capabilities);
+			//driver = new AndroidDriver(service.getUrl(),capabilities);
 
-			//AppiumDriverLocalService service = AppiumDriverLocalService.buildDefaultService();
-		   // service.start();
-			driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
+			
 		}
-
-		catch (MalformedURLException e) {
+		
+		catch (AppiumServerHasNotBeenStartedLocallyException e) {
 
 			genMeth.takeScreenShot(driver, genMeth,"Faliled to open Appium driver");
 			org.testng.Assert.fail("WebElement"+ " Faliled to open Appium driver");
 		}
+
 		return driver;
 	}
+	
+	
 
 	public String getValueFromPropFile(String key) {
 		Properties properties = new Properties();
@@ -558,6 +587,26 @@ public class AndroidMethods {
 
 	}
 	
+	public void clickXpthName_Button(AndroidMethods genMeth, String xpthName)
+			throws InterruptedException, IOException {
+
+		By by = By.xpath("//android.widget.Button[@text='" + xpthName + "']");
+
+		try {
+
+			MobileElement myElement = genMeth.fluentwait(driver, by);
+			myElement.click();
+
+		}
+
+		catch (Exception e) {
+			genMeth.takeScreenShot(driver, genMeth, xpthName);
+			org.testng.Assert.fail(xpthName + " didn't display");
+
+		}
+
+	}
+	
 	
 	public void clickXpthName_CheckedTextView(AndroidMethods genMeth,
 			String xpthName) throws InterruptedException, IOException {
@@ -621,6 +670,30 @@ public class AndroidMethods {
 		}
 
 	}
+	
+	public void clickXpthName_LinearLayout(AndroidMethods genMeth,
+			String xpthName) throws InterruptedException, IOException {
+
+		By by = By.xpath("//android.widget.LinearLayout[@index='" + xpthName + "']");
+
+
+		try {
+
+			MobileElement myElement = genMeth.fluentwait(driver, by);
+			myElement.click();
+
+		}
+
+		catch (Exception e) {
+			genMeth.takeScreenShot(driver, genMeth, xpthName);
+			org.testng.Assert.fail(xpthName + " didn't display");
+
+		}
+
+	}
+	
+	
+
 
 	
 	public void tapXpth(AndroidMethods genMeth, String xpth)
@@ -1300,7 +1373,7 @@ public class AndroidMethods {
 	
 	public void swipedownMeizuShortest(int miliseconds) throws InterruptedException {
 
-		driver.swipe(500, 1700, 500, 1400, miliseconds);
+		driver.swipe(500, 1400, 500, 1100, miliseconds);
 		Thread.sleep(2000);
 
 	}
@@ -1330,7 +1403,7 @@ public class AndroidMethods {
 		if (isStartupScreenDisplay != true ) {
 
 			genMeth.signOutFromStartup(genMeth);
-			genMeth.cleanLoginDroid(genMeth, DroidData.userQA, DroidData.passwordQA);
+			genMeth.cleanLoginDroid(genMeth, DroidData.userQA, DroidData.passwordQA, qaENV);
 		}
 
 	}
