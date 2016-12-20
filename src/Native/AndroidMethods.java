@@ -17,6 +17,7 @@ import io.appium.java_client.android.AndroidDriver;
 
 
 
+
 import com.applitools.eyes.Eyes;
 import com.applitools.eyes.MatchLevel;
 import com.applitools.eyes.RectangleSize;
@@ -66,7 +67,7 @@ public class AndroidMethods {
 	AndroidDriver<MobileElement> driver;
 	AndroidElements DroidData;
 	Eyes eyes = new Eyes();
-	Boolean useEye = true;
+	Boolean useEye = false;
 	Boolean skipfailure = true;
 	Boolean qaENV = true;
 	
@@ -105,7 +106,7 @@ public class AndroidMethods {
 		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_value", "IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_save");
 		
-		genMeth.clickXpthName_TextView(genMeth, "Dist server");
+		genMeth.clickXpthName_TextView(genMeth, "DIST SERVER");
 		genMeth.sendXpthName_EditText(genMeth, "Server URL", "https://sgwin2012r2.skygiraffe.com/Publisher/api/V1");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/environment_preview_activity_save");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/sgserver_config_activity_close_btn");
@@ -119,44 +120,19 @@ public class AndroidMethods {
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/login_screen_authentication_btn");
 
 		// Check if default app is open
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden Ap", useEye, genMeth, skipfailure);
 
 	}
 
-	/*
-	
-	public void eyesCheckWindow1(Eyes eyes, String testName, Boolean useEye, Boolean skipfailure )
-			throws InterruptedException {
-
-		if (useEye) {
-			eyes.setApiKey("Hbh6716cKDCgn8a9bMAREPM105nbW109PQe0993So5GwFpNM110");
-			eyes.open(driver, "Droid_SG", testName);
-
-			 eyes.setMatchTimeout(2);
-			eyes.checkWindow("Sample Screen");
-			
-			if (skipfailure) {
-				// Use the below code instead of eyes.close(); --> It will allow to continue the test even if the UI testing will fail
-				com.applitools.eyes.TestResults testResult = eyes.close(false);
-
-			} else {
-
-				eyes.close();
-			}
-
-		}
-
-	}
-	
-*/
 	public void eyesCheckWindow(String testName, Boolean useEye, AndroidMethods genMeth, boolean  skipfailure)
 
 			throws InterruptedException, IOException {
-
+			
+		
 		if (useEye) {
-
-			Thread.sleep(3000);
+			Thread.sleep(2000);
+			eyes.setMatchTimeout(20);
 			eyes.setApiKey("Hbh6716cKDCgn8a9bMAREPM105nbW109PQe0993So5GwFpNM110");
 			 //Switch between the versions to generate test failure.
 	        String version = "0.2";
@@ -164,19 +140,22 @@ public class AndroidMethods {
 	        // Define the OS and hosting application to identify the baseline
 	        eyes.setHostOS("Mac");
 			eyes.setHostApp("My maxthon browser");
-			eyes.setMatchTimeout(5);
-
+			
 			BufferedImage img;
 
 			eyes.setMatchLevel(MatchLevel.STRICT);
-			eyes.open("SG_Android", testName, new RectangleSize(785, 1087));
-
+			
+			//eyes.open("SG_Android", testName, new RectangleSize(785, 1087));  compatible with the old Samsung
+			eyes.open("SG_Android", testName, new RectangleSize(785, 1087));  
 			// Load page image and validate
 			File scrFile = (driver.getScreenshotAs(OutputType.FILE));
 			img = ImageIO.read(scrFile);
 
 			// Visual validation point #1
-			Rectangle rect = new Rectangle(0, 0, 1080, 1940);
+			//Rectangle rect = new Rectangle(0, 0, 1080, 1940);
+			Rectangle rect = new Rectangle(0, 0, 1080, 1810);
+			//eyes.setSaveNewTests(true);
+			eyes.setSaveFailedTests(true);
 
 			img = genMeth.cropImage(img, rect);
 			eyes.checkImage(img, "Sample");
@@ -198,17 +177,12 @@ public class AndroidMethods {
 		}
 	}
 
-	
-
-	
 
 	public void signOutFromStartup(AndroidMethods genMeth)
 
 			throws InterruptedException, IOException {
-	//	genMeth.clickId(genMeth, DroidData.BTNdoneName);
-		genMeth.clickXpth(genMeth, DroidData.BTNsettingsIconXpth);
-		genMeth.clickXpth(genMeth, DroidData.BTNlogoutXpth);
-
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/application_logout_button_icon");
 	}
 
 		
@@ -222,13 +196,13 @@ public class AndroidMethods {
 	   // DesiredCapabilities capabilities = new DesiredCapabilities();
 
 		//capabilities.setCapability("appium-version", genMeth.getValueFromPropFile("appiumVersion"));
-	    capabilities.setCapability(MobileCapabilityType.APPIUM_VERSION, genMeth.getValueFromPropFile("appiumVersion"));
+	    //capabilities.setCapability(MobileCapabilityType.APPIUM_VERSION, genMeth.getValueFromPropFile("appiumVersion"));
 	    
 		//capabilities.setCapability("platformName", genMeth.getValueFromPropFile("platformName"));
-	    capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, genMeth.getValueFromPropFile("platformName"));
+	 //   capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, genMeth.getValueFromPropFile("platformName"));
 
 		//capabilities.setCapability("platformVersion", genMeth.getValueFromPropFile("platformVersion"));
-	    capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, genMeth.getValueFromPropFile("platformVersion"));
+	   // capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, genMeth.getValueFromPropFile("platformVersion"));
 
 		//capabilities.setCapability("deviceName", genMeth.getValueFromPropFile("deviceName"));
 	    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, genMeth.getValueFromPropFile("deviceName"));
@@ -236,6 +210,11 @@ public class AndroidMethods {
 		//capabilities.setCapability("app",genMeth.getValueFromPropFile("appPath"));
 	    capabilities.setCapability(MobileCapabilityType.APP, genMeth.getValueFromPropFile("appPath"));
 
+		capabilities.setCapability("automationName",genMeth.getValueFromPropFile("uiautomator2"));
+
+	    //capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, genMeth.getValueFromPropFile("automationName"));
+
+	    
 		//capabilities.setCapability("newCommandTimeout", 1200);
 	    capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 1200);
 
@@ -905,7 +884,7 @@ public class AndroidMethods {
 
 		try {
 
-			WebElement myElement = genMeth.fluentwait(driver, By.id(id));
+			MobileElement myElement = genMeth.fluentwait(driver, By.id(id));
 			myElement.clear();
 
 		}
@@ -1014,11 +993,11 @@ public class AndroidMethods {
 	public MobileElement fluentwait(AndroidDriver driver, final By byType) {
 		Wait<AndroidDriver> wait = new FluentWait<AndroidDriver>(driver)
 
-		.withTimeout(45, TimeUnit.SECONDS).pollingEvery(5, TimeUnit.SECONDS)
+		.withTimeout(20, TimeUnit.SECONDS).pollingEvery(5, TimeUnit.SECONDS)
 				.ignoring(NoSuchElementException.class);
 
 		MobileElement foo = (MobileElement) wait
-				.until(new Function<AndroidDriver, WebElement>() {
+				.until(new Function<AndroidDriver, MobileElement>() {
 					public MobileElement apply(AndroidDriver driver) {
 						return (MobileElement) driver.findElement(byType);
 					}
@@ -1326,21 +1305,21 @@ public class AndroidMethods {
 
 */	
 
-	public void swipeRightMeizuLong(int miliseconds) throws InterruptedException {
+	public void swipeRightLong(int miliseconds) throws InterruptedException {
 
 		driver.swipe(1000, 1000, 100, 1000, miliseconds);
 		Thread.sleep(2000);
 
 	}
 	
-	public void swipeRightMeizuShort(int miliseconds) throws InterruptedException {
+	public void swipeRightShort(int miliseconds) throws InterruptedException {
 
 		driver.swipe(1000, 1000, 75, 800, miliseconds);
 		Thread.sleep(2000);
 
 	}
 	
-	public void swipeRightMeizuShortest(int miliseconds) throws InterruptedException {
+	public void swipeRightShortest(int miliseconds) throws InterruptedException {
 
 		driver.swipe(1000, 300, 75, 900, miliseconds);
 		Thread.sleep(2000);
@@ -1348,45 +1327,44 @@ public class AndroidMethods {
 	}
 
 
+// Swipe & Scroll
+	public void swipeDownLong(int miliseconds) throws InterruptedException {
 
-	public void swipedownMeizuLong(int miliseconds) throws InterruptedException {
-
-		driver.swipe(500, 1700, 500, 500, miliseconds);
+		driver.swipe(500, 1600, 500, 500, miliseconds);
 		Thread.sleep(2000);
 
 
 	}
 	
-	public void swipedownMeizuShort(int miliseconds) throws InterruptedException {
+	public void swipeDownShort(int miliseconds) throws InterruptedException {
 
 		driver.swipe(500, 1700, 500, 1200, miliseconds);
 		Thread.sleep(2000);
 
 	}
 	
-	public void swipedownMeizuShorter(int miliseconds) throws InterruptedException {
+	public void swipeDownShorter(int miliseconds) throws InterruptedException {
 
 		driver.swipe(500, 1700, 500, 1400, miliseconds);
 		Thread.sleep(2000);
 
 	}
 	
-	public void swipedownMeizuShortest(int miliseconds) throws InterruptedException {
+	public void swipeDownShortest(int miliseconds) throws InterruptedException {
 
 		driver.swipe(500, 1400, 500, 1100, miliseconds);
 		Thread.sleep(2000);
 
 	}
 
-
-	public void swipeUpMeizuLong(int miliseconds) throws InterruptedException {
+	public void swipeUpLong(int miliseconds) throws InterruptedException {
 
 		driver.swipe(600, 400, 600, 1600, miliseconds);
 		Thread.sleep(2000);
 
 	}
 	
-	public void swipeUpMeizuShort(int miliseconds) throws InterruptedException {
+	public void swipeUpShort(int miliseconds) throws InterruptedException {
 
 		driver.swipe(600, 400, 600, 1000, miliseconds);
 		Thread.sleep(2000);
@@ -1408,6 +1386,8 @@ public class AndroidMethods {
 
 	}
 	
+	//Rotate
+	
 	public void rotateLandscape(){
 
 		driver.rotate(ScreenOrientation.LANDSCAPE);
@@ -1420,7 +1400,7 @@ public class AndroidMethods {
 	}
 	
 	
-	 public void backDroidButton() { 
+	public void backDroidButton() {
 		 
 	 driver.pressKeyCode(AndroidKeyCode.BACK);
 	  
@@ -1437,10 +1417,27 @@ public class AndroidMethods {
 
 	}
 	 
+	public AppiumDriverLocalService startAppiumService() {
+
+		 AppiumDriverLocalService service =
+		 AppiumDriverLocalService.buildDefaultService();
+		 /*
+		AppiumDriverLocalService service = AppiumDriverLocalService
+				.buildService(new AppiumServiceBuilder()
+						.usingDriverExecutable(new File("/usr/local/bin/node"))
+						.withAppiumJS(
+								new File(
+										"/usr/local/lib/node_modules/appium/build/lib/appium.js"))
+						.withIPAddress("0.0.0.0").usingPort(4723));
+						*/
+		service.start();
+		return service;
+
+	}
 	
 	 
 
-	  private BufferedImage cropImage(BufferedImage src, Rectangle rect) {
+ 	  private BufferedImage cropImage(BufferedImage src, Rectangle rect) {
          BufferedImage dest = src.getSubimage(0, 75, rect.width, rect.height-100);
          return dest; 
       }

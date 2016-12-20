@@ -43,7 +43,7 @@ public class AndroidElements {
 	String BtnkeyboardMoreNumbers;
 	String BTNsave;
 	String BTNsubmit;
-	
+	String BTNrightMenuButton_ID;
 	
 	
 	
@@ -146,7 +146,9 @@ public class AndroidElements {
 		this.BtnkeyboardMoreNumbers = XmlHandel.readAndroidXml("BtnkeyboardMoreNumbers", langXml, xmlPath);
 		this.BTNsave = XmlHandel.readAndroidXml("BTNsave", langXml, xmlPath);
 		this.BTNsubmit = XmlHandel.readAndroidXml("BTNsubmit", langXml, xmlPath);
+		this.BTNrightMenuButton_ID = XmlHandel.readAndroidXml("BTNrightMenuButton_ID", langXml, xmlPath);
 
+		
 
 		
 		

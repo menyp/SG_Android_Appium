@@ -10,7 +10,6 @@
 		</run>
 	</groups>
 
-  
     <classes>
         
           <class name="Native.SanityAndroid"/>
@@ -18,5 +17,4 @@
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
- 
  
