@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.junit.AfterClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.testng.ITestContext;
@@ -105,6 +106,7 @@ import com.applitools.eyes.Eyes;
 			genMeth.swipeUpLong(1000);
 			genMeth.swipeUpLong(1000);
 			genMeth.swipeUpLong(1000);
+			Thread.sleep(4000);
 
 
 			boolean StartUpScreenDisplay = genMeth.checkIsElementVisible( By.xpath(Startup_Screen));
@@ -112,8 +114,8 @@ import com.applitools.eyes.Eyes;
 			if (StartUpScreenDisplay != true) {
 
 				try {
-					driver.resetApp();
-					driver.removeApp(appIdentifier);
+					//driver.resetApp();
+					//driver.removeApp(appIdentifier);
 					driver.quit();
 				} catch (Exception e) {
 					// swallow if fails
@@ -252,8 +254,9 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	
-	@Test(enabled = true, testName = "Map,Dashboard, Charts Tabs", retryAnalyzer = Retry.class, description = "Check the URL tab",
-			groups = { "Sanity Android" })
+	@AfterSuite(alwaysRun = true)
+	//@Test(enabled = true, testName = "Map,Dashboard, Charts Tabs", retryAnalyzer = Retry.class, description = "Check the URL tab",
+		//	groups = { "Sanity Android" })
 
 	public void Tabs_Map() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -608,13 +611,13 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	@Test(enabled = true, testName = "Grid one layer", retryAnalyzer = Retry.class, description = "Check the Grid one layer tab Advanced & navigation",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android2" })
 
 	public void Tabs_Grid_One_Layer_Advance_Navigation() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 
 		
-		//Need to find a solution to the find element by xpath for the Address/Mobile Phone etc sonce it keeps failing (seems like Appium bug)
+		//Need to find a solution to the find element by xpath for the Address/Mobile Phone etc since it keeps failing (seems like Appium bug with Android 7)
 		
 		// go to Grid
 		genMeth.clickXpthName_TextView(genMeth, "List / Grid");
@@ -966,6 +969,7 @@ import com.applitools.eyes.Eyes;
 
 		//Insert parameters
 		genMeth.clickXpthName_TextView(genMeth, "SL- Devices Type");
+		Thread.sleep(2000);
 		genMeth.eyesCheckWindow("Param Report Dashboard DL (Droid)- SL param",useEye, genMeth, skipfailure);		
 		genMeth.clickXpthName_TextView(genMeth, "Laptop");
 		Thread.sleep(2000);
@@ -1415,9 +1419,9 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 
 
 
-	
-	@Test(enabled = true, testName = "Inline row action", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity Android" })
+	@AfterSuite(alwaysRun = true)
+	//@Test(enabled = true, testName = "Inline row action", retryAnalyzer = Retry.class, description = "Check the List tab",
+		//	groups = { "Sanity Android" })
 
 	public void Actions_List_Inline_Row() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -1451,6 +1455,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		Thread.sleep(2000);
 		driver.pressKeyCode(AndroidKeyCode.KEYCODE_0);
 		driver.pressKeyCode(AndroidKeyCode.KEYCODE_1);
+		Thread.sleep(2000);
 		driver.hideKeyboard();
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/qr_manual_input_submit_btn");
 		
@@ -1956,7 +1961,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	}
 	
 	
-	@Test(enabled = true, groups = { "Sanity Android1" }, testName = "Sanity Tests", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
+	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Sanity Tests", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
 	public void SampleAccount() throws Exception, Throwable {
 
 		genMeth.signOutFromStartup(genMeth);

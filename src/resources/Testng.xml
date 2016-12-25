@@ -5,7 +5,7 @@
       <groups>
 		<run>
 		    
-		    <include name="Sanity Android1"/>      
+		    <include name="Sanity Android"/>      
 		    
 		</run>
 	</groups>

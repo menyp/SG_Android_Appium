@@ -155,7 +155,7 @@ public class AndroidMethods {
 			//Rectangle rect = new Rectangle(0, 0, 1080, 1940);
 			Rectangle rect = new Rectangle(0, 0, 1080, 1810);
 			//eyes.setSaveNewTests(true);
-			eyes.setSaveFailedTests(true);
+			eyes.setSaveFailedTests(false);
 
 			img = genMeth.cropImage(img, rect);
 			eyes.checkImage(img, "Sample");
@@ -216,7 +216,7 @@ public class AndroidMethods {
 
 	    
 		//capabilities.setCapability("newCommandTimeout", 1200);
-	    capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 1200);
+	    capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
 
 
 		//capabilities.setCapability("appPackage", genMeth.getValueFromPropFile("appPackage"));
@@ -550,7 +550,7 @@ public class AndroidMethods {
 			throws InterruptedException, IOException {
 
 		By by = By.xpath("//android.widget.TextView[@text='" + xpthName + "']");
-
+		
 		try {
 
 			MobileElement myElement = genMeth.fluentwait(driver, by);
@@ -993,7 +993,7 @@ public class AndroidMethods {
 	public MobileElement fluentwait(AndroidDriver driver, final By byType) {
 		Wait<AndroidDriver> wait = new FluentWait<AndroidDriver>(driver)
 
-		.withTimeout(20, TimeUnit.SECONDS).pollingEvery(5, TimeUnit.SECONDS)
+		.withTimeout(30, TimeUnit.SECONDS).pollingEvery(5, TimeUnit.SECONDS)
 				.ignoring(NoSuchElementException.class);
 
 		MobileElement foo = (MobileElement) wait
