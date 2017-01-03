@@ -76,7 +76,9 @@ import com.applitools.eyes.Eyes;
 		
 		driver = genMeth.setCapabilitiesAndroid(genMeth, service);
 		
-		genMeth.cleanLoginDroid(genMeth, DroidData.userQA, DroidData.passwordQA, qaENV); 
+		//genMeth.cleanLoginDroid(genMeth, DroidData.userQA, DroidData.passwordQA, qaENV); 
+		genMeth.cleanLoginDroid(genMeth, DroidData.UserProd, DroidData.passwordProd, qaENV); 
+
 	}
 
 	@BeforeMethod (alwaysRun = true)
@@ -141,7 +143,7 @@ import com.applitools.eyes.Eyes;
 		// go to URL Constant
 
 		genMeth.clickXpthName_TextView(genMeth, "URL / News");
-		Thread.sleep(10000);
+		Thread.sleep(15000);
 		genMeth.eyesCheckWindow("Tabs(Droid)- URL Data Item", useEye, genMeth, skipfailure);
 
 		//go to URL data Item
@@ -443,7 +445,7 @@ import com.applitools.eyes.Eyes;
 	}
 
 	
-	@Test(enabled = true, testName = "List", retryAnalyzer = Retry.class, description = "Check the List tab",
+	@Test(enabled = false, testName = "List", retryAnalyzer = Retry.class, description = "Check the List tab",
 			groups = { "Sanity Android" })
 
 	public void Tabs_List_AdvancedColumns() throws ParserConfigurationException, SAXException,
@@ -1111,7 +1113,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.eyesCheckWindow("Param Rep ED (Droid)- SL MB", useEye, genMeth, skipfailure);
 		
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
-		Thread.sleep(2000);
+		Thread.sleep(10000);
 		genMeth.eyesCheckWindow("Param Rep ED (Droid)- Female only", useEye, genMeth, skipfailure);
 		
 		//Go To Employee tab by Login variable
@@ -1213,6 +1215,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickXpthName_TextView(genMeth, "1");
 		genMeth.clickXpthName_TextView(genMeth, "Slicer");
 		genMeth.clickXpthName_TextView(genMeth, "Done");
+		Thread.sleep(2000);
 
 		genMeth.eyesCheckWindow("List Actions Cell (Droid) - List Actions", useEye, genMeth, skipfailure);
 		

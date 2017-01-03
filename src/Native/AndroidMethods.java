@@ -91,8 +91,12 @@ public class AndroidMethods {
 		genMeth.clickXpthName_TextView(genMeth, "CREATE");
 		
 		//Add Authentication server
-		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/environment_server_config_server_url", "https://sgwin2012r2.skygiraffe.com/SkyGiraffeAuthorizationServer/oauth2/token");
+		//genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/environment_server_config_server_url", "https://sgwin2012r2.skygiraffe.com/SkyGiraffeAuthorizationServer/oauth2/token");
+		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/environment_server_config_server_url", "https://skygiraffeauthorizationserver-staging.azurewebsites.net/oauth2/token");
+
 		
+
+
 		//Add Client ID
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/environment_server_config_server_add_new");
 		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_key", "client_id");
@@ -107,7 +111,11 @@ public class AndroidMethods {
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_save");
 		
 		genMeth.clickXpthName_TextView(genMeth, "DIST SERVER");
-		genMeth.sendXpthName_EditText(genMeth, "Server URL", "https://sgwin2012r2.skygiraffe.com/Publisher/api/V1");
+		//genMeth.sendXpthName_EditText(genMeth, "Server URL", "https://sgwin2012r2.skygiraffe.com/Publisher/api/V1");
+		genMeth.sendXpthName_EditText(genMeth, "Server URL", "https://skygiraffepublisher-staging.azurewebsites.net/api/v1");
+
+		
+		
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/environment_preview_activity_save");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/sgserver_config_activity_close_btn");
 		
