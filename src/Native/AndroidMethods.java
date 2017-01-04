@@ -18,6 +18,7 @@ import io.appium.java_client.android.AndroidDriver;
 
 
 
+
 import com.applitools.eyes.Eyes;
 import com.applitools.eyes.MatchLevel;
 import com.applitools.eyes.RectangleSize;
@@ -62,8 +63,24 @@ import org.xml.sax.SAXException;
 
 import com.google.common.base.Function;
 
-public class AndroidMethods {
 
+
+
+public class AndroidMethods {
+	
+	//QA Variables
+	final String QAAuthorizationURL = "https://sgwin2012r2.skygiraffe.com/SkyGiraffeAuthorizationServer/oauth2/token";
+	final String QADistributionURL = "https://sgwin2012r2.skygiraffe.com/Publisher/api/V1";
+	final String QAclient_ID = "099153c2625149bc8ecb3e85e03f0022";
+	final String QAclient_Secret = "IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw";
+
+	
+	//Staging Variables
+	final String StagingAuthorizationURL = "https://skygiraffeauthorizationserver-staging.azurewebsites.net/oauth2/token";
+	final String StagingDistributionURL = "https://skygiraffepublisher-staging.azurewebsites.net/api/v1";
+	final String Stagingclient_ID = "099153c2625149bc8ecb3e85e03f0022";
+	final String Stagingclient_Secret = "IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw";
+		
 	AndroidDriver<MobileElement> driver;
 	AndroidElements DroidData;
 	Eyes eyes = new Eyes();
@@ -72,17 +89,48 @@ public class AndroidMethods {
 	Boolean qaENV = true;
 	
 	
+	
 
-	public void cleanLoginDroid(AndroidMethods genMeth,String user, String password, boolean qaENV) throws ParserConfigurationException, SAXException,
+	public void cleanLoginDroid(AndroidMethods genMeth, EnvironmentMode mode) throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
+		
+		
+		switch (mode) {
+
+		case QA:
+			
+			genMeth.configureENV(genMeth, QAAuthorizationURL, QADistributionURL, QAclient_ID, QAclient_Secret);
+
+			break;
+
+
+		case Staging:
+			genMeth.configureENV(genMeth, StagingAuthorizationURL, StagingDistributionURL, Stagingclient_ID, Stagingclient_Secret);
+
+
+			break;
+
+		case Prod:
+
+			break;
+		}
+		
 
 		
+		//Login to the client
+		genMeth.sendId(genMeth,"com.skygiraffe.operationaldata:id/login_screen_email_field",DroidData.userQA);
+		genMeth.sendId(genMeth,"com.skygiraffe.operationaldata:id/login_screen_password_field",DroidData.passwordQA);
+		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/login_screen_authentication_btn");
+
+		//Check if default app is open
+		Thread.sleep(8000);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden Ap",useEye, genMeth, skipfailure);
+
+	}
+
+	
+	public void configureENV(AndroidMethods genMeth, String AuthURL, String DistURL,String Client_ID, String Client_Secret) throws InterruptedException, IOException{
 		
-		//Check if QA ENV or Prod
-		if(qaENV){
-		
-		//----set Publisher & Authentication server
-		//Add publisher
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/login_screen_settings_image_btn");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/gserver_config_activity_add_new");
 		genMeth.clickXpthName_TextView(genMeth, "Create new");
@@ -91,48 +139,32 @@ public class AndroidMethods {
 		genMeth.clickXpthName_TextView(genMeth, "CREATE");
 		
 		//Add Authentication server
-		//genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/environment_server_config_server_url", "https://sgwin2012r2.skygiraffe.com/SkyGiraffeAuthorizationServer/oauth2/token");
-		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/environment_server_config_server_url", "https://skygiraffeauthorizationserver-staging.azurewebsites.net/oauth2/token");
+		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/environment_server_config_server_url", AuthURL);
 
 		
-
-
 		//Add Client ID
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/environment_server_config_server_add_new");
 		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_key", "client_id");
-		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_value", "099153c2625149bc8ecb3e85e03f0022");
+		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_value", Client_ID);
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_save");
 		
 		
 		//Add Client secret
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/environment_server_config_server_add_new");
 		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_key", "client_secret");
-		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_value", "IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw");
+		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_value", Client_Secret);
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/additional_field_save");
 		
 		genMeth.clickXpthName_TextView(genMeth, "DIST SERVER");
-		//genMeth.sendXpthName_EditText(genMeth, "Server URL", "https://sgwin2012r2.skygiraffe.com/Publisher/api/V1");
-		genMeth.sendXpthName_EditText(genMeth, "Server URL", "https://skygiraffepublisher-staging.azurewebsites.net/api/v1");
+		genMeth.sendXpthName_EditText(genMeth, "Server URL", DistURL);		
 
-		
-		
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/environment_preview_activity_save");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/sgserver_config_activity_close_btn");
 		
-		}
-		
-
-
-		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/login_screen_email_field", DroidData.userQA);
-		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/login_screen_password_field", DroidData.passwordQA);		
-		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/login_screen_authentication_btn");
-
-		// Check if default app is open
-		Thread.sleep(8000);
-		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden Ap", useEye, genMeth, skipfailure);
-
 	}
-
+	
+	
+	
 	public void eyesCheckWindow(String testName, Boolean useEye, AndroidMethods genMeth, boolean  skipfailure)
 
 			throws InterruptedException, IOException {
@@ -235,24 +267,9 @@ public class AndroidMethods {
 		
 
 		try {
-			/*
-			AppiumDriverLocalService service = AppiumDriverLocalService
-					.buildService(new AppiumServiceBuilder()
-							.usingDriverExecutable(
-									new File("/usr/local/bin/node"))
-							.withAppiumJS(
-									new File(
-											"/usr/local/lib/node_modules/appium/build/lib/appium.js"))
-							.withIPAddress("0.0.0.0").usingPort(4723));
-					*/		
-			
-			
-													
-			 driver = new AndroidDriver<MobileElement>(service.getUrl(),capabilities);
-	//		driver = new AndroidDriver<MobileElement>(service.getUrl(),capabilities);
-			//driver = new AndroidDriver(service.getUrl(),capabilities);
 
-			
+			driver = new AndroidDriver<MobileElement>(service.getUrl(),capabilities);
+
 		}
 		
 		catch (AppiumServerHasNotBeenStartedLocallyException e) {
@@ -1379,7 +1396,7 @@ public class AndroidMethods {
 
 	}
 	
-	public void openStratupScreen(AndroidMethods genMeth, AndroidElements DroidData) throws ParserConfigurationException, SAXException, IOException, InterruptedException{
+	public void openStratupScreen(AndroidMethods genMeth, AndroidElements DroidData, EnvironmentMode EnvMode) throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		
 		
 	//	boolean isStartupScreenDisplay = genMeth.checkIsElementVisible(By.name(DroidData.Appium_Startup));
@@ -1389,7 +1406,7 @@ public class AndroidMethods {
 		if (isStartupScreenDisplay != true ) {
 
 			genMeth.signOutFromStartup(genMeth);
-			genMeth.cleanLoginDroid(genMeth, DroidData.userQA, DroidData.passwordQA, qaENV);
+			genMeth.cleanLoginDroid(genMeth, EnvMode);
 		}
 
 	}

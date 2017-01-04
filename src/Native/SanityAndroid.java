@@ -32,6 +32,11 @@ import com.applitools.eyes.Eyes;
 
 
 //MobileElement e2; //test will wait for this diring 20 seconds
+	enum EnvironmentMode {
+	Prod, Staging, QA
+	}
+	//public const String QAAuthorizationURL = "https://sgwin2012r2.skygiraffe.com/SkyGiraffeAuthorizationServer/oauth2/token";
+
 
   public class SanityAndroid {
 	  
@@ -46,23 +51,18 @@ import com.applitools.eyes.Eyes;
 	String StopServerPath;
 	String appIdentifier;
 	Boolean skipfailure = true;
-	boolean qaENV = true;
 	Boolean useEye = true;
-
+	EnvironmentMode EnvMode = EnvironmentMode.QA;
 
 	AndroidDriver<MobileElement> driver;
 	AndroidMethods genMeth = new AndroidMethods();
 	Eyes eyes = new Eyes();
 	AndroidElements DroidData;
-	//AppiumDriverLocalService service = AppiumDriverLocalService.buildDefaultService();
 	AppiumDriverLocalService service;
 	
 	@BeforeSuite(alwaysRun = true)
 	public void setupBeforeSuite(ITestContext context) throws ParserConfigurationException, SAXException, IOException, InterruptedException, jdk.internal.org.xml.sax.SAXException {
-		
-        // This is your api key, make sure you use it in all your tests.
-		
-	
+			
 		//Set the tests configuration
 		StartServerPath = genMeth.getValueFromPropFile("StartServerPath");
 		StopServerPath = genMeth.getValueFromPropFile("StopServerPath");
@@ -70,14 +70,11 @@ import com.applitools.eyes.Eyes;
 		webElementXmlLang = genMeth.getValueFromPropFile("webElementXmlLang");
 		appIdentifier = genMeth.getValueFromPropFile("appIdentifier");
 		
-		//DroidData= new IosElements(webElementXmlLang, webElementXmlPath);
 		DroidData = genMeth.setElements(webElementXmlPath, webElementXmlLang);
 		service = genMeth.startAppiumService();
 		
-		driver = genMeth.setCapabilitiesAndroid(genMeth, service);
-		
-		//genMeth.cleanLoginDroid(genMeth, DroidData.userQA, DroidData.passwordQA, qaENV); 
-		genMeth.cleanLoginDroid(genMeth, DroidData.UserProd, DroidData.passwordProd, qaENV); 
+		driver = genMeth.setCapabilitiesAndroid(genMeth, service);		
+		genMeth.cleanLoginDroid(genMeth, EnvMode); 
 
 	}
 
@@ -96,7 +93,7 @@ import com.applitools.eyes.Eyes;
 			service.stop();
 			driver = genMeth.setCapabilitiesAndroid(genMeth, service);
 			DroidData = genMeth.setElements(webElementXmlPath, webElementXmlLang);
-			genMeth.cleanLoginDroid( genMeth, DroidData.userQA , DroidData.passwordQA, qaENV);
+			genMeth.cleanLoginDroid( genMeth, EnvMode);
 		}
 
 		else {
@@ -125,7 +122,7 @@ import com.applitools.eyes.Eyes;
 				
 				driver = genMeth.setCapabilitiesAndroid(genMeth, service);
 				DroidData = genMeth.setElements(webElementXmlPath, webElementXmlLang);
-				genMeth.cleanLoginDroid( genMeth, DroidData.userQA, DroidData.passwordQA, qaENV);
+				genMeth.cleanLoginDroid( genMeth, EnvMode);
 
 
 			}
@@ -445,7 +442,7 @@ import com.applitools.eyes.Eyes;
 	}
 
 	
-	@Test(enabled = false, testName = "List", retryAnalyzer = Retry.class, description = "Check the List tab",
+	@Test(enabled = true, testName = "List", retryAnalyzer = Retry.class, description = "Check the List tab",
 			groups = { "Sanity Android" })
 
 	public void Tabs_List_AdvancedColumns() throws ParserConfigurationException, SAXException,
