@@ -14,6 +14,7 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -52,7 +53,7 @@ import com.applitools.eyes.Eyes;
 	String appIdentifier;
 	Boolean skipfailure = true;
 	Boolean useEye = true;
-	EnvironmentMode EnvMode = EnvironmentMode.QA;
+	EnvironmentMode EnvMode;
 
 	AndroidDriver<MobileElement> driver;
 	AndroidMethods genMeth = new AndroidMethods();
@@ -64,8 +65,10 @@ import com.applitools.eyes.Eyes;
 	public void setupBeforeSuite(ITestContext context) throws ParserConfigurationException, SAXException, IOException, InterruptedException, jdk.internal.org.xml.sax.SAXException {
 			
 		//Set the tests configuration
-		StartServerPath = genMeth.getValueFromPropFile("StartServerPath");
-		StopServerPath = genMeth.getValueFromPropFile("StopServerPath");
+		EnvMode = genMeth.UserSetEnvironmentMode(EnvMode);
+			    
+		//StartServerPath = genMeth.getValueFromPropFile("StartServerPath");
+		//StopServerPath = genMeth.getValueFromPropFile("StopServerPath");
 		webElementXmlPath = genMeth.getValueFromPropFile("webElementXmlPath");
 		webElementXmlLang = genMeth.getValueFromPropFile("webElementXmlLang");
 		appIdentifier = genMeth.getValueFromPropFile("appIdentifier");
@@ -1149,7 +1152,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_submit_button");
 		genMeth.eyesCheckWindow("Param Rep Map (Droid) - King of Prussia Mall chosen", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
-		Thread.sleep(12000);
+		Thread.sleep(15000);
 		genMeth.eyesCheckWindow("Param Rep Map (Droid) - King of Prussia Mall on map", useEye, genMeth, skipfailure);
 
 		//Back to startup screen
@@ -1205,7 +1208,7 @@ import com.applitools.eyes.Eyes;
 		
 		// go to List
 		genMeth.clickXpthName_TextView(genMeth, DroidData.ActionsReport);
-		
+		Thread.sleep(4000);
 		//Set slicer to one item
 		genMeth.clickId(genMeth, DroidData.BTNSlicer);
 		genMeth.clickXpthName_TextView(genMeth, "Service Call ID");

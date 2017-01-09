@@ -19,6 +19,8 @@ import io.appium.java_client.android.AndroidDriver;
 
 
 
+
+
 import com.applitools.eyes.Eyes;
 import com.applitools.eyes.MatchLevel;
 import com.applitools.eyes.RectangleSize;
@@ -37,6 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
@@ -1466,7 +1469,29 @@ public class AndroidMethods {
          BufferedImage dest = src.getSubimage(0, 75, rect.width, rect.height-100);
          return dest; 
       }
-	
+
+ 	  
+	public EnvironmentMode UserSetEnvironmentMode(EnvironmentMode EnvMode) {
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
+		System.out
+				.print("Please choose Environment mode(1 for QA, 2 for Staging or 3 for PROD):");
+		byte number = scanner.nextByte();
+		System.out.println("The number is: " + number);
+
+		if (number == 1) {
+			EnvMode = EnvironmentMode.QA;
+
+		} else if (number == 2) {
+			EnvMode = EnvironmentMode.Staging;
+
+		} else if (number == 3) {
+			EnvMode = EnvironmentMode.Prod;
+
+		}
+		return EnvMode;
+	}
+ 	  
 	// public void changeConnectionType(String mode) {
 	//
 	// NetworkConnection mobileDriver = (NetworkConnection) driver;
