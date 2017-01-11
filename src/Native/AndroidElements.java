@@ -206,6 +206,7 @@ public class AndroidElements {
 		this.StartupApplication = XmlHandel.readAndroidXml("StartupApplication", langXml, xmlPath);
 		this.TabBarTitle_Name = XmlHandel.readAndroidXml("TabBarTitle_Name", langXml, xmlPath);
 		this.EnvironmentQA = XmlHandel.readAndroidXml("EnvironmentQA", langXml, xmlPath);
+		//test
 
 		
 		
