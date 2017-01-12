@@ -3,30 +3,22 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidKeyCode;
-import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.WithTimeout;
 import io.appium.java_client.pagefactory.iOSFindBy;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.junit.AfterClass;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriverException;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeSuite;
 import org.xml.sax.SAXException;
-
-import sun.print.resources.serviceui;
 
 import com.applitools.eyes.Eyes;
 

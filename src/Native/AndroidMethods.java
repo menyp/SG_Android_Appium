@@ -32,8 +32,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -56,8 +54,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyException;
-import io.appium.java_client.service.local.AppiumServiceBuilder;
-
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
