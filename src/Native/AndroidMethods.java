@@ -254,8 +254,8 @@ public class AndroidMethods {
 	    //capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, genMeth.getValueFromPropFile("automationName"));
 
 	    
-		//capabilities.setCapability("newCommandTimeout", 1200);
-	    capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
+		capabilities.setCapability("newCommandTimeout", 12000);
+	  //  capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
 
 
 		//capabilities.setCapability("appPackage", genMeth.getValueFromPropFile("appPackage"));

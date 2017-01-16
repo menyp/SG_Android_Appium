@@ -521,6 +521,39 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	
+	@Test(enabled = true, testName = "List", retryAnalyzer = Retry.class, description = "Check the List tab",
+			groups = { "Sanity Android1" })
+
+	public void Tabs_List_VirtualDI_Virtualolumn() throws ParserConfigurationException, SAXException,
+			IOException, InterruptedException {
+
+		// go to List
+		genMeth.clickXpthName_TextView(genMeth, "List / Grid");
+		Thread.sleep(10000);
+
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "List (VDI & Vcolumn)");
+		genMeth.eyesCheckWindow("Tabs_List_VirtualDI_Virtualolumn (Droid)- First Layer", useEye, genMeth, skipfailure);
+		genMeth.swipeDownLong(1000);
+		
+		//Open second layer
+		genMeth.clickXpthName_TextView(genMeth, "See All");
+		genMeth.swipeDownLong(1000);
+		genMeth.swipeDownLong(1000);
+		genMeth.swipeDownLong(1000);
+		genMeth.eyesCheckWindow("Tabs_List_VirtualDI_Virtualolumn (Droid)- Second Layer", useEye, genMeth, skipfailure);
+
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		Thread.sleep(2000);
+
+		//Verify Startup screen is open
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
+
+	}
+	
+	
+	
 	@Test(enabled = true, testName = "Grid two layer Advanced", retryAnalyzer = Retry.class, description = "Check the Grid two layer tab",
 			groups = { "Sanity Android" })
 
@@ -802,6 +835,46 @@ import com.applitools.eyes.Eyes;
 		genMeth.sendId(genMeth, DroidData.IconSearch , "Caldwell Alexander");
 		driver.hideKeyboard();
 		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - No Google+",useEye, genMeth, skipfailure);				
+		
+		//Back to Startup screen
+		genMeth.backDroidButton();
+		genMeth.clickId(genMeth, DroidData.IconHome);
+
+		
+		//Press info for the app
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/left_menu_child_info_icon");
+			
+		Thread.sleep(1000);
+		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Golden App info screen",useEye, genMeth, skipfailure);	
+		genMeth.clickXpthName_TextView(genMeth, "SQL Golden App");
+		genMeth.clickXpthName_TextView(genMeth, "SQL Golden App");
+				
+		//Verify Startup screen is open
+		Thread.sleep(1000);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
+
+	}
+
+	
+	@Test(enabled = false, testName = "Survey", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
+			groups = { "Sanity Android" })
+
+	public void Tabs_Survey_Manually_Build() throws ParserConfigurationException, SAXException,
+			IOException, InterruptedException {
+
+
+		// go to Employee Directory tab
+		genMeth.clickXpthName_TextView(genMeth, "Survey / No UI");
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "");
+		Thread.sleep(3000);
+		genMeth.eyesCheckWindow("All Tabs- Survey Manually Build (Droid) - Start Survey Screen",useEye, genMeth, skipfailure);
+								
+		
+		
+		
+		
+		
 		
 		//Back to Startup screen
 		genMeth.backDroidButton();
