@@ -254,7 +254,7 @@ public class AndroidMethods {
 	    //capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, genMeth.getValueFromPropFile("automationName"));
 
 	    
-		capabilities.setCapability("newCommandTimeout", 12000);
+		capabilities.setCapability("newCommandTimeout", 120000);
 	  //  capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
 
 
@@ -1454,6 +1454,11 @@ public class AndroidMethods {
 										"/usr/local/lib/node_modules/appium/build/lib/appium.js"))
 						.withIPAddress("0.0.0.0").usingPort(4723));
 						*/
+		boolean isServiceRunning =  service.isRunning();
+		if (isServiceRunning){
+			
+			service.stop();
+		}
 		service.start();
 		return service;
 
@@ -1473,19 +1478,43 @@ public class AndroidMethods {
 		System.out
 				.print("Please choose Environment mode(1 for QA, 2 for Staging or 3 for PROD):");
 		byte number = scanner.nextByte();
-		System.out.println("The number is: " + number);
 
 		if (number == 1) {
 			EnvMode = EnvironmentMode.QA;
+			System.out.println("Testing against QA Environment");
+
 
 		} else if (number == 2) {
 			EnvMode = EnvironmentMode.Staging;
+			System.out.println("Testing against Stagins Environment");
+
 
 		} else if (number == 3) {
 			EnvMode = EnvironmentMode.Prod;
+			System.out.println("Testing against PROD Environment");
 
 		}
 		return EnvMode;
+	}
+	
+	public boolean UseEye() {
+		boolean UseEye;
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Do you want to use Applitools eye?(1 for Yes, or continue for No):");
+		byte number = scanner.nextByte();
+		//String choose = scanner.next();
+
+		if (number == 1) {
+			UseEye = true;
+			System.out.println("Testing with Applitools visual testing");
+
+		} else {
+			UseEye = false;
+			System.out.println("Testing without Applitools visual testing");
+
+		}
+		return UseEye;
 	}
  	  
 	// public void changeConnectionType(String mode) {

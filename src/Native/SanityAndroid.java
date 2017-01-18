@@ -44,7 +44,7 @@ import com.applitools.eyes.Eyes;
 	String StopServerPath;
 	String appIdentifier;
 	Boolean skipfailure = true;
-	Boolean useEye = true;
+	Boolean useEye;
 	EnvironmentMode EnvMode;
 
 	AndroidDriver<MobileElement> driver;
@@ -58,6 +58,7 @@ import com.applitools.eyes.Eyes;
 			
 		//Set the tests configuration
 		EnvMode = genMeth.UserSetEnvironmentMode(EnvMode);
+		useEye = genMeth.UseEye();
 			    
 		//StartServerPath = genMeth.getValueFromPropFile("StartServerPath");
 		//StopServerPath = genMeth.getValueFromPropFile("StopServerPath");
@@ -522,7 +523,7 @@ import com.applitools.eyes.Eyes;
 	
 	
 	@Test(enabled = true, testName = "List", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android" })
 
 	public void Tabs_List_VirtualDI_Virtualolumn() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -966,6 +967,44 @@ import com.applitools.eyes.Eyes;
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
+	
+	@Test(enabled = true, testName = "Parameterized report With all data types", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
+			groups = { "Sanity Android" })
+
+	public void Param_Report_AllDataTypes() throws ParserConfigurationException, SAXException,
+			IOException, InterruptedException {
+
+		genMeth.swipeDownShort(1000);
+		genMeth.clickXpthName_TextView(genMeth, "Param All Data Types");
+		Thread.sleep(4000);
+		genMeth.clickXpthName_TextView(genMeth, "String");
+		genMeth.sendXpthName_EditText(genMeth, "Input text here", "This is a String");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_submit_button");
+		
+		genMeth.clickXpthName_TextView(genMeth, "Integer");
+		genMeth.sendXpthName_EditText(genMeth, "Input text here", "100");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_submit_button");
+		
+		genMeth.clickXpthName_TextView(genMeth, "Decimal");
+		genMeth.sendXpthName_EditText(genMeth, "Input text here", "50.55");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_submit_button");
+		
+		genMeth.clickXpthName_TextView(genMeth, "Date Time");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_submit_button");
+		Thread.sleep(10000);
+		genMeth.eyesCheckWindow("Param Report with All Data Types (Droid) - All data types are filled",useEye, genMeth, skipfailure);		
+		
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
+		genMeth.eyesCheckWindow("Param Report with All Data Types (Droid) - Tab is open",useEye, genMeth, skipfailure);		
+		
+		//Back to startup screen
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.swipeUpLong(1000);
+		genMeth.swipeUpLong(1000);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
+		
+	}
+
 
 	
 	@Test(enabled = true, testName = "Parameterized report List", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
@@ -1093,7 +1132,7 @@ import com.applitools.eyes.Eyes;
 		//genMeth.clickId(genMeth, "m");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/qr_manual_input_submit_btn");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
-		Thread.sleep(4000);
+		Thread.sleep(8000);
 		genMeth.eyesCheckWindow("Param Rep Cover Flow (Droid) - Males",useEye, genMeth, skipfailure);		
 		
 		//Go To cover flow tab by const (females)
@@ -1217,7 +1256,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_submit_button");
 		genMeth.eyesCheckWindow("Param Rep Map (Droid) - King of Prussia Mall chosen", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
-		Thread.sleep(15000);
+		Thread.sleep(18000);
 		genMeth.eyesCheckWindow("Param Rep Map (Droid) - King of Prussia Mall on map", useEye, genMeth, skipfailure);
 
 		//Back to startup screen
@@ -1311,6 +1350,7 @@ import com.applitools.eyes.Eyes;
 			genMeth.clickId(genMeth, "90");
 
 		}
+		Thread.sleep(5000);
 		
 		genMeth.eyesCheckWindow("List Actions Cell (Droid) - cell Priority (Simple List MB)", useEye, genMeth, skipfailure);
 
@@ -1429,7 +1469,7 @@ import com.applitools.eyes.Eyes;
 		Thread.sleep(2000);
 
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/action_fragment_submit_button");
-		Thread.sleep(15000);
+		Thread.sleep(20000);
 
 /*	
 
@@ -1683,7 +1723,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	
 	
 	@Test(enabled = true, testName = "Actions_Grid_One_Layer_Row", retryAnalyzer = Retry.class, description = "Check the Grid one layer Row action",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android1" })
 	public void Actions_Grid_One_Layer_Row() throws ParserConfigurationException, SAXException,
 	IOException, InterruptedException {
 
@@ -1837,7 +1877,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 
 	
 
-	@Test(enabled = true, groups = {"Sanity Android"}, testName = "Sanity", description = "Slicer report")
+	@Test(enabled = true, groups = {"Sanity Android1"}, testName = "Sanity", description = "Slicer report")
 	public void slicerReport() throws InterruptedException, IOException{
 		
 		// go to List
@@ -2049,6 +2089,52 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		
 	}
 
+	
+	@Test(enabled = true, groups = { "Sanity Android1" }, testName = "Sanity Tests", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
+	public void Settings() throws Exception, Throwable {
+
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.eyesCheckWindow("Settings (Droid) - Settings LSM",useEye, genMeth, skipfailure);
+		
+
+		// Send feedback
+		genMeth.clickXpthName_TextView(genMeth, "Send feedback");
+		genMeth.eyesCheckWindow("Settings (Droid) - Send feedback", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/feedback_fragment_done");
+		genMeth.clickId(genMeth, DroidData.IconHome);
+
+		//General
+		genMeth.clickXpthName_TextView(genMeth, "General");
+		genMeth.eyesCheckWindow("Settings (Droid) - General",useEye, genMeth, skipfailure);
+		genMeth.swipeDownShort(1000);
+		genMeth.eyesCheckWindow("Settings (Droid) - General Scroll down",useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		Thread.sleep(1000);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		Thread.sleep(1000);
+
+		//Performance
+		genMeth.clickXpthName_TextView(genMeth, "Performance");
+		genMeth.eyesCheckWindow("Settings (Droid) - Performance",useEye, genMeth, skipfailure);
+		//genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.backDroidButton();
+		//genMeth.swipeUpLong(1000);
+		Thread.sleep(1000);
+
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		
+		
+		//Activity Log
+		genMeth.clickXpthName_TextView(genMeth, "Activity Log");
+		genMeth.eyesCheckWindow("Settings (Droid) - Activity Log", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
+
+
+	}
+	
+	
+	
 	@Test(enabled = false, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = "Switching from Foreground to Background and vice versa use cases",
 			groups = { "Sanity IOS__" })
 	public void foregroundBackgroundSwitch() throws Exception, Throwable {
