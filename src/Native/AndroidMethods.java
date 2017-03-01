@@ -5,22 +5,6 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 //import io.appium.java_client.ios.AndroidDriver;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import com.applitools.eyes.Eyes;
 import com.applitools.eyes.MatchLevel;
 import com.applitools.eyes.RectangleSize;
@@ -86,7 +70,7 @@ public class AndroidMethods {
 	Boolean useEye = false;
 	Boolean skipfailure = true;
 	Boolean qaENV = true;
-	
+	String LoginUser;
 	
 	
 
@@ -99,25 +83,29 @@ public class AndroidMethods {
 		case QA:
 			
 			genMeth.configureENV(genMeth, QAAuthorizationURL, QADistributionURL, QAclient_ID, QAclient_Secret);
+			LoginUser = DroidData.userQA;
 
 			break;
 
 
 		case Staging:
 			genMeth.configureENV(genMeth, StagingAuthorizationURL, StagingDistributionURL, Stagingclient_ID, Stagingclient_Secret);
+			LoginUser = DroidData.UserProd;
 
 
 			break;
 
 		case Prod:
+			LoginUser = DroidData.UserProd;
 
 			break;
 		}
 		
 
 		
+		
 		//Login to the client
-		genMeth.sendId(genMeth,"com.skygiraffe.operationaldata:id/login_screen_email_field",DroidData.userQA);
+		genMeth.sendId(genMeth,"com.skygiraffe.operationaldata:id/login_screen_email_field", LoginUser);
 		genMeth.sendId(genMeth,"com.skygiraffe.operationaldata:id/login_screen_password_field",DroidData.passwordQA);
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/login_screen_authentication_btn");
 
@@ -254,7 +242,7 @@ public class AndroidMethods {
 	    //capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, genMeth.getValueFromPropFile("automationName"));
 
 	    
-		capabilities.setCapability("newCommandTimeout", 120000);
+		capabilities.setCapability("newCommandTimeout", 10000);
 	  //  capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
 
 
@@ -1082,12 +1070,15 @@ public class AndroidMethods {
 			throws ParserConfigurationException, SAXException, IOException {
 
 		boolean isWebElementVisible = false;
-		WebElement element = null;
+		//WebElement element1 = null;
+		MobileElement element = null;
+
+		
 		try {
 
 			// (new WebDriverWait(driver,
 			// 20)).until(ExpectedConditions.visibilityOfElementLocated(by));
-			element = new FluentWait<AndroidDriver<MobileElement>>(driver)
+			element = (MobileElement) new FluentWait<AndroidDriver<MobileElement>>(driver)
 					.withTimeout(5, TimeUnit.SECONDS)
 					.pollingEvery(1, TimeUnit.SECONDS)
 					.ignoring(NoSuchElementException.class)
@@ -1478,6 +1469,8 @@ public class AndroidMethods {
 		System.out
 				.print("Please choose Environment mode(1 for QA, 2 for Staging or 3 for PROD):");
 		byte number = scanner.nextByte();
+		
+		//Add a timer where after 10 seconds if no input was inserted then a default value will be setup
 
 		if (number == 1) {
 			EnvMode = EnvironmentMode.QA;

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>    
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" parallel="false">
-  <test name="Sanity Tests">
+  <test name="Regression">
       <groups>
 		<run>
 		    
-		    <include name="Sanity Android2"/>      
+		    <include name="Sanity Android"/>      
 		    
 		</run>
 	</groups>

@@ -7,6 +7,7 @@
 			<BTNsettingsLoginScreenID>com.skygiraffe.operationaldata:id/login_screen_settings_image_btn</BTNsettingsLoginScreenID>
 			<BTNsampleAccountID>Sample account</BTNsampleAccountID>
 			<BTNlogoutName>Log Out</BTNlogoutName>
+			<BTNlogoutID>com.skygiraffe.operationaldata:id/application_logout_button_text</BTNlogoutID>
 			<BTNlogoutXpth>//UIAApplication[1]/UIAWindow[1]/UIAButton[2]</BTNlogoutXpth>
 			<BTNcancelForgotPasswordID></BTNcancelForgotPasswordID>	
 			<BTNrecoverPasswordID></BTNrecoverPasswordID>	
@@ -106,10 +107,15 @@
 	
 		   	
 <!-- 	   	General Info -->
-		<UserProd>meny1@skygiraffe.com</UserProd>
+		<UserProd_SysAdmin>meny1@skygiraffe.com</UserProd_SysAdmin>
 		<passwordProd>Trustno1</passwordProd>
-		<userQA>appium1@1.com</userQA>
+		
+		<UserProd>appium1@1.com</UserProd>
+		<passwordProd>123</passwordProd>
+		
+		<userQA>appium2@2.com</userQA>
 		<passwordQA>123</passwordQA>
+		
 		<badPassword>incorrectPassword</badPassword>
 		<StartupApplication>SQL Golden App</StartupApplication>
 		<EnvironmentQA>true</EnvironmentQA>

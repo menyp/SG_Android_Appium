@@ -44,6 +44,7 @@ public class AndroidElements {
 	String BTNsave;
 	String BTNsubmit;
 	String BTNrightMenuButton_ID;
+	String BTNlogoutID;
 	
 	
 	
@@ -147,9 +148,10 @@ public class AndroidElements {
 		this.BTNsave = XmlHandel.readAndroidXml("BTNsave", langXml, xmlPath);
 		this.BTNsubmit = XmlHandel.readAndroidXml("BTNsubmit", langXml, xmlPath);
 		this.BTNrightMenuButton_ID = XmlHandel.readAndroidXml("BTNrightMenuButton_ID", langXml, xmlPath);
+		this.BTNlogoutID = XmlHandel.readAndroidXml("BTNlogoutID", langXml, xmlPath);
 
 		
-
+		
 		
 		
 		this.TEXTFIELDemailXpth = XmlHandel.readAndroidXml("TEXTFIELDemailXpth", langXml, xmlPath);

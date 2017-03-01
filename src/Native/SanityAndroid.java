@@ -1,5 +1,6 @@
 package Native;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeSuite;
 import org.xml.sax.SAXException;
@@ -47,6 +49,7 @@ import com.applitools.eyes.Eyes;
 	Boolean useEye;
 	EnvironmentMode EnvMode;
 
+	//AndroidDriver<MobileElement> driver;
 	AndroidDriver<MobileElement> driver;
 	AndroidMethods genMeth = new AndroidMethods();
 	Eyes eyes = new Eyes();
@@ -80,16 +83,13 @@ import com.applitools.eyes.Eyes;
 
 		// Check if the client still logged in & in StartUp screen before each test
 		if (driver == null) {
-			try {
-//				driver.removeApp(genMeth.getValueFromPropFile("appPackage"));
-				driver.quit();
-			} catch (Exception e) {
-				// swallow if fails
-			}
-			service.stop();
+
+			// service.stop();
+			// service = genMeth.startAppiumService();
+			driver.quit();
 			driver = genMeth.setCapabilitiesAndroid(genMeth, service);
 			DroidData = genMeth.setElements(webElementXmlPath, webElementXmlLang);
-			genMeth.cleanLoginDroid( genMeth, EnvMode);
+			genMeth.cleanLoginDroid(genMeth, EnvMode);
 		}
 
 		else {
@@ -97,29 +97,34 @@ import com.applitools.eyes.Eyes;
 			String Startup_Screen = "//android.widget.TextView[@text='All Tabs']";
 			//String Startup_Screen = "//android.widget.LinearLayout[@text='SQL Golden App']";
 			
-			genMeth.swipeUpLong(1000);
-			genMeth.swipeUpLong(1000);
-			genMeth.swipeUpLong(1000);
-			genMeth.swipeUpLong(1000);
-			Thread.sleep(4000);
+			try {
+				genMeth.swipeUpLong(1000);
+				genMeth.swipeUpLong(1000);
+				genMeth.swipeUpLong(1000);
+				genMeth.swipeUpLong(1000);
+				Thread.sleep(4000);
+			} catch (Exception e1) {
+
+				driver.quit();
+				driver = genMeth.setCapabilitiesAndroid(genMeth, service);
+				DroidData = genMeth.setElements(webElementXmlPath, webElementXmlLang);
+				genMeth.cleanLoginDroid(genMeth, EnvMode);
+
+			}
 
 
 			boolean StartUpScreenDisplay = genMeth.checkIsElementVisible( By.xpath(Startup_Screen));
+			boolean LSM_Is_Open = genMeth.checkIsElementVisible( By.id(DroidData.BTNlogoutID));
+			
 
-			if (StartUpScreenDisplay != true) {
+			if (StartUpScreenDisplay != true || LSM_Is_Open) {
 
-				try {
-					//driver.resetApp();
-					//driver.removeApp(appIdentifier);
-					driver.quit();
-				} catch (Exception e) {
-					// swallow if fails
-				}
-				
+				// driver.resetApp();
+				// driver.removeApp(appIdentifier);
+				driver.quit();
 				driver = genMeth.setCapabilitiesAndroid(genMeth, service);
 				DroidData = genMeth.setElements(webElementXmlPath, webElementXmlLang);
-				genMeth.cleanLoginDroid( genMeth, EnvMode);
-
+				genMeth.cleanLoginDroid(genMeth, EnvMode);
 
 			}
 
@@ -127,7 +132,7 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	
-	@Test(enabled = true, testName = "URL Tab", retryAnalyzer = Retry.class, description = "Check the URL tab",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the URL tab",
 			groups = { "Sanity Android" })
 
 	public void Tabs_URL() throws ParserConfigurationException, SAXException,
@@ -153,7 +158,7 @@ import com.applitools.eyes.Eyes;
 	}
 		
 	
-	@Test(enabled = true, testName = "News Tab", retryAnalyzer = Retry.class, description = "Check the URL tab",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the URL tab",
 			groups = { "Sanity Android" })
 
 	public void Tabs_News() throws ParserConfigurationException, SAXException,
@@ -189,7 +194,7 @@ import com.applitools.eyes.Eyes;
 
 	
 	
-	@Test(enabled = true, testName = "Dashboard  Tab", retryAnalyzer = Retry.class, description = "Check the URL tab",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the URL tab",
 			groups = { "Sanity Android" })
 
 	public void Tabs_Dashboard() throws ParserConfigurationException, SAXException,
@@ -249,10 +254,11 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	
-	@AfterSuite(alwaysRun = true)
-	//@Test(enabled = true, testName = "Map,Dashboard, Charts Tabs", retryAnalyzer = Retry.class, description = "Check the URL tab",
-		//	groups = { "Sanity Android" })
+	
 
+
+	//@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the URL tab",groups = { "Sanity Android" })
+	@AfterTest
 	public void Tabs_Map() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 
@@ -272,17 +278,18 @@ import com.applitools.eyes.Eyes;
 		
 
 		By by = By.xpath("//android.view.View[@content-desc='19501 Biscayne Blvd, Aventura, FL 33180. 19501 Biscayne Boulevard,Aventura, FL 33180.']");
-		driver.findElement(by).click();
+		//driver.findElement(by).click();
+		genMeth.clickBy(driver, genMeth, by);
 		
 		
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Map By Address- Aventura", useEye, genMeth, skipfailure);
 		
 		//Driving Directions
-		genMeth.clickId(genMeth, DroidData.BTNdirection);
+	//	genMeth.clickId(genMeth, DroidData.BTNdirection); **********This might cause test freeze due to Appium's bug
 		
 	//	genMeth.eyesCheckWindow("All Tabs (Droid)- Map By Address- Driving directions", useEye, genMeth, skipfailure);
 
-		genMeth.clickId(genMeth, DroidData.BTNCancelName);
+		//genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
 		//Phone
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_adress_container");
@@ -321,14 +328,14 @@ import com.applitools.eyes.Eyes;
 
 	}
 	
-	@Test(enabled = true, testName = "Map Charts Tabs", retryAnalyzer = Retry.class, description = "Check the URL tab",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the URL tab",
 			groups = { "Sanity Android" })
 
 	public void Tabs_Chart() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 		//Open Bar Chart
 		genMeth.clickXpthName_TextView(genMeth, "Chart/CoverF/ActionC");
-		Thread.sleep(4000);
+		Thread.sleep(8000);
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Bar Chart", useEye, genMeth, skipfailure);
 		
 		//Filter data
@@ -346,7 +353,7 @@ import com.applitools.eyes.Eyes;
 
 		//Navigation to pie chart
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/column_chart_selected_title_nav_icon");
-		Thread.sleep(15000);
+		Thread.sleep(20000);
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Bar Chart- Navigate to Dashboard", useEye, genMeth, skipfailure);
 		
 		//Navigate back to the Bar chart
@@ -377,7 +384,7 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	
-	@Test(enabled = true, testName = "Cover Flow", retryAnalyzer = Retry.class, description = "Check the Cover Flow tab",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Cover Flow tab",
 			groups = { "Sanity Android" })
 
 	public void Tabs_CoverFlow() throws ParserConfigurationException, SAXException,
@@ -438,7 +445,7 @@ import com.applitools.eyes.Eyes;
 	}
 
 	
-	@Test(enabled = true, testName = "List", retryAnalyzer = Retry.class, description = "Check the List tab",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
 			groups = { "Sanity Android" })
 
 	public void Tabs_List_AdvancedColumns() throws ParserConfigurationException, SAXException,
@@ -446,7 +453,7 @@ import com.applitools.eyes.Eyes;
 
 		// go to List
 		genMeth.clickXpthName_TextView(genMeth, "List / Grid");
-		Thread.sleep(8000);
+		Thread.sleep(10000);
 		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List", useEye, genMeth, skipfailure);
 
 		//Phone
@@ -499,7 +506,7 @@ import com.applitools.eyes.Eyes;
 		Thread.sleep(2000);
 		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List See All", useEye, genMeth, skipfailure);		
 		
-		//Folder
+		//Folder  ***** Need to add the box DS for QA!!!
 		genMeth.clickXpthName_TextView(genMeth, "Folder");
 		Thread.sleep(2000);
 		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List Folder", useEye, genMeth, skipfailure);
@@ -522,8 +529,8 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	
-	@Test(enabled = true, testName = "List", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity Android" })
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
+			groups = { "Sanity Android2" })
 
 	public void Tabs_List_VirtualDI_Virtualolumn() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -555,7 +562,7 @@ import com.applitools.eyes.Eyes;
 	
 	
 	
-	@Test(enabled = true, testName = "Grid two layer Advanced", retryAnalyzer = Retry.class, description = "Check the Grid two layer tab",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid two layer tab",
 			groups = { "Sanity Android" })
 
 	public void Tabs_Grid_Two_Layers() throws ParserConfigurationException, SAXException,
@@ -572,7 +579,8 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickXpthName_TextView(genMeth, "$200");
 		Thread.sleep(1000);
 		genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- Second layer", useEye, genMeth, skipfailure);
-		genMeth.swipeDownShorter(1000);
+		genMeth.swipeDownShorter(5000);
+		Thread.sleep(2000);
 	
 		/*
 		try {
@@ -627,6 +635,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickId(genMeth, DroidData.BTNsubmit);
 		Thread.sleep(3000);
 		genMeth.backDroidButton();
+		Thread.sleep(3000);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 				
 		genMeth.clickId(genMeth, DroidData.IconHome);
@@ -638,8 +647,8 @@ import com.applitools.eyes.Eyes;
 	
 	}
 	
-	@Test(enabled = true, testName = "Grid one layer", retryAnalyzer = Retry.class, description = "Check the Grid one layer tab Advanced & navigation",
-			groups = { "Sanity Android2" })
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer tab Advanced & navigation",
+			groups = { "Sanity Android" })
 
 	public void Tabs_Grid_One_Layer_Advance_Navigation() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -660,6 +669,8 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickXpthName_LinearLayout(genMeth, "3");
 		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Address", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
+//      **********Appium Dismiss popup bug (need to delete the driver quite after  appium fix)*********
+		driver.quit();
 		
 		// Mobile Phone
 		genMeth.clickXpthName_LinearLayout(genMeth, "4");
@@ -722,7 +733,7 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	
-	@Test(enabled = true, testName = "Employee Directory", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
 			groups = { "Sanity Android" })
 
 	public void Tabs_Employee_Directory() throws ParserConfigurationException, SAXException,
@@ -786,7 +797,7 @@ import com.applitools.eyes.Eyes;
 		// URL
 		genMeth.swipeDownLong(1000);
 
-		genMeth.clickXpthName_TextView(genMeth, "http://google.com");
+		genMeth.clickXpthName_TextView(genMeth, "google.com");
 		Thread.sleep(1000);
 		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - URL",useEye, genMeth, skipfailure);	
 		genMeth.clickId(genMeth, DroidData.BTNsubmit);
@@ -857,7 +868,7 @@ import com.applitools.eyes.Eyes;
 	}
 
 	
-	@Test(enabled = false, testName = "Survey", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
+	@Test(enabled = false, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
 			groups = { "Sanity Android" })
 
 	public void Tabs_Survey_Manually_Build() throws ParserConfigurationException, SAXException,
@@ -897,7 +908,7 @@ import com.applitools.eyes.Eyes;
 	}
 
 	
-	@Test(enabled = true, testName = "Parameterized report Grid", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
 			groups = { "Sanity Android" })
 
 	public void Param_Report_Grid() throws ParserConfigurationException, SAXException,
@@ -949,7 +960,7 @@ import com.applitools.eyes.Eyes;
 		
 	}
 
-	@Test(enabled = true, testName = "Parameterized report With all variables", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
 			groups = { "Sanity Android" })
 
 	public void Param_Report_AllVariables() throws ParserConfigurationException, SAXException,
@@ -968,7 +979,7 @@ import com.applitools.eyes.Eyes;
 		
 	}
 	
-	@Test(enabled = true, testName = "Parameterized report With all data types", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
 			groups = { "Sanity Android" })
 
 	public void Param_Report_AllDataTypes() throws ParserConfigurationException, SAXException,
@@ -995,6 +1006,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.eyesCheckWindow("Param Report with All Data Types (Droid) - All data types are filled",useEye, genMeth, skipfailure);		
 		
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
+		Thread.sleep(5000);
 		genMeth.eyesCheckWindow("Param Report with All Data Types (Droid) - Tab is open",useEye, genMeth, skipfailure);		
 		
 		//Back to startup screen
@@ -1007,7 +1019,7 @@ import com.applitools.eyes.Eyes;
 
 
 	
-	@Test(enabled = true, testName = "Parameterized report List", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
 			groups = { "Sanity Android" })
 
 	public void Param_Report_List() throws ParserConfigurationException, SAXException,
@@ -1060,7 +1072,7 @@ import com.applitools.eyes.Eyes;
 		
 	}
 
-	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
+	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
 	public void Param_Report_DL_Dashboard()
 			throws ParserConfigurationException, SAXException, IOException,
 			InterruptedException {
@@ -1093,7 +1105,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickXpthName_TextView(genMeth, "Device Type Name (ParentName)");
 		Thread.sleep(5000);
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		genMeth.eyesCheckWindow("Param Report Dashboard DL (Droid)- Navigate to SL- Devices by Type tab",useEye, genMeth, skipfailure);		
 		genMeth.backDroidButton();
 		genMeth.backDroidButton();
@@ -1109,7 +1121,7 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	
-	@Test(enabled = true, groups = { "Sanity Android"}, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
+	@Test(enabled = true, groups = { "Sanity Android"}, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
 	public void Param_Report_CoverFlow()
 			throws ParserConfigurationException, SAXException, IOException,
 			InterruptedException {
@@ -1142,13 +1154,13 @@ import com.applitools.eyes.Eyes;
 		
 		//Back to startup screen
 		genMeth.clickId(genMeth, DroidData.IconHome);
-		genMeth.swipeUpLong(1000);
+		//genMeth.swipeUpLong(1000);
 		genMeth.swipeUpLong(1000);
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
 	
-	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
+	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
 	public void Param_Report_Chart()
 			throws ParserConfigurationException, SAXException, IOException,
 			InterruptedException {
@@ -1194,7 +1206,7 @@ import com.applitools.eyes.Eyes;
 		
 	}
 
-	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
+	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
 	public void Param_Report_EmployeeDirectory()
 			throws ParserConfigurationException, SAXException, IOException,
 			InterruptedException {
@@ -1234,7 +1246,7 @@ import com.applitools.eyes.Eyes;
 		
 	}
 
-	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Param_Report_DL_Dashboard", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
+	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
 	public void Param_Report_Map()
 
 			throws ParserConfigurationException, SAXException, IOException,
@@ -1268,7 +1280,7 @@ import com.applitools.eyes.Eyes;
 		
 	}
 
-	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Param_Report_Cards", retryAnalyzer = Retry.class, description = "Check the Param_Report_Cards")
+	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Param_Report_Cards")
 	public void Param_Report_Cards()
 			throws ParserConfigurationException, SAXException, IOException,
 			InterruptedException {
@@ -1302,7 +1314,7 @@ import com.applitools.eyes.Eyes;
 
 
 	
-	@Test(enabled = true, testName = "List", retryAnalyzer = Retry.class, description = "Check the List tab",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
 			groups = { "Sanity Android" })
 
 	public void Actions_List_Cell() throws ParserConfigurationException, SAXException,
@@ -1404,7 +1416,7 @@ import com.applitools.eyes.Eyes;
 
 	}
 	
-	@Test(enabled = true, testName = "List", retryAnalyzer = Retry.class, description = "Check the List tab",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
 			groups = { "Sanity Android" })
 	public void Actions_List_Row_Popup() throws ParserConfigurationException, SAXException,
 	IOException, InterruptedException {
@@ -1527,9 +1539,9 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 
 
 
-	@AfterSuite(alwaysRun = true)
-	//@Test(enabled = true, testName = "Inline row action", retryAnalyzer = Retry.class, description = "Check the List tab",
-		//	groups = { "Sanity Android" })
+	//@AfterSuite(alwaysRun = true)
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
+			groups = { "Sanity Android" })
 
 	public void Actions_List_Inline_Row() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -1585,6 +1597,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/image_picker_fragment_open_camera_btn");
 		Thread.sleep(1000);
 		genMeth.backDroidButton();
+		Thread.sleep(1000);
 
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/image_picker_fragment_open_gallery_btn");
 		genMeth.eyesCheckWindow("Actions_List_Inline (Droid)- Gallery opened", useEye, genMeth, skipfailure);
@@ -1595,18 +1608,22 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		Thread.sleep(4000);
 		genMeth.eyesCheckWindow("Actions_List_Inline (Droid)- PN success", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/push_notification_dialog_cancel_btn");
-
+//*************************Appium Dismiss popup bug*********************************************
+		
 
 		//Verify Startup screen is open
 		genMeth.backDroidButton();
 		genMeth.swipeUpShort(1000);
 		Thread.sleep(2000);
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
+		
+		//Kill the driver due to the appium bug mention above
+		driver.quit();
 
 	}
 	
 	
-	@Test(enabled = true, testName = "Actions_Grid_One_Layer_Cell", retryAnalyzer = Retry.class, description = "Check the Grid one layer cell action",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer cell action",
 			groups = { "Sanity Android" })
 
 	public void Actions_Grid_One_Layer_Cell() throws ParserConfigurationException, SAXException,
@@ -1722,8 +1739,8 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	}
 	
 	
-	@Test(enabled = true, testName = "Actions_Grid_One_Layer_Row", retryAnalyzer = Retry.class, description = "Check the Grid one layer Row action",
-			groups = { "Sanity Android1" })
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer Row action",
+			groups = { "Sanity Android" })
 	public void Actions_Grid_One_Layer_Row() throws ParserConfigurationException, SAXException,
 	IOException, InterruptedException {
 
@@ -1808,7 +1825,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	}
 
 	
-	@Test(enabled = true, testName = "Actions_Grid_Two_Layer", retryAnalyzer = Retry.class, description = "Check the Grid two layer actions",
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid two layer actions",
 			groups = { "Sanity Android" })
 
 	public void Actions_Grid_Two_Layer() throws ParserConfigurationException, SAXException,
@@ -1877,7 +1894,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 
 	
 
-	@Test(enabled = true, groups = {"Sanity Android1"}, testName = "Sanity", description = "Slicer report")
+	@Test(enabled = true, groups = {"Sanity Android"}, testName = "Regression", description = "Slicer report")
 	public void slicerReport() throws InterruptedException, IOException{
 		
 		// go to List
@@ -1942,7 +1959,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	}
 	
 	
-	@Test(enabled = true, groups = {"Sanity Android"}, testName = "Sanity", description = "Slicer report")
+	@Test(enabled = true, groups = {"Sanity Android"}, testName = "Regression", description = "Slicer report")
 	public void slicerReportWithSecurityFilter() throws InterruptedException, IOException{
 		
 		// go to List
@@ -1993,7 +2010,6 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.clickId(genMeth, DroidData.IconHome);
 		genMeth.swipeUpLong(1000);
 		genMeth.swipeUpLong(1000);
-		genMeth.swipeUpLong(1000);
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
@@ -2002,7 +2018,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 
 	
 	
-	@Test(enabled = true, groups = { "Sanity Android_Waiting for the android popup issue to be fixed" }, testName = "Sanity Tests", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
+	@Test(enabled = true, groups = { "Sanity Android_Waiting for the android popup issue to be fixed" }, testName = "Regression", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
 	public void badCredentials() throws Exception, Throwable {
 
 		genMeth.signOutFromStartup(genMeth);
@@ -2069,7 +2085,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	}
 	
 	
-	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Sanity Tests", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
+	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Regression", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
 	public void SampleAccount() throws Exception, Throwable {
 
 		genMeth.signOutFromStartup(genMeth);
@@ -2090,7 +2106,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	}
 
 	
-	@Test(enabled = true, groups = { "Sanity Android1" }, testName = "Sanity Tests", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
+	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Regression", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
 	public void Settings() throws Exception, Throwable {
 
 		genMeth.clickId(genMeth, DroidData.IconHome);
@@ -2109,33 +2125,31 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.swipeDownShort(1000);
 		genMeth.eyesCheckWindow("Settings (Droid) - General Scroll down",useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.IconHome);
-		Thread.sleep(1000);
 		genMeth.clickId(genMeth, DroidData.IconHome);
-		Thread.sleep(1000);
+
 
 		//Performance
 		genMeth.clickXpthName_TextView(genMeth, "Performance");
 		genMeth.eyesCheckWindow("Settings (Droid) - Performance",useEye, genMeth, skipfailure);
-		//genMeth.clickId(genMeth, DroidData.IconHome);
-		genMeth.backDroidButton();
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		//genMeth.backDroidButton();
 		//genMeth.swipeUpLong(1000);
-		Thread.sleep(1000);
 
 		genMeth.clickId(genMeth, DroidData.IconHome);
-		
 		
 		//Activity Log
-		genMeth.clickXpthName_TextView(genMeth, "Activity Log");
-		genMeth.eyesCheckWindow("Settings (Droid) - Activity Log", useEye, genMeth, skipfailure);
-		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.clickXpthName_TextView(genMeth, "Activity Center");
+		genMeth.eyesCheckWindow("Settings (Droid) - Activity Center (Action Log)", useEye, genMeth, skipfailure);
+		genMeth.swipeRightLong(1000);
+		genMeth.eyesCheckWindow("Settings (Droid) - Activity Center (Server Log)", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/activity_center_activity_close_btn");
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
-
 
 	}
 	
 	
 	
-	@Test(enabled = false, retryAnalyzer = Retry.class, testName = "Sanity Tests", description = "Switching from Foreground to Background and vice versa use cases",
+	@Test(enabled = false, retryAnalyzer = Retry.class, testName = "Regression", description = "Switching from Foreground to Background and vice versa use cases",
 			groups = { "Sanity IOS__" })
 	public void foregroundBackgroundSwitch() throws Exception, Throwable {
 
@@ -2174,6 +2188,8 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			driver.quit();
+			service.stop();
 		}
 
 		SendResults sr = new SendResults("elicherni444@gmail.com",
