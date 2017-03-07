@@ -72,6 +72,7 @@ import com.applitools.eyes.Eyes;
 		DroidData = genMeth.setElements(webElementXmlPath, webElementXmlLang);
 		service = genMeth.startAppiumService();
 		
+		
 		driver = genMeth.setCapabilitiesAndroid(genMeth, service);		
 		genMeth.cleanLoginDroid(genMeth, EnvMode); 
 
@@ -86,7 +87,12 @@ import com.applitools.eyes.Eyes;
 
 			// service.stop();
 			// service = genMeth.startAppiumService();
-			driver.quit();
+			try {
+				driver.quit();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			driver = genMeth.setCapabilitiesAndroid(genMeth, service);
 			DroidData = genMeth.setElements(webElementXmlPath, webElementXmlLang);
 			genMeth.cleanLoginDroid(genMeth, EnvMode);
