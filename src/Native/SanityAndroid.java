@@ -452,7 +452,7 @@ import com.applitools.eyes.Eyes;
 
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android1" })
 
 	public void Tabs_List_AdvancedColumns() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -585,7 +585,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickXpthName_TextView(genMeth, "$200");
 		Thread.sleep(1000);
 		genMeth.eyesCheckWindow("All Tabs- Grid two layers (Droid)- Second layer", useEye, genMeth, skipfailure);
-		genMeth.swipeDownShorter(5000);
+		genMeth.swipeDownLong(5000);
 		Thread.sleep(2000);
 	
 		/*
@@ -654,7 +654,7 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer tab Advanced & navigation",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android1" })
 
 	public void Tabs_Grid_One_Layer_Advance_Navigation() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
