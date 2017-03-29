@@ -53,8 +53,9 @@ import com.google.common.base.Function;
 public class AndroidMethods {
 	
 	//QA Variables
-	final String QAAuthorizationURL = "https://sgwin2012r2.skygiraffe.com/SkyGiraffeAuthorizationServer/oauth2/token";
-	final String QADistributionURL = "https://sgwin2012r2.skygiraffe.com/Publisher/api/V1";
+	final String QAAuthorizationURL = "https://SGDS-QA.skygiraffe.com/SkyGiraffeAuthorizationServer/oauth2/token";
+	final String QADistributionURL = "https://SGDS-QA.skygiraffe.com/Publisher/api/v1";
+	
 	final String QAclient_ID = "099153c2625149bc8ecb3e85e03f0022";
 	final String QAclient_Secret = "IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw";
 
@@ -106,9 +107,9 @@ public class AndroidMethods {
 		
 		
 		//Login to the client
-		genMeth.sendId(genMeth,"com.skygiraffe.operationaldata:id/login_screen_email_field", LoginUser);
-		genMeth.sendId(genMeth,"com.skygiraffe.operationaldata:id/login_screen_password_field",DroidData.passwordQA);
-		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/login_screen_authentication_btn");
+		genMeth.sendId(genMeth, DroidData.TEXTFIELDUserNameLoginScreen, LoginUser);
+		genMeth.sendId(genMeth, DroidData.TEXTFIELDPasswordLoginScreen,DroidData.passwordQA);
+		genMeth.clickId(genMeth,DroidData.BTNloginID);
 
 		//Check if default app is open
 		Thread.sleep(8000);
@@ -119,7 +120,7 @@ public class AndroidMethods {
 	
 	public void configureENV(AndroidMethods genMeth, String AuthURL, String DistURL,String Client_ID, String Client_Secret) throws InterruptedException, IOException{
 		
-		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/login_screen_settings_image_btn");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/lgin_screen_settings_image");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/gserver_config_activity_add_new");
 		genMeth.clickXpthName_TextView(genMeth, "Create new");
 		
@@ -243,7 +244,7 @@ public class AndroidMethods {
 	    //capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, genMeth.getValueFromPropFile("automationName"));
 
 	    
-		capabilities.setCapability("newCommandTimeout", 100000);
+		capabilities.setCapability("newCommandTimeout", 1000);
 	  //  capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
 
 

@@ -62,7 +62,6 @@ import com.applitools.eyes.Eyes;
 		//Set the tests configuration
 		EnvMode = genMeth.UserSetEnvironmentMode(EnvMode);
 		useEye = genMeth.UseEye();
-			    
 		//StartServerPath = genMeth.getValueFromPropFile("StartServerPath");
 		//StopServerPath = genMeth.getValueFromPropFile("StopServerPath");
 		webElementXmlPath = genMeth.getValueFromPropFile("webElementXmlPath");
@@ -251,6 +250,8 @@ import com.applitools.eyes.Eyes;
 		
 		genMeth.swipeDownLong(1000);
 		genMeth.swipeDownLong(1000);
+		genMeth.swipeDownLong(1000);
+
 
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Dashboard- Gauge Full/Solid", useEye, genMeth, skipfailure);
 
@@ -452,14 +453,14 @@ import com.applitools.eyes.Eyes;
 
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android" })
 
 	public void Tabs_List_AdvancedColumns() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
 
 		// go to List
 		genMeth.clickXpthName_TextView(genMeth, "List / Grid");
-		Thread.sleep(10000);
+		Thread.sleep(12000);
 		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List", useEye, genMeth, skipfailure);
 
 		//Phone
@@ -512,14 +513,17 @@ import com.applitools.eyes.Eyes;
 		Thread.sleep(2000);
 		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List See All", useEye, genMeth, skipfailure);		
 		
-		//Folder  ***** Need to add the box DS for QA!!!
-		genMeth.clickXpthName_TextView(genMeth, "Folder");
+		genMeth.clickXpthName_TextView(genMeth, "Folder1");
 		Thread.sleep(2000);
 		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List Folder", useEye, genMeth, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "Folder");
+		Thread.sleep(5000);
+		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- Folder selected", useEye, genMeth, skipfailure);
+		genMeth.backDroidButton();
+		Thread.sleep(4000);
 
 		genMeth.swipeDownLong(1000);
 		genMeth.swipeDownLong(1000);
-
 		Thread.sleep(2000);
 		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List See All scroll down", useEye, genMeth, skipfailure);
 		//genMeth.eyesCheckWindow(eyes, "All Tabs- List See All scroll down", useEye, skipfailure);
@@ -536,7 +540,7 @@ import com.applitools.eyes.Eyes;
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity Android2" })
+			groups = { "Sanity Android1234" })
 
 	public void Tabs_List_VirtualDI_Virtualolumn() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -654,7 +658,7 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer tab Advanced & navigation",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android12" })
 
 	public void Tabs_Grid_One_Layer_Advance_Navigation() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -679,7 +683,7 @@ import com.applitools.eyes.Eyes;
 		driver.quit();
 		
 		// Mobile Phone
-		genMeth.clickXpthName_LinearLayout(genMeth, "4");
+ 		genMeth.clickXpthName_LinearLayout(genMeth, "4");
 		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Phone", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		genMeth.backDroidButton();
@@ -752,7 +756,8 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickXpthName_CheckedTextView(genMeth, "Employee Directory");
 		Thread.sleep(3000);
 		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Main",useEye, genMeth, skipfailure);
-								
+	//the search bar was removed
+		/*
 		//Search an employee (Empty search)
 		genMeth.clickId(genMeth, DroidData.IconSearch);
 		genMeth.sendId(genMeth, DroidData.IconSearch , "no emplyees found");
@@ -768,10 +773,10 @@ import com.applitools.eyes.Eyes;
 		genMeth.sendId(genMeth, DroidData.IconSearch , "Lane");
 		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - search Specific employee",useEye, genMeth, skipfailure);		
 		genMeth.backDroidButton();	
-		
+		*/
 		//second layer
-		genMeth.clickXpthName_TextView(genMeth, "Lane R. Barlow");
-		Thread.sleep(2000);
+		genMeth.clickXpthName_TextView(genMeth, "Callum R. Aguirre");
+		Thread.sleep(1000);
 		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Second layer",useEye, genMeth, skipfailure);				
 
 		// Phone
@@ -794,7 +799,6 @@ import com.applitools.eyes.Eyes;
 		
 		// Mini Map
 		genMeth.swipeDownShorter(1000);
-		
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/template_view_item_map_layout");
 		Thread.sleep(1000);
 		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Address second",useEye, genMeth, skipfailure);				
@@ -842,20 +846,13 @@ import com.applitools.eyes.Eyes;
 		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Back from navigation",useEye, genMeth, skipfailure);				
 		
 		//No Social Networks available
-		genMeth.clickId(genMeth, "android:id/search_close_btn");
-		genMeth.sendId(genMeth, DroidData.IconSearch , "Callum R. Aguirre");
+		genMeth.clickXpthName_TextView(genMeth, "Caldwell Alexander");
 		Thread.sleep(1000);
 		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - No Social Networks",useEye, genMeth, skipfailure);				
 		genMeth.backDroidButton();
-		
-		//No Google+ 
-		genMeth.clickId(genMeth, "android:id/search_close_btn");
-		genMeth.sendId(genMeth, DroidData.IconSearch , "Caldwell Alexander");
-		driver.hideKeyboard();
-		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - No Google+",useEye, genMeth, skipfailure);				
-		
-		//Back to Startup screen
 		genMeth.backDroidButton();
+	
+		//Back to Startup screen
 		genMeth.clickId(genMeth, DroidData.IconHome);
 
 		
@@ -1055,7 +1052,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.eyesCheckWindow("Param Report List (Droid)- All params were filled", useEye, genMeth, skipfailure);
 		
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/parameterized_fragment_submit_button");
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		genMeth.eyesCheckWindow("Param Report List (Droid)- FreeText Priority = 1", useEye, genMeth, skipfailure);
 
 		
@@ -1160,8 +1157,10 @@ import com.applitools.eyes.Eyes;
 		
 		//Back to startup screen
 		genMeth.clickId(genMeth, DroidData.IconHome);
-		//genMeth.swipeUpLong(1000);
 		genMeth.swipeUpLong(1000);
+		genMeth.swipeUpLong(1000);
+		genMeth.swipeUpLong(1000);
+
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
@@ -1193,8 +1192,8 @@ import com.applitools.eyes.Eyes;
 		
 		//Naviagte to param report
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/column_chart_selected_title_nav_icon");
-		Thread.sleep(2000);
-		genMeth.eyesCheckWindow("Param Rep Chart (Droid) - Param report map - parameters screen",useEye, genMeth, skipfailure);		
+		Thread.sleep(5000);
+		genMeth.eyesCheckWindow("Param Rep Chart (Droid) - Param report map - Jump To Param Report with auto submit",useEye, genMeth, skipfailure);		
 		genMeth.backDroidButton();
 		//Go To Pie tab
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
@@ -1226,7 +1225,7 @@ import com.applitools.eyes.Eyes;
 
 		//genMeth.clickId(genMeth, "Param Report ED");
 		genMeth.clickXpthName_TextView(genMeth, "Param Report ED");
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		genMeth.eyesCheckWindow("Param Rep ED (Droid)- Parameters", useEye, genMeth, skipfailure);
 
 		//Insert parameters
@@ -1487,7 +1486,7 @@ import com.applitools.eyes.Eyes;
 		Thread.sleep(2000);
 
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/action_fragment_submit_button");
-		Thread.sleep(20000);
+		Thread.sleep(22000);
 
 /*	
 
@@ -1900,7 +1899,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 
 	
 
-	@Test(enabled = true, groups = {"Sanity Android"}, testName = "Regression", description = "Slicer report")
+	@Test(enabled = true, groups = {"Sanity Android2"}, testName = "Regression", description = "Slicer report")
 	public void slicerReport() throws InterruptedException, IOException{
 		
 		// go to List
@@ -2016,6 +2015,8 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.clickId(genMeth, DroidData.IconHome);
 		genMeth.swipeUpLong(1000);
 		genMeth.swipeUpLong(1000);
+		genMeth.swipeUpLong(1000);
+
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
 	}
@@ -2096,11 +2097,12 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 
 		genMeth.signOutFromStartup(genMeth);
 		Thread.sleep(1000);
-		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/login_screen_settings_image_btn");
+		genMeth.clickId(genMeth, DroidData.IconLoginSettings);
 		
 		genMeth.clickXpthName_TextView(genMeth, "Default Environment");
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/sgserver_config_activity_close_btn");
-		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/login_screen_sample_account");
+		genMeth.clickId(genMeth, DroidData.BTNsampleAccount);
+		//genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/login_screen_sample_account");
 		Thread.sleep(4000);
 		genMeth.eyesCheckWindow("SampleAccount (Droid) - Sample app main view",useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.IconHome);
@@ -2112,7 +2114,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	}
 
 	
-	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Regression", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
+	@Test(enabled = true, groups = { "Sanity Android1234" }, testName = "Regression", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
 	public void Settings() throws Exception, Throwable {
 
 		genMeth.clickId(genMeth, DroidData.IconHome);

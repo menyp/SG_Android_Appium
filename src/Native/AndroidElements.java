@@ -45,12 +45,13 @@ public class AndroidElements {
 	String BTNsubmit;
 	String BTNrightMenuButton_ID;
 	String BTNlogoutID;
+	String BTNsampleAccount;
 	
 	
 	
 	//TextFields	
-	String TEXTFIELDemailXpth;
-	String TEXTFIELDpasswordXpth;
+	String TEXTFIELDUserNameLoginScreen;
+	String TEXTFIELDPasswordLoginScreen;
 	String TEXTFIELDrecoveryEmailID;
 	String TEXTFIELDqr_Xpth;
 	
@@ -94,6 +95,8 @@ public class AndroidElements {
 	String IconApplicationInfo_Name;
 	String IconHome;
 	String IconRefresh;
+	String IconLoginSettings;
+	
 	
 	
 	//General Info
@@ -149,13 +152,14 @@ public class AndroidElements {
 		this.BTNsubmit = XmlHandel.readAndroidXml("BTNsubmit", langXml, xmlPath);
 		this.BTNrightMenuButton_ID = XmlHandel.readAndroidXml("BTNrightMenuButton_ID", langXml, xmlPath);
 		this.BTNlogoutID = XmlHandel.readAndroidXml("BTNlogoutID", langXml, xmlPath);
+		this.BTNsampleAccount = XmlHandel.readAndroidXml("BTNsampleAccount", langXml, xmlPath);
 
 		
 		
 		
 		
-		this.TEXTFIELDemailXpth = XmlHandel.readAndroidXml("TEXTFIELDemailXpth", langXml, xmlPath);
-		this.TEXTFIELDpasswordXpth = XmlHandel.readAndroidXml("TEXTFIELDpasswordXpth", langXml, xmlPath);
+		this.TEXTFIELDUserNameLoginScreen = XmlHandel.readAndroidXml("TEXTFIELDUserNameLoginScreen", langXml, xmlPath);
+		this.TEXTFIELDPasswordLoginScreen = XmlHandel.readAndroidXml("TEXTFIELDPasswordLoginScreen", langXml, xmlPath);
 		this.TEXTFIELDrecoveryEmailID = XmlHandel.readAndroidXml("TEXTFIELDrecoveryEmailID", langXml, xmlPath);
 		this.TEXTFIELDqr_Xpth = XmlHandel.readAndroidXml("TEXTFIELDqr_Xpth", langXml, xmlPath);
 
@@ -199,8 +203,9 @@ public class AndroidElements {
 		this.IconRefresh = XmlHandel.readAndroidXml("IconRefresh", langXml, xmlPath);	
 		this.IconHome = XmlHandel.readAndroidXml("IconHome", langXml, xmlPath);	
 		this.IconSearch = XmlHandel.readAndroidXml("IconSearch", langXml, xmlPath);	
-		
+		this.IconLoginSettings = XmlHandel.readAndroidXml("IconLoginSettings", langXml, xmlPath);	
 
+		
 
 		this.passwordProd = XmlHandel.readAndroidXml("passwordProd", langXml, xmlPath);
 		this.userQA = XmlHandel.readAndroidXml("userQA", langXml, xmlPath);

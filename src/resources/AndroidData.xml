@@ -2,8 +2,8 @@
 
 
 		<Buttons>
-			<BTNloginID>Login</BTNloginID>
-			<BTNforgotPasswordID></BTNforgotPasswordID>
+			<BTNloginID>com.skygiraffe.operationaldata:id/login_screen_login_btn</BTNloginID>
+			<BTNforgotPasswordID>com.skygiraffe.operationaldata:id/login_screen_forgot_password</BTNforgotPasswordID>
 			<BTNsettingsLoginScreenID>com.skygiraffe.operationaldata:id/login_screen_settings_image_btn</BTNsettingsLoginScreenID>
 			<BTNsampleAccountID>Sample account</BTNsampleAccountID>
 			<BTNlogoutName>Log Out</BTNlogoutName>
@@ -36,13 +36,14 @@
 			<BTNsave>Save</BTNsave>
 			<BTNsubmit>com.skygiraffe.operationaldata:id/base_dialog_submit_button</BTNsubmit>
 			<BTNrightMenuButton_ID>com.skygiraffe.operationaldata:id/right_menu</BTNrightMenuButton_ID>
+			<BTNsampleAccount>com.skygiraffe.operationaldata:id/login_screen_sample_acc_btn</BTNsampleAccount>
 			
 		</Buttons>
 		
 		
 		<TextFields>
-			<TEXTFIELDemailXpth>//UIAApplication[1]/UIAWindow[1]/UIATextField[1]</TEXTFIELDemailXpth>
-			<TEXTFIELDpasswordXpth>//UIAApplication[1]/UIAWindow[1]/UIASecureTextField[1]</TEXTFIELDpasswordXpth>
+			<TEXTFIELDUserNameLoginScreen>com.skygiraffe.operationaldata:id/login_screen_login_ed_field</TEXTFIELDUserNameLoginScreen>
+			<TEXTFIELDPasswordLoginScreen>com.skygiraffe.operationaldata:id/login_screen_password_ed_field</TEXTFIELDPasswordLoginScreen>
 			<TEXTFIELDqr_Xpth>//UIAApplication[1]/UIAWindow[1]/UIATextField[1]</TEXTFIELDqr_Xpth>
 			<TEXTFIELDrecoveryEmailID></TEXTFIELDrecoveryEmailID>
 		</TextFields>
@@ -92,17 +93,19 @@
 		
 		
 	
-	<Icon>
-	<IconBackToApplicationList_xpth>//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAButton[2]</IconBackToApplicationList_xpth>
-	<Iconaction_icon_green_Name>action_icon_green</Iconaction_icon_green_Name>
-	<Icon_AllApps_Name>M</Icon_AllApps_Name>
-	<IconBack_Name>Back</IconBack_Name>
-	<IconBack_Nav_Name>back nav</IconBack_Nav_Name>
-	<IconApplicationInfo_Name>com.skygiraffe.operationaldata:id/left_menu_child_info_icon</IconApplicationInfo_Name>
-	<IconHome>android:id/home</IconHome>
-	<IconRefresh>com.skygiraffe.operationaldata:id/action_refresh_btn</IconRefresh>
-	<IconSearch>android:id/search_bar</IconSearch>
-	</Icon>	
+	<Icons>
+		<IconBackToApplicationList_xpth>//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAButton[2]</IconBackToApplicationList_xpth>
+		<Iconaction_icon_green_Name>action_icon_green</Iconaction_icon_green_Name>
+		<Icon_AllApps_Name>M</Icon_AllApps_Name>
+		<IconBack_Name>Back</IconBack_Name>
+		<IconBack_Nav_Name>back nav</IconBack_Nav_Name>
+		<IconApplicationInfo_Name>com.skygiraffe.operationaldata:id/left_menu_child_info_icon</IconApplicationInfo_Name>
+		<IconHome>android:id/home</IconHome>
+		<IconRefresh>com.skygiraffe.operationaldata:id/action_refresh_btn</IconRefresh>
+		<IconSearch>android:id/search_bar</IconSearch>
+		<IconLoginSettings>com.skygiraffe.operationaldata:id/lgin_screen_settings_image</IconLoginSettings>
+		
+	</Icons>	
 	
 	
 		   	
