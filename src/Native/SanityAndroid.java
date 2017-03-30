@@ -200,7 +200,7 @@ import com.applitools.eyes.Eyes;
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the URL tab",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android1" })
 
 	public void Tabs_Dashboard() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -540,7 +540,7 @@ import com.applitools.eyes.Eyes;
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity Android1234" })
+			groups = { "Sanity Android" })
 
 	public void Tabs_List_VirtualDI_Virtualolumn() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -658,7 +658,7 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer tab Advanced & navigation",
-			groups = { "Sanity Android12" })
+			groups = { "Sanity Android" })
 
 	public void Tabs_Grid_One_Layer_Advance_Navigation() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -1377,7 +1377,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickXpthName_TextView(genMeth, "Branch ID");
 		genMeth.eyesCheckWindow("List Actions Cell (Droid) - Branch ID(PSL_VAR) = 1", useEye, genMeth, skipfailure);
 		genMeth.clickXpthName_TextView(genMeth, "2");
-		Thread.sleep(8000);
+		Thread.sleep(10000);
 		genMeth.eyesCheckWindow("List Actions Cell (Droid) - Branch ID(PSL_VAR)- Success", useEye, genMeth, skipfailure);
 		
 		//Assign To (Dynamic List)
@@ -2114,7 +2114,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	}
 
 	
-	@Test(enabled = true, groups = { "Sanity Android1234" }, testName = "Regression", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
+	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Regression", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
 	public void Settings() throws Exception, Throwable {
 
 		genMeth.clickId(genMeth, DroidData.IconHome);
