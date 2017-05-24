@@ -200,11 +200,10 @@ import com.applitools.eyes.Eyes;
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the URL tab",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android" })
 
 	public void Tabs_Dashboard() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
-
 		
 		//Open Dashboard  Tab
 		Thread.sleep(8000);
@@ -540,7 +539,7 @@ import com.applitools.eyes.Eyes;
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android123" })
 
 	public void Tabs_List_VirtualDI_Virtualolumn() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -1447,8 +1446,10 @@ import com.applitools.eyes.Eyes;
 		genMeth.sendXpthName_EditText(genMeth, "Input text here", "New Row");
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/action_submit_button");
 
-		genMeth.clickXpthName_TextView(genMeth, "DeviceType_SL_ByName");
-		genMeth.clickXpthName_TextView(genMeth, "Laptop");
+		genMeth.clickXpthName_TextView(genMeth, "Device_Type_SL_DI");
+		//genMeth.clickXpthName_TextView(genMeth, "Laptop");
+		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/action_submit_button");
+
 
 		genMeth.clickXpthName_TextView(genMeth, "Device_Model_DL");
 		genMeth.clickXpthName_TextView(genMeth, "Asus");
@@ -1601,6 +1602,8 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/image_picker_fragment_open_camera_btn");
 		Thread.sleep(1000);
+		genMeth.eyesCheckWindow("Actions_List_Inline (Droid) -Camera is Open ", useEye, genMeth, skipfailure);
+
 		genMeth.backDroidButton();
 		Thread.sleep(1000);
 
@@ -1612,7 +1615,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_fragment_submit_button");
 		Thread.sleep(4000);
 		genMeth.eyesCheckWindow("Actions_List_Inline (Droid)- PN success", useEye, genMeth, skipfailure);
-		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/push_notification_dialog_cancel_btn");
+	//	genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/push_notification_dialog_cancel_btn");
 //*************************Appium Dismiss popup bug*********************************************
 		
 
@@ -1626,7 +1629,6 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		driver.quit();
 
 	}
-	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer cell action",
 			groups = { "Sanity Android" })
@@ -1702,12 +1704,12 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 				"Actions_Grid_One_Layer_Cell (Droid) - Grid One Layer- Status (Simple List DI)",
 				useEye, genMeth, skipfailure);
 		genMeth.clickXpthName_TextView(genMeth, "Not Clear");
-		Thread.sleep(6000);
+		Thread.sleep(10000);
 		genMeth.eyesCheckWindow(
 				"Actions_Grid_One_Layer_Cell (Droid) - Grid One Layer- Status success (Simple List DI)",
 				useEye, genMeth, skipfailure);
 		
-		//USER INPUT = QR (KPI)
+		//USER INPUT = QR
 		isTextDisplayed = genMeth.checkIsElementVisible(By.xpath("//android.widget.TextView[@text='" + "01" + "']"));
 
 		if (isTextDisplayed) {
@@ -1732,7 +1734,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		}
 		
 		Thread.sleep(10000);
-		genMeth.eyesCheckWindow("Actions_Grid_One_Layer_Cell (Droid) - Grid One Layer- KPI (QR)", useEye, genMeth, skipfailure);
+		genMeth.eyesCheckWindow("Actions_Grid_One_Layer_Cell (Droid) - Grid One Layer- QR", useEye, genMeth, skipfailure);
 		
 		// Verify Startup screen is open
 		genMeth.backDroidButton();
@@ -1819,7 +1821,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		Thread.sleep(1000);
 		genMeth.backDroidButton();
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/action_fragment_submit_button");
-		Thread.sleep(10000);
+		Thread.sleep(12000);
 		genMeth.eyesCheckWindow("Actions_Grid_One_Layer_Row (Droid) - after action executed",useEye, genMeth, skipfailure);
 
 		// Verify Startup screen is open
@@ -1885,7 +1887,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.clickId(genMeth, DroidData.IconHome);
 		genMeth.eyesCheckWindow("Actions_Grid_Two_Layer- Grid Two Layers- All parameters are filled",useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_fragment_submit_button");
-		Thread.sleep(8000);
+		Thread.sleep(10000);
 		
 		//Check the push notification
 		genMeth.eyesCheckWindow("Actions_Grid_Two_Layer- Grid Two Layers- Action Success",useEye, genMeth, skipfailure);
@@ -1899,61 +1901,71 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 
 	
 
-	@Test(enabled = true, groups = {"Sanity Android2"}, testName = "Regression", description = "Slicer report")
+	@Test(enabled = true, groups = {"Sanity Android"}, testName = "Regression", description = "Slicer report")
 	public void slicerReport() throws InterruptedException, IOException{
 		
 		// go to List
 		genMeth.swipeDownLong(1000);
 		genMeth.swipeDownLong(1000);
-		
-		//Setting Report slicer (BranchID = 7) 
 		genMeth.clickXpthName_TextView(genMeth, "Slicer report");
+		
+		//Setting Report slicer (BranchID = 7 & Aventura Mall) 
 		genMeth.clickId(genMeth, DroidData.BTNSlicer);
 		genMeth.clickXpthName_TextView(genMeth, "BranchID");
 		genMeth.clickXpthName_TextView(genMeth, "7");
+		genMeth.clickXpthName_TextView(genMeth, "Aventura Mall");
 		genMeth.backDroidButton();
 		genMeth.clickXpthName_TextView(genMeth, "Done");
 
+		
 		genMeth.eyesCheckWindow("Slicer Report (Droid)- branchID selected",useEye, genMeth, skipfailure);
 		genMeth.swipeDownLong(1000);
 		genMeth.swipeDownLong(1000);
 		genMeth.eyesCheckWindow("Slicer Report (Droid)- List (BranchID=7)",useEye, genMeth, skipfailure);
 
+		//Grid
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
 		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Grid");
 		genMeth.eyesCheckWindow("Slicer Report (Droid)- Grid (BranchID=7)",useEye, genMeth, skipfailure);
 		
+		//Cover Flow
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
 		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Cover Flow");
 		genMeth.eyesCheckWindow("Slicer Report (Droid)- Cover Flow (BranchID=7)",useEye, genMeth, skipfailure);
 		
+		//Dashboard
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
 		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Dashboard");		
 		genMeth.eyesCheckWindow("Slicer Report (Droid)- Dashboard (BranchID=7)",useEye, genMeth, skipfailure);
 		
+		//Bar Chart
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Map");		
-		genMeth.eyesCheckWindow("Slicer Report (Droid)- Map (BranchID=7)",useEye, genMeth, skipfailure);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Bar Chart");		
+		genMeth.eyesCheckWindow("Slicer Report (Droid)- Bar chart (Aventura Mall)",useEye, genMeth, skipfailure);
 
+		//Cards
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
 		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Cards");		
 		genMeth.eyesCheckWindow("Slicer Report (Droid)- Cards (BranchID=7)",useEye, genMeth, skipfailure);
 		
+		//News
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
 		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer News");		
 		genMeth.eyesCheckWindow("Slicer Report (Droid)- News (BranchID=7)",useEye, genMeth, skipfailure);
 		
-		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Bar Chart");		
-		genMeth.eyesCheckWindow("Slicer Report (Droid)- Bar chart empty slicing",useEye, genMeth, skipfailure);
-
+		//Map
 		genMeth.clickId(genMeth, DroidData.BTNSlicer);
 		genMeth.clickXpthName_TextView(genMeth, "BranchID");
 		genMeth.clickXpthName_TextView(genMeth, "Aventura Mall");
+		genMeth.clickXpthName_TextView(genMeth, "7");
+		genMeth.clickXpthName_TextView(genMeth, "3");
 		genMeth.backDroidButton();
 		genMeth.clickXpthName_TextView(genMeth, "Done");
-		genMeth.eyesCheckWindow("Slicer Report (Droid)- Bar chart Aventura Mall",useEye, genMeth, skipfailure);
-
+		
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Map");		
+		genMeth.eyesCheckWindow("Slicer Report (Droid)- Map (BranchID=3)",useEye, genMeth, skipfailure);
+		
 		// Verify Startup screen is open
 		genMeth.clickId(genMeth, DroidData.IconHome);
 		genMeth.swipeUpLong(1000);
@@ -2114,7 +2126,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	}
 
 	
-	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Regression", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
+	@Test(enabled = true, groups = { "Sanity Android123" }, testName = "Regression", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
 	public void Settings() throws Exception, Throwable {
 
 		genMeth.clickId(genMeth, DroidData.IconHome);

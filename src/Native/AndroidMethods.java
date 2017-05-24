@@ -39,6 +39,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyException;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -1435,18 +1437,9 @@ public class AndroidMethods {
 	}
 	 
 	public AppiumDriverLocalService startAppiumService() {
-
-		 AppiumDriverLocalService service =
-		 AppiumDriverLocalService.buildDefaultService();
-		 /*
-		AppiumDriverLocalService service = AppiumDriverLocalService
-				.buildService(new AppiumServiceBuilder()
-						.usingDriverExecutable(new File("/usr/local/bin/node"))
-						.withAppiumJS(
-								new File(
-										"/usr/local/lib/node_modules/appium/build/lib/appium.js"))
-						.withIPAddress("0.0.0.0").usingPort(4723));
-						*/
+		AppiumServiceBuilder c = new AppiumServiceBuilder() ;
+//		 AppiumDriverLocalService service =AppiumDriverLocalService.buildDefaultService();
+		 AppiumDriverLocalService service =  AppiumDriverLocalService.buildService(c.usingPort(4724).withIPAddress("0.0.0.0"));
 		boolean isServiceRunning =  service.isRunning();
 		if (isServiceRunning){
 			
