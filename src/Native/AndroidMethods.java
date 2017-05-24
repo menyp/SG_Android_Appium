@@ -1324,71 +1324,141 @@ public class AndroidMethods {
 
 */	
 
-	public void swipeRightLong(int miliseconds) throws InterruptedException {
+	
+	
+	// Swipe & Scroll
+	
+	public void swipeRightLongNexus5X(int NumOfSwipe, int miliseconds) throws InterruptedException {
 
-		driver.swipe(1000, 1000, 100, 1000, miliseconds);
-		Thread.sleep(2000);
+		int i;
+
+		for (i = 0; i < NumOfSwipe; i++) {
+
+			driver.swipe(1000, 1000, 100, 1000, miliseconds);
+			Thread.sleep(2000);
+
+		}
+
+	}
+
+	
+	
+	public void swipeRightShortNexus5X(int NumOfSwipe, int miliseconds) throws InterruptedException {
+
+		int i;
+
+		for (i = 0; i < NumOfSwipe; i++) {
+
+			driver.swipe(1000, 1000, 75, 800, miliseconds);
+			Thread.sleep(2000);
+
+		}
 
 	}
 	
-	public void swipeRightShort(int miliseconds) throws InterruptedException {
 
-		driver.swipe(1000, 1000, 75, 800, miliseconds);
-		Thread.sleep(2000);
+	public void swipeRightShortestNexus5X(int NumOfSwipe, int miliseconds) throws InterruptedException {
 
-	}
-	
-	public void swipeRightShortest(int miliseconds) throws InterruptedException {
+		int i;
 
-		driver.swipe(1000, 300, 75, 900, miliseconds);
-		Thread.sleep(2000);
+		for (i = 0; i < NumOfSwipe; i++) {
 
-	}
+			driver.swipe(1000, 300, 75, 900, miliseconds);
+			Thread.sleep(2000);
 
-
-// Swipe & Scroll
-	public void swipeDownLong(int miliseconds) throws InterruptedException {
-
-		driver.swipe(500, 1600, 500, 500, miliseconds);
-		Thread.sleep(2000);
-
+		}
 
 	}
 	
-	public void swipeDownShort(int miliseconds) throws InterruptedException {
 
-		driver.swipe(500, 1700, 500, 1200, miliseconds);
-		Thread.sleep(2000);
+	public void swipeDownLongNexus5X(int NumOfSwipe, int miliseconds) throws InterruptedException {
+
+		int i;
+
+		for (i = 0; i < NumOfSwipe; i++) {
+
+			driver.swipe(500, 1600, 500, 500, miliseconds);
+			Thread.sleep(2000);
+
+		}
+
+	}
+
+	
+	public void swipeDownShortNexus5X(int NumOfSwipe, int miliseconds) throws InterruptedException {
+
+		int i;
+
+		for (i = 0; i < NumOfSwipe; i++) {
+
+			driver.swipe(500, 1700, 500, 1200, miliseconds);
+			Thread.sleep(2000);
+
+		}
 
 	}
 	
-	public void swipeDownShorter(int miliseconds) throws InterruptedException {
 
-		driver.swipe(500, 1700, 500, 1400, miliseconds);
-		Thread.sleep(2000);
+	public void swipeDownShorterNexus5X(int NumOfSwipe, int miliseconds) throws InterruptedException {
 
-	}
-	
-	public void swipeDownShortest(int miliseconds) throws InterruptedException {
+		int i;
 
-		driver.swipe(500, 1400, 500, 1100, miliseconds);
-		Thread.sleep(2000);
+		for (i = 0; i < NumOfSwipe; i++) {
 
-	}
+			driver.swipe(500, 1700, 500, 1400, miliseconds);
+			Thread.sleep(2000);
 
-	public void swipeUpLong(int miliseconds) throws InterruptedException {
-
-		driver.swipe(600, 400, 600, 1600, miliseconds);
-		Thread.sleep(2000);
+		}
 
 	}
 	
-	public void swipeUpShort(int miliseconds) throws InterruptedException {
 
-		driver.swipe(600, 400, 600, 1000, miliseconds);
-		Thread.sleep(2000);
+	public void swipeDownShortestNexus5X(int NumOfSwipe, int miliseconds) throws InterruptedException {
+
+		int i;
+
+		for (i = 0; i < NumOfSwipe; i++) {
+
+			driver.swipe(500, 1400, 500, 1100, miliseconds);
+			Thread.sleep(2000);
+
+		}
 
 	}
+	
+
+
+	public void swipeUpLongNexus5X(int NumOfSwipe, int miliseconds) throws InterruptedException {
+
+		int i;
+
+		for (i = 0; i < NumOfSwipe; i++) {
+
+			driver.swipe(600, 400, 600, 1600, miliseconds);
+			Thread.sleep(2000);
+
+		}
+
+	}
+	
+
+	
+	public void swipeUpShortNexus5X(int NumOfSwipe, int miliseconds) throws InterruptedException {
+
+		int i;
+
+		for (i = 0; i < NumOfSwipe; i++) {
+
+			driver.swipe(600, 400, 600, 1000, miliseconds);
+			Thread.sleep(2000);
+
+		}
+
+	}
+	
+
+	
+	
 	
 	public void openStratupScreen(AndroidMethods genMeth, AndroidElements DroidData, EnvironmentMode EnvMode) throws ParserConfigurationException, SAXException, IOException, InterruptedException{
 		
