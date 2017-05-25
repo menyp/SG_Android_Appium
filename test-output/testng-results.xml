@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="214953" started-at="2017-05-23T20:35:50Z" finished-at="2017-05-23T20:39:25Z">
+  <suite name="Failed suite [Suite]" duration-ms="395521" started-at="2017-05-25T08:14:53Z" finished-at="2017-05-25T08:21:29Z">
     <groups>
       <group name="Sanity Android1">
-        <method signature="SanityAndroid.Actions_List_Row_Popup()[pri:0, instance:Native.SanityAndroid@178213b]" name="Actions_List_Row_Popup" class="Native.SanityAndroid"/>
+        <method signature="SanityAndroid.Actions_Grid_One_Layer_Row()[pri:0, instance:Native.SanityAndroid@2e8e8225]" name="Actions_Grid_One_Layer_Row" class="Native.SanityAndroid"/>
+        <method signature="SanityAndroid.Actions_List_Cell()[pri:0, instance:Native.SanityAndroid@2e8e8225]" name="Actions_List_Cell" class="Native.SanityAndroid"/>
       </group> <!-- Sanity Android1 -->
     </groups>
-    <test name="Regression" duration-ms="214953" started-at="2017-05-23T20:35:50Z" finished-at="2017-05-23T20:39:25Z">
+    <test name="Regression(failed)" duration-ms="395521" started-at="2017-05-25T08:14:53Z" finished-at="2017-05-25T08:21:29Z">
       <class name="Native.SanityAndroid">
-        <test-method status="PASS" signature="setupBeforeSuite(org.testng.ITestContext)[pri:0, instance:Native.SanityAndroid@178213b]" name="setupBeforeSuite" is-config="true" duration-ms="113203" started-at="2017-05-23T23:33:57Z" finished-at="2017-05-23T23:35:50Z">
+        <test-method status="PASS" signature="setupBeforeSuite(org.testng.ITestContext)[pri:0, instance:Native.SanityAndroid@2e8e8225]" name="setupBeforeSuite" is-config="true" duration-ms="99643" started-at="2017-05-25T11:13:14Z" finished-at="2017-05-25T11:14:53Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@60bb7995]]>
+                <![CDATA[org.testng.TestRunner@3dd4a6fa]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupBeforeSuite -->
-        <test-method status="PASS" signature="checkHomeScreen()[pri:0, instance:Native.SanityAndroid@178213b]" name="checkHomeScreen" is-config="true" duration-ms="20573" started-at="2017-05-23T23:35:50Z" finished-at="2017-05-23T23:36:11Z">
+        <test-method status="PASS" signature="checkHomeScreen()[pri:0, instance:Native.SanityAndroid@2e8e8225]" name="checkHomeScreen" is-config="true" duration-ms="20035" started-at="2017-05-25T11:14:53Z" finished-at="2017-05-25T11:15:13Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- checkHomeScreen -->
-        <test-method status="PASS" signature="Actions_List_Row_Popup()[pri:0, instance:Native.SanityAndroid@178213b]" name="Actions_List_Row_Popup" duration-ms="194316" started-at="2017-05-23T23:36:11Z" description="Check the List tab" finished-at="2017-05-23T23:39:25Z">
+        <test-method status="PASS" signature="Actions_Grid_One_Layer_Row()[pri:0, instance:Native.SanityAndroid@2e8e8225]" name="Actions_Grid_One_Layer_Row" duration-ms="135437" started-at="2017-05-25T11:15:13Z" description="Check the Grid one layer Row action" finished-at="2017-05-25T11:17:29Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Actions_List_Row_Popup -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:Native.SanityAndroid@178213b]" name="tearDown" is-config="true" duration-ms="13669" started-at="2017-05-23T23:39:30Z" finished-at="2017-05-23T23:39:44Z">
+        </test-method> <!-- Actions_Grid_One_Layer_Row -->
+        <test-method status="PASS" signature="checkHomeScreen()[pri:0, instance:Native.SanityAndroid@2e8e8225]" name="checkHomeScreen" is-config="true" duration-ms="19424" started-at="2017-05-25T11:17:29Z" finished-at="2017-05-25T11:17:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkHomeScreen -->
+        <test-method status="PASS" signature="Actions_List_Cell()[pri:0, instance:Native.SanityAndroid@2e8e8225]" name="Actions_List_Cell" duration-ms="220607" started-at="2017-05-25T11:17:48Z" description="Check the List tab" finished-at="2017-05-25T11:21:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Actions_List_Cell -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:Native.SanityAndroid@2e8e8225]" name="tearDown" is-config="true" duration-ms="11838" started-at="2017-05-25T11:21:34Z" finished-at="2017-05-25T11:21:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- Native.SanityAndroid -->
-    </test> <!-- Regression -->
-  </suite> <!-- Suite -->
+    </test> <!-- Regression(failed) -->
+  </suite> <!-- Failed suite [Suite] -->
 </testng-results>

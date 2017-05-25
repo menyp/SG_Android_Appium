@@ -71,7 +71,6 @@ import com.applitools.eyes.Eyes;
 		DroidData = genMeth.setElements(webElementXmlPath, webElementXmlLang);
 		service = genMeth.startAppiumService();
 		
-		
 		driver = genMeth.setCapabilitiesAndroid(genMeth, service);		
 		genMeth.cleanLoginDroid(genMeth, EnvMode); 
 
@@ -664,7 +663,6 @@ import com.applitools.eyes.Eyes;
 		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Address", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 //      **********Appium Dismiss popup bug (need to delete the driver quite after  appium fix)*********
-		driver.quit();
 		
 		// Mobile Phone
  		genMeth.clickXpthName_LinearLayout(genMeth, "4");
@@ -1400,7 +1398,7 @@ import com.applitools.eyes.Eyes;
 		Thread.sleep(12000);
 
 		// Action in second layer
-		genMeth.swipeDownLongNexus5X(3, 1000);
+		genMeth.swipeDownLongNexus5X(2, 1000);
 
 		//Thread.sleep(2000);
 
@@ -1451,10 +1449,9 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/image_picker_fragment_open_gallery_btn");
 		genMeth.eyesCheckWindow("List Actions Row (Droid) - Gallery opened",useEye, genMeth, skipfailure);
 		genMeth.backDroidButton();
-		Thread.sleep(2000);
-		genMeth.backDroidButton();
-		Thread.sleep(2000);
-
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/image_picker_fragment_close_btn");
+		Thread.sleep(5000);
+		//genMeth.backDroidButton();
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/action_fragment_submit_button");
 		Thread.sleep(22000);
 
@@ -1785,7 +1782,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.eyesCheckWindow("Actions_Grid_One_Layer_Row (Droid) - Gallery opened", useEye,genMeth, skipfailure);
 		genMeth.backDroidButton();
 		Thread.sleep(1000);
-		genMeth.backDroidButton();
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/image_picker_fragment_close_btn");
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/action_fragment_submit_button");
 		Thread.sleep(12000);
 		genMeth.eyesCheckWindow("Actions_Grid_One_Layer_Row (Droid) - after action executed",useEye, genMeth, skipfailure);

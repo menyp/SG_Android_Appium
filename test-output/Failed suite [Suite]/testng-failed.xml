@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
-  <test name="Regression(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Failed suite [Suite]]">
+  <test name="Regression(failed)(failed)">
     <groups>
       <run>
         <include name="Sanity Android1"/>
@@ -11,12 +11,11 @@
       <class name="Native.SanityAndroid">
         <methods>
           <include name="setupBeforeSuite"/>
-          <include name="Actions_Grid_One_Layer_Row"/>
           <include name="checkHomeScreen"/>
-          <include name="Actions_List_Cell"/>
           <include name="tearDown"/>
+          <include name="Actions_List_Row_Popup"/>
         </methods>
       </class> <!-- Native.SanityAndroid -->
     </classes>
-  </test> <!-- Regression(failed) -->
-</suite> <!-- Failed suite [Suite] -->
+  </test> <!-- Regression(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Suite]] -->

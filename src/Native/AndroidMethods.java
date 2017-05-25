@@ -246,7 +246,7 @@ public class AndroidMethods {
 	    //capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, genMeth.getValueFromPropFile("automationName"));
 
 	    
-		capabilities.setCapability("newCommandTimeout", 1000);
+		capabilities.setCapability("newCommandTimeout", genMeth.getValueFromPropFile("newCommandTimeout"));
 	  //  capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
 
 
@@ -1378,7 +1378,7 @@ public class AndroidMethods {
 		for (i = 0; i < NumOfSwipe; i++) {
 
 			driver.swipe(500, 1600, 500, 500, miliseconds);
-			Thread.sleep(2000);
+			Thread.sleep(4000);
 
 		}
 
@@ -1507,9 +1507,12 @@ public class AndroidMethods {
 	}
 	 
 	public AppiumDriverLocalService startAppiumService() {
+
+		// AppiumDriverLocalService service =AppiumDriverLocalService.buildDefaultService();
+
 		AppiumServiceBuilder c = new AppiumServiceBuilder() ;
-//		 AppiumDriverLocalService service =AppiumDriverLocalService.buildDefaultService();
-		 AppiumDriverLocalService service =  AppiumDriverLocalService.buildService(c.usingPort(4724).withIPAddress("0.0.0.0"));
+		 AppiumDriverLocalService service =  AppiumDriverLocalService.buildService(c.usingPort(4723).withIPAddress("0.0.0.0"));
+		 
 		boolean isServiceRunning =  service.isRunning();
 		if (isServiceRunning){
 			
