@@ -96,6 +96,8 @@ public class AndroidElements {
 	String IconHome;
 	String IconRefresh;
 	String IconLoginSettings;
+	String IconNavigationChart;
+	String IconNavigationDashboard;
 	
 	
 	
@@ -204,7 +206,11 @@ public class AndroidElements {
 		this.IconHome = XmlHandel.readAndroidXml("IconHome", langXml, xmlPath);	
 		this.IconSearch = XmlHandel.readAndroidXml("IconSearch", langXml, xmlPath);	
 		this.IconLoginSettings = XmlHandel.readAndroidXml("IconLoginSettings", langXml, xmlPath);	
+		this.IconNavigationChart = XmlHandel.readAndroidXml("IconNavigationChart", langXml, xmlPath);	
+		this.IconNavigationDashboard = XmlHandel.readAndroidXml("IconNavigationDashboard", langXml, xmlPath);	
 
+		
+		
 		
 
 		this.passwordProd = XmlHandel.readAndroidXml("passwordProd", langXml, xmlPath);

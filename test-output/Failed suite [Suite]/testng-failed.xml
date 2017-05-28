@@ -13,7 +13,7 @@
           <include name="setupBeforeSuite"/>
           <include name="checkHomeScreen"/>
           <include name="tearDown"/>
-          <include name="Actions_List_Row_Popup"/>
+          <include name="JTR_Same_Report"/>
         </methods>
       </class> <!-- Native.SanityAndroid -->
     </classes>

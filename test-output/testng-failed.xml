@@ -11,10 +11,9 @@
       <class name="Native.SanityAndroid">
         <methods>
           <include name="setupBeforeSuite"/>
-          <include name="Actions_Grid_One_Layer_Row"/>
           <include name="checkHomeScreen"/>
-          <include name="Actions_List_Cell"/>
           <include name="tearDown"/>
+          <include name="JTR_Same_Report"/>
         </methods>
       </class> <!-- Native.SanityAndroid -->
     </classes>

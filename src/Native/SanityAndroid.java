@@ -266,12 +266,8 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickXpthName_CheckedTextView(genMeth, "Map By Address");
 
 		                    
-		Thread.sleep(3000);
-		//genMeth.eyesCheckWindow(eyes, "All Tabs- Map By Address", useEye, skipfailure);
-//		genMeth.clickId(genMeth,"19501 Biscayne Blvd, Aventura, FL 33180. 19501 Biscayne Boulevard,Aventura, FL 33180.");
-		//genMeth.clickXpthName_TextView(genMeth, "19501 Biscayne Blvd, Aventura, FL 33180. 19501 Biscayne Boulevard,Aventura, FL 33180.");
-		
-
+		Thread.sleep(3000);		
+		//genMeth.clickXpthName_ViewView(genMeth, "19501 Biscayne Blvd, Aventura, FL 33180. 19501 Biscayne Boulevard,Aventura, FL 33180.");
 		By by = By.xpath("//android.view.View[@content-desc='19501 Biscayne Blvd, Aventura, FL 33180. 19501 Biscayne Boulevard,Aventura, FL 33180.']");
 		//driver.findElement(by).click();
 		genMeth.clickBy(driver, genMeth, by);
@@ -306,9 +302,10 @@ import com.applitools.eyes.Eyes;
 		//Thread.sleep(15000);
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
 		genMeth.clickXpthName_CheckedTextView(genMeth, "Map By GPS");
-
-		by = By.xpath("//android.view.View[@content-desc='40.918116,-74.076363. 1 Garden State Plaza Boulevard,Paramus, NJ 07652.']");
-		genMeth.clickBy(driver, genMeth, by);
+		
+		genMeth.clickXpthName_ViewView(genMeth, "40.918116,-74.076363. 1 Garden State Plaza Boulevard,Paramus, NJ 07652.");
+		//by = By.xpath("//android.view.View[@content-desc='40.918116,-74.076363. 1 Garden State Plaza Boulevard,Paramus, NJ 07652.']");
+		//genMeth.clickBy(driver, genMeth, by);
 		
 		Thread.sleep(3000);
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Map By GPS- Press pin map", useEye, genMeth, skipfailure);
@@ -2185,7 +2182,75 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 */
 	}
 
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer Row action",
+			groups = { "Sanity Android" })
+	public void JTR_Same_Report() throws ParserConfigurationException, SAXException,
+	IOException, InterruptedException {
+
+		// Open the JTR App
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.clickXpthName_TextView(genMeth, "JTR App");
+		Thread.sleep(2000);
+		genMeth.clickXpthName_TextView(genMeth, "JTR- Same Report");
+		Thread.sleep(4000);
+		
+		//JTR from List
+		genMeth.clickXpthName_TextView(genMeth, "Service Call ID");
+		genMeth.eyesCheckWindow("JTR Same report - JTR from List",useEye, genMeth, skipfailure);
 	
+		// JTR from Grid Two Layers
+		genMeth.clickXpthName_TextView(genMeth, "1");
+		genMeth.clickXpthName_TextView(genMeth, "Service Call ID");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("JTR Same report - JTR from Grid", useEye, genMeth, skipfailure);
+	
+		// JTR from Bar Chart
+		genMeth.clickId(genMeth, DroidData.IconNavigationChart);
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("JTR Same report - JTR from Bar Chart", useEye, genMeth, skipfailure);
+		
+		// JTR from Dashboard
+		genMeth.clickId(genMeth, DroidData.IconNavigationDashboard);
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("JTR Same report - JTR from Dashboard", useEye, genMeth, skipfailure);
+
+		// JTR from Grid One Layer
+		genMeth.clickXpthName_TextView(genMeth, "H");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("JTR Same report - JTR from Grid One Layer", useEye, genMeth, skipfailure);
+		
+		// JTR from Map
+		//genMeth.clickXpthName_ViewView(genMeth, "690 W Dekalb Pike, King of Prussia, Pennsylvania. 690 West Dekalb Pike,King of Prussia, PA 19406.");
+		By by = By.xpath("//android.view.View[@content-desc='690 W Dekalb Pike, King of Prussia, Pennsylvania. 690 West Dekalb Pike,King of Prussia, PA 19406.']");
+		genMeth.clickBy(driver, genMeth, by);
+
+
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_adress_container");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_item_jump_to");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("JTR Same report - JTR from Map to Pie Chart", useEye, genMeth, skipfailure);
+
+		// JTR from Pie Chart
+		genMeth.clickXpthName_TextView(genMeth, "Aventura Mall");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("JTR Same report - JTR from Pie Chart to ED", useEye, genMeth, skipfailure);
+		
+		
+		// JTR from Pie Chart
+		genMeth.clickXpthName_TextView(genMeth, "Legal");
+		genMeth.clickXpthName_TextView(genMeth, "Cell Phone");
+		Thread.sleep(2000);
+		
+		genMeth.eyesCheckWindow("JTR Same report - JTR from ED to List", useEye, genMeth, skipfailure);
+
+		// Verify Startup screen is open
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		Thread.sleep(2000);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.clickXpthName_TextView(genMeth, "SQL Golden App");
+
+	}
+
 
 	/*
 	
