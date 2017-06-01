@@ -1935,62 +1935,182 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	}
 	
 	
-	@Test(enabled = true, groups = {"Sanity Android"}, testName = "Regression", description = "Slicer report")
-	public void slicerReportWithSecurityFilter() throws InterruptedException, IOException{
-		
-		// go to List
-		genMeth.swipeDownLongNexus5X(2, 1000);
+	
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer Row action",
+			groups = { "Sanity Android" })
+	public void JTR_Same_Report() throws ParserConfigurationException, SAXException,
+	IOException, InterruptedException {
 
-		genMeth.clickXpthName_TextView(genMeth, "SlicerReport_Sfilter");
-		genMeth.clickId(genMeth, DroidData.BTNSlicer);
-		genMeth.clickXpthName_TextView(genMeth, "BranchID");
-		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - branchID 1,3 only",useEye, genMeth, skipfailure);
-				
-		genMeth.clickXpthName_TextView(genMeth, "3");
-		genMeth.backDroidButton();
-		genMeth.clickXpthName_TextView(genMeth, "Done");
-		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - List (BranchID=3)",useEye, genMeth, skipfailure);
-		
-		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer One Layer");
-		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - Grid One Layer (BranchID=3)",useEye, genMeth, skipfailure);
-		
-		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Cover Flow");
-		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - Cover Flow (BranchID=3)",useEye, genMeth, skipfailure);
-		
-		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Dashboard");
-		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - Dashboard (BranchID=3)",useEye, genMeth, skipfailure);
-		
-		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Map");
-		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - Map (BranchID=3)",useEye, genMeth, skipfailure);
-		
-		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Cards");
-		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - Cards (BranchID=3)",useEye, genMeth, skipfailure);
-		
-		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Two Layer");
-		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - Slicer Two Layer (First layer) (BranchID=3)",useEye, genMeth, skipfailure);
-		genMeth.clickXpthName_TextView(genMeth, "3");
-		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - Slicer Two Layer (Second Layer layer) (BranchID=3)",useEye, genMeth, skipfailure);
+		// Open the JTR App
 		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.clickXpthName_TextView(genMeth, "JTR App");
+		Thread.sleep(2000);
+		genMeth.clickXpthName_TextView(genMeth, "JTR- Same Report");
+		Thread.sleep(4000);
 		
-		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer News");
-		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - News (BranchID=3)",useEye, genMeth, skipfailure);
+		//JTR from List
+		genMeth.clickXpthName_TextView(genMeth, "Service Call ID");
+		genMeth.eyesCheckWindow("JTR Same report - JTR from List",useEye, genMeth, skipfailure);
+	
+		// JTR from Grid Two Layers
+		genMeth.clickXpthName_TextView(genMeth, "1");
+		genMeth.clickXpthName_TextView(genMeth, "Service Call ID");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("JTR Same report - JTR from Grid", useEye, genMeth, skipfailure);
+	
+		// JTR from Bar Chart
+		genMeth.clickId(genMeth, DroidData.IconNavigationChart);
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("JTR Same report - JTR from Bar Chart", useEye, genMeth, skipfailure);
+		
+		// JTR from Dashboard
+		genMeth.clickId(genMeth, DroidData.IconNavigationDashboard);
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("JTR Same report - JTR from Dashboard", useEye, genMeth, skipfailure);
+
+		// JTR from Grid One Layer
+		genMeth.clickXpthName_TextView(genMeth, "H");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("JTR Same report - JTR from Grid One Layer", useEye, genMeth, skipfailure);
+		
+		// JTR from Map
+		//genMeth.clickXpthName_ViewView(genMeth, "690 W Dekalb Pike, King of Prussia, Pennsylvania. 690 West Dekalb Pike,King of Prussia, PA 19406.");
+		By by = By.xpath("//android.view.View[@content-desc='690 W Dekalb Pike, King of Prussia, Pennsylvania. 690 West Dekalb Pike,King of Prussia, PA 19406.']");
+		genMeth.clickBy(driver, genMeth, by);
+
+
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_adress_container");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_item_jump_to");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("JTR Same report - JTR from Map to Pie Chart", useEye, genMeth, skipfailure);
+
+		// JTR from Pie Chart
+		genMeth.clickXpthName_TextView(genMeth, "Aventura Mall");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("JTR Same report - JTR from Pie Chart to ED", useEye, genMeth, skipfailure);
+		
+		
+		// JTR from Pie Chart
+		genMeth.clickXpthName_TextView(genMeth, "Legal");
+		genMeth.clickXpthName_TextView(genMeth, "Cell Phone");
+		Thread.sleep(2000);
+		
+		genMeth.eyesCheckWindow("JTR Same report - JTR from ED to List", useEye, genMeth, skipfailure);
 
 		// Verify Startup screen is open
 		genMeth.clickId(genMeth, DroidData.IconHome);
-		genMeth.swipeUpLongNexus5X(3, 1000);
+		Thread.sleep(2000);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.clickXpthName_TextView(genMeth, "SQL Golden App");
 
-		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
-		
 	}
+
+	
+
+	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer Row action",
+			groups = { "Sanity Android" })
+	public void JTR_Param_Report_AutoSubmit() throws ParserConfigurationException, SAXException,
+	IOException, InterruptedException {
+
+		// Open the JTR App
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.clickXpthName_TextView(genMeth, "JTR App");
+		Thread.sleep(2000);
+		genMeth.clickXpthName_TextView(genMeth, "JTR- Nav to Param");
+		Thread.sleep(4000);
+		
+		//JTR from List
+		genMeth.clickXpthName_TextView(genMeth, "id");
+		Thread.sleep(4000);
+		genMeth.eyesCheckWindow("JTR Param report - JTR from List",useEye, genMeth, skipfailure);
+		genMeth.backDroidButton();
+	
+		// JTR from Grid One Layer
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "AutoSubAllDataTypes2");	
+		Thread.sleep(2000);
+		genMeth.clickXpthName_TextView(genMeth, "1");
+		Thread.sleep(4000);
+		genMeth.eyesCheckWindow("JTR Param report - JTR from Grid", useEye, genMeth, skipfailure);
+		genMeth.backDroidButton();
+
+		
+		// JTR from Dashboard
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "AutoSubAllDataTypes3");
+		Thread.sleep(2000);
+		genMeth.clickXpthName_TextView(genMeth, "id");
+		Thread.sleep(4000);
+		genMeth.eyesCheckWindow("JTR Param report - JTR from Dashboard", useEye, genMeth, skipfailure);
+		genMeth.backDroidButton();
+		
+		
+		// JTR from Map
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "AutoSubAllDataTypes4");
+		Thread.sleep(2000);
+		By by = By.xpath("//android.view.View[@content-desc='690 W Dekalb Pike, King of Prussia, Pennsylvania. 690 West Dekalb Pike,King of Prussia, PA 19406.']");
+		genMeth.clickBy(driver, genMeth, by);
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_adress_container");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_item_jump_to");
+		Thread.sleep(4000);
+		genMeth.eyesCheckWindow("JTR Param report - JTR from Map", useEye, genMeth, skipfailure);
+		genMeth.backDroidButton();	
+
+		// JTR from ED
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "AutoSubAllDataTypes5");
+		Thread.sleep(2000);
+		genMeth.clickXpthName_TextView(genMeth, "4.7");
+		genMeth.clickXpthName_TextView(genMeth, "1");
+		Thread.sleep(4000);
+		genMeth.eyesCheckWindow("JTR Param report - JTR from ED", useEye, genMeth, skipfailure);
+		genMeth.backDroidButton();
+		
+		
+		// JTR from Cover Flow
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "AutoSubAllDataTypes6");
+		Thread.sleep(2000);
+		genMeth.clickXpthName_TextView(genMeth, "id");
+		Thread.sleep(4000);
+		genMeth.eyesCheckWindow("JTR Param report - JTR from Cover Flow", useEye, genMeth, skipfailure);
+		genMeth.backDroidButton();
+		
+		
+		// JTR from Bar Chart
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "AutoSubAllDataTypes7");
+		Thread.sleep(2000);
+		genMeth.clickXpthName_TextView(genMeth, "Aventura Mall");
+		Thread.sleep(4000);
+		genMeth.eyesCheckWindow("JTR Param report - JTR from Bar Chart", useEye, genMeth, skipfailure);
+		genMeth.backDroidButton();
+		
+		
+		// JTR from Pie Chart
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "AutoSubAllDataTypes8");
+		Thread.sleep(2000);
+		genMeth.clickXpthName_TextView(genMeth, "Aventura Mall");
+		Thread.sleep(4000);
+		genMeth.eyesCheckWindow("JTR Param report - JTR from Bar Chart", useEye, genMeth, skipfailure);
+		genMeth.backDroidButton();
+		
+		
+
+		// Verify Startup screen is open
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		Thread.sleep(2000);
+		genMeth.clickId(genMeth, DroidData.IconHome);
+		genMeth.clickXpthName_TextView(genMeth, "SQL Golden App");
+
+	}
+
+
 	
 	
+
 	
 	@Test(enabled = true, groups = { "Sanity Android_Waiting for the android popup issue to be fixed" }, testName = "Regression", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
 	public void badCredentials() throws Exception, Throwable {
@@ -2182,77 +2302,71 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 */
 	}
 
-	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer Row action",
-			groups = { "Sanity Android" })
-	public void JTR_Same_Report() throws ParserConfigurationException, SAXException,
-	IOException, InterruptedException {
 
-		// Open the JTR App
+	
+	
+
+	/*
+	
+	@Test(enabled = true, groups = {"Sanity Android"}, testName = "Regression", description = "Slicer report")
+	public void slicerReportWithSecurityFilter() throws InterruptedException, IOException{
+		
+		// go to List
+		genMeth.swipeDownLongNexus5X(2, 1000);
+
+		genMeth.clickXpthName_TextView(genMeth, "SlicerReport_Sfilter");
+		genMeth.clickId(genMeth, DroidData.BTNSlicer);
+		genMeth.clickXpthName_TextView(genMeth, "BranchID");
+		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - branchID 1,3 only",useEye, genMeth, skipfailure);
+				
+		genMeth.clickXpthName_TextView(genMeth, "3");
+		genMeth.backDroidButton();
+		genMeth.clickXpthName_TextView(genMeth, "Done");
+		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - List (BranchID=3)",useEye, genMeth, skipfailure);
+		
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer One Layer");
+		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - Grid One Layer (BranchID=3)",useEye, genMeth, skipfailure);
+		
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Cover Flow");
+		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - Cover Flow (BranchID=3)",useEye, genMeth, skipfailure);
+		
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Dashboard");
+		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - Dashboard (BranchID=3)",useEye, genMeth, skipfailure);
+		
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Map");
+		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - Map (BranchID=3)",useEye, genMeth, skipfailure);
+		
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Cards");
+		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - Cards (BranchID=3)",useEye, genMeth, skipfailure);
+		
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer Two Layer");
+		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - Slicer Two Layer (First layer) (BranchID=3)",useEye, genMeth, skipfailure);
+		genMeth.clickXpthName_TextView(genMeth, "3");
+		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - Slicer Two Layer (Second Layer layer) (BranchID=3)",useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.IconHome);
-		genMeth.clickXpthName_TextView(genMeth, "JTR App");
-		Thread.sleep(2000);
-		genMeth.clickXpthName_TextView(genMeth, "JTR- Same Report");
-		Thread.sleep(4000);
 		
-		//JTR from List
-		genMeth.clickXpthName_TextView(genMeth, "Service Call ID");
-		genMeth.eyesCheckWindow("JTR Same report - JTR from List",useEye, genMeth, skipfailure);
-	
-		// JTR from Grid Two Layers
-		genMeth.clickXpthName_TextView(genMeth, "1");
-		genMeth.clickXpthName_TextView(genMeth, "Service Call ID");
-		Thread.sleep(2000);
-		genMeth.eyesCheckWindow("JTR Same report - JTR from Grid", useEye, genMeth, skipfailure);
-	
-		// JTR from Bar Chart
-		genMeth.clickId(genMeth, DroidData.IconNavigationChart);
-		Thread.sleep(2000);
-		genMeth.eyesCheckWindow("JTR Same report - JTR from Bar Chart", useEye, genMeth, skipfailure);
-		
-		// JTR from Dashboard
-		genMeth.clickId(genMeth, DroidData.IconNavigationDashboard);
-		Thread.sleep(2000);
-		genMeth.eyesCheckWindow("JTR Same report - JTR from Dashboard", useEye, genMeth, skipfailure);
-
-		// JTR from Grid One Layer
-		genMeth.clickXpthName_TextView(genMeth, "H");
-		Thread.sleep(2000);
-		genMeth.eyesCheckWindow("JTR Same report - JTR from Grid One Layer", useEye, genMeth, skipfailure);
-		
-		// JTR from Map
-		//genMeth.clickXpthName_ViewView(genMeth, "690 W Dekalb Pike, King of Prussia, Pennsylvania. 690 West Dekalb Pike,King of Prussia, PA 19406.");
-		By by = By.xpath("//android.view.View[@content-desc='690 W Dekalb Pike, King of Prussia, Pennsylvania. 690 West Dekalb Pike,King of Prussia, PA 19406.']");
-		genMeth.clickBy(driver, genMeth, by);
-
-
-		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_adress_container");
-		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_item_jump_to");
-		Thread.sleep(2000);
-		genMeth.eyesCheckWindow("JTR Same report - JTR from Map to Pie Chart", useEye, genMeth, skipfailure);
-
-		// JTR from Pie Chart
-		genMeth.clickXpthName_TextView(genMeth, "Aventura Mall");
-		Thread.sleep(2000);
-		genMeth.eyesCheckWindow("JTR Same report - JTR from Pie Chart to ED", useEye, genMeth, skipfailure);
-		
-		
-		// JTR from Pie Chart
-		genMeth.clickXpthName_TextView(genMeth, "Legal");
-		genMeth.clickXpthName_TextView(genMeth, "Cell Phone");
-		Thread.sleep(2000);
-		
-		genMeth.eyesCheckWindow("JTR Same report - JTR from ED to List", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
+		genMeth.clickXpthName_CheckedTextView(genMeth, "Slicer News");
+		genMeth.eyesCheckWindow("Slicer Report with Security Filter (Droid) - News (BranchID=3)",useEye, genMeth, skipfailure);
 
 		// Verify Startup screen is open
 		genMeth.clickId(genMeth, DroidData.IconHome);
-		Thread.sleep(2000);
-		genMeth.clickId(genMeth, DroidData.IconHome);
-		genMeth.clickXpthName_TextView(genMeth, "SQL Golden App");
+		genMeth.swipeUpLongNexus5X(3, 1000);
 
+		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
+		
 	}
-
-
-	/*
+	
+	
+	
+	
+	
 	
 	@Test (enabled = true ,testName = "Sample App Dashboard DailySales", retryAnalyzer = Retry.class, description = "Dashboard DailySales" ,
 			groups= {"Sanity IOSsample"}  /*dependsOnMethods={"testLogin"})	
