@@ -660,7 +660,8 @@ import com.applitools.eyes.Eyes;
 		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Address", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 //      **********Appium Dismiss popup bug (need to delete the driver quite after  appium fix)*********
-		
+		driver.quit();
+
 		// Mobile Phone
  		genMeth.clickXpthName_LinearLayout(genMeth, "4");
 		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Phone", useEye, genMeth, skipfailure);
@@ -753,7 +754,7 @@ import com.applitools.eyes.Eyes;
 		*/
 		//second layer
 		genMeth.clickXpthName_TextView(genMeth, "Callum R. Aguirre");
-		Thread.sleep(1000);
+		Thread.sleep(5000);
 		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Second layer",useEye, genMeth, skipfailure);				
 
 		// Phone
@@ -793,7 +794,7 @@ import com.applitools.eyes.Eyes;
 		
 		//Social Networks - Facebook
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/employee_directory_detail_person_social_net_facebook");
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Facebook",useEye, genMeth, skipfailure);				
 		genMeth.backDroidButton();
 
@@ -838,7 +839,7 @@ import com.applitools.eyes.Eyes;
 			
 		Thread.sleep(1000);
 		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Golden App info screen",useEye, genMeth, skipfailure);	
-		genMeth.clickXpthName_TextView(genMeth, "SQL Golden App");
+		genMeth.backDroidButton();
 		genMeth.clickXpthName_TextView(genMeth, "SQL Golden App");
 				
 		//Verify Startup screen is open
@@ -1395,12 +1396,13 @@ import com.applitools.eyes.Eyes;
 		Thread.sleep(12000);
 
 		// Action in second layer
-		genMeth.swipeDownLongNexus5X(2, 1000);
+		genMeth.swipeDownLongNexus5X(4, 1000);
 
 		//Thread.sleep(2000);
 
 		// Action in second layer
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/one_lvls_item_seemore_btn");
+		//genMeth.clickXpthName_TextView(genMeth, "See All");
 		
 		// Row Action (Adding a row to the all parameters table)
 		Thread.sleep(4000);
@@ -1450,7 +1452,7 @@ import com.applitools.eyes.Eyes;
 		Thread.sleep(5000);
 		//genMeth.backDroidButton();
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/action_fragment_submit_button");
-		Thread.sleep(22000);
+		Thread.sleep(15000);
 
 /*	
 
@@ -1990,7 +1992,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.eyesCheckWindow("JTR Same report - JTR from Pie Chart to ED", useEye, genMeth, skipfailure);
 		
 		
-		// JTR from Pie Chart
+		// JTR from ED
 		genMeth.clickXpthName_TextView(genMeth, "Legal");
 		genMeth.clickXpthName_TextView(genMeth, "Cell Phone");
 		Thread.sleep(2000);
