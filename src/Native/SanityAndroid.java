@@ -17,7 +17,6 @@ import java.util.concurrent.TimeUnit;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeSuite;
 import org.xml.sax.SAXException;
@@ -49,8 +48,9 @@ import com.applitools.eyes.Eyes;
 	Boolean useEye;
 	EnvironmentMode EnvMode;
 
-	//AndroidDriver<MobileElement> driver;
 	AndroidDriver<MobileElement> driver;
+
+
 	AndroidMethods genMeth = new AndroidMethods();
 	Eyes eyes = new Eyes();
 	AndroidElements DroidData;
@@ -1405,7 +1405,7 @@ import com.applitools.eyes.Eyes;
 		//genMeth.clickXpthName_TextView(genMeth, "See All");
 		
 		// Row Action (Adding a row to the all parameters table)
-		Thread.sleep(4000);
+		Thread.sleep(8000);
 		genMeth.clickId(genMeth,DroidData.BTNrightMenuButton_ID);
 		genMeth.clickXpthName_TextView(genMeth, "PopUp- AddRow");
 		genMeth.clickXpthName_TextView(genMeth, "Free_Text");
@@ -1433,6 +1433,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickXpthName_TextView(genMeth, "2");
 
 		// PSL with Variable
+		genMeth.swipeDownLongNexus5X(1, 1000);
 		genMeth.clickXpthName_TextView(genMeth,"Items_SmallerThanMobileDate_PSL");
 		genMeth.clickXpthName_TextView(genMeth, "3");
 
@@ -1732,7 +1733,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.swipeRightLongNexus5X(1, 1000);
 		genMeth.clickXpthName_LinearLayout(genMeth, "7");
 		genMeth.clickXpthName_LinearLayout(genMeth, "7");
-		Thread.sleep(4000);
+		Thread.sleep(8000);
 
 		genMeth.eyesCheckWindow("Actions_Grid_One_Layer_Row (Droid) - Grid One Layer- Row parameters before insert",useEye, genMeth, skipfailure);
 

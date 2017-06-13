@@ -105,10 +105,10 @@
 	<classpathentry kind="lib" path="Eyes/jersey-guava-2.16.jar"/>
 	<classpathentry kind="lib" path="Eyes/junit-4.12.jar"/>
 	<classpathentry kind="lib" path="Eyes/osgi-resource-locator-1.0.1.jar"/>
-	<classpathentry kind="lib" path="Java-Client/java-client-4.1.1-javadoc.jar"/>
-	<classpathentry kind="lib" path="Java-Client/java-client-4.1.1-sources.jar"/>
-	<classpathentry kind="lib" path="Java-Client/java-client-4.1.1.jar"/>
 	<classpathentry kind="lib" path="Eyes/httpclient-4.3.1.jar"/>
 	<classpathentry kind="lib" path="Eyes/httpcore-4.4.3.jar"/>
+	<classpathentry kind="lib" path="Java-Client1/java-client-4.1.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="Java-Client1/java-client-4.1.2-sources.jar"/>
+	<classpathentry kind="lib" path="Java-Client1/java-client-4.1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>TestNG Report</title><style type="text/css">table {margin-bottom:10px;border-collapse:collapse;empty-cells:show}th,td {border:1px solid #009;padding:.25em .5em}th {vertical-align:bottom}td {vertical-align:top}table a {font-weight:bold}.stripe td {background-color: #E6EBF9}.num {text-align:right}.passedodd td {background-color: #3F3}.passedeven td {background-color: #0A0}.skippedodd td {background-color: #DDD}.skippedeven td {background-color: #CCC}.failedodd td,.attn {background-color: #F33}.failedeven td,.stripe .attn {background-color: #D00}.stacktrace {white-space:pre;font-family:monospace}.totop {font-size:85%;text-align:center;border-bottom:2px solid #000}</style></head><body><table><tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr><tr><th colspan="7">Suite</th></tr><tr><td><a href="#t0">Regression</a></td><td class="num">0</td><td class="num attn">1</td><td class="num">0</td><td class="num">85</td><td>Sanity Android1</td><td></td></tr></table><table><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Regression &#8212; failed (configuration methods)</th></tr><tr class="failedeven"><td rowspan="3">Native.SanityAndroid</td><td><a href="#m0">checkHomeScreen</a></td><td rowspan="1">1497344818096</td><td rowspan="1">0</td></tr><tr class="failedeven"><td><a href="#m1">setupBeforeSuite</a></td><td rowspan="1">1497344690286</td><td rowspan="1">0</td></tr><tr class="failedeven"><td><a href="#m2">tearDown</a></td><td rowspan="1">1497344823355</td><td rowspan="1">0</td></tr><tr><th colspan="4">Regression &#8212; skipped</th></tr><tr class="skippedeven"><td rowspan="1">Native.SanityAndroid</td><td><a href="#m3">Actions_List_Row_Popup</a></td><td rowspan="1">1497344818153</td><td rowspan="1">5</td></tr></tbody></table><h2>Regression</h2><h3 id="m0">Native.SanityAndroid#checkHomeScreen</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException
+	at Native.AndroidMethods.setCapabilitiesAndroid(AndroidMethods.java:274)
+	at Native.SanityAndroid.checkHomeScreen(SanityAndroid.java:94)
+... Removed 26 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p><h3 id="m1">Native.SanityAndroid#setupBeforeSuite</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>org.testng.TestRunner@56b78e55</td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyException: The local appium server has not been started. The given Node.js executable: /usr/local/Cellar/node/7.4.0/bin/node Arguments: [/usr/local/lib/node_modules/appium/build/lib/main.js, --port, 4723, --address, 0.0.0.0] 
+Process output: [Appium] Welcome to Appium v1.6.4-beta.2
+[HTTP] Could not start REST http interface listener. The requested port may already be in use. Please make sure there is no other instance of this server running already.
+Error: listen EADDRINUSE 0.0.0.0:4723
+    at Object.exports._errnoException (util.js:1022:11)
+    at exports._exceptionWithHostPort (util.js:1045:20)
+    at Server._listen2 (net.js:1262:14)
+    at listen (net.js:1298:10)
+    at doListening (net.js:1397:7)
+    at _combinedTickCallback (internal/process/next_tick.js:77:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+
+
+	at io.appium.java_client.service.local.AppiumDriverLocalService.start(AppiumDriverLocalService.java:155)
+	at Native.AndroidMethods.startAppiumService(AndroidMethods.java:1567)
+	at Native.SanityAndroid.setupBeforeSuite(SanityAndroid.java:72)
+Caused by: org.openqa.selenium.net.UrlChecker$TimeoutException: Timed out waiting for [http://0.0.0.0:4723/wd/hub/status] to be available after 120015 ms
+	at org.openqa.selenium.net.UrlChecker.waitUntilAvailable(UrlChecker.java:104)
+	at io.appium.java_client.service.local.AppiumDriverLocalService.ping(AppiumDriverLocalService.java:115)
+	at io.appium.java_client.service.local.AppiumDriverLocalService.start(AppiumDriverLocalService.java:142)
+	... 20 more
+Caused by: com.google.common.util.concurrent.UncheckedTimeoutException: java.util.concurrent.TimeoutException
+	at com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(SimpleTimeLimiter.java:143)
+	at org.openqa.selenium.net.UrlChecker.waitUntilAvailable(UrlChecker.java:79)
+	... 22 more
+Caused by: java.util.concurrent.TimeoutException
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(SimpleTimeLimiter.java:130)
+	... 23 more
+... Removed 18 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p><h3 id="m2">Native.SanityAndroid#tearDown</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException
+	at Native.SanityAndroid.tearDown(SanityAndroid.java:2290)
+... Removed 18 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p><h3 id="m3">Native.SanityAndroid#Actions_List_Row_Popup</h3><table class="result"></table><p class="totop"><a href="#summary">back to summary</a></p></body></html>
