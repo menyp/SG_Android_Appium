@@ -248,8 +248,6 @@ import com.applitools.eyes.Eyes;
 				
 	}
 	
-	
-	
 
 
 	//@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the URL tab",groups = { "Sanity Android" })
@@ -1387,11 +1385,12 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android1" })
 	public void Actions_List_Row_Popup() throws ParserConfigurationException, SAXException,
 	IOException, InterruptedException {
 
 		// go to List
+		
 		genMeth.clickXpthName_TextView(genMeth, DroidData.ActionsReport);
 		Thread.sleep(12000);
 
@@ -2112,9 +2111,6 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 
 
 	
-	
-
-	
 	@Test(enabled = true, groups = { "Sanity Android_Waiting for the android popup issue to be fixed" }, testName = "Regression", description = "login with bad/missing credentials", retryAnalyzer = Retry.class)
 	public void badCredentials() throws Exception, Throwable {
 
@@ -2272,6 +2268,8 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	@AfterSuite(alwaysRun = true)
 	public void tearDown() throws Exception {
 		try {
+			driver.findElement(By.id(DroidData.IconHome)).click();
+			driver.findElement(By.id(DroidData.BTNlogoutID)).click();
 			driver.removeApp(appIdentifier);
 			driver.quit();
 			service.stop();
@@ -2287,6 +2285,10 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			driver.resetApp();
+			genMeth.cleanLoginDroid(genMeth, EnvMode);
+			driver.findElement(By.id(DroidData.IconHome)).click();
+			driver.findElement(By.id(DroidData.BTNlogoutID)).click();
 			driver.quit();
 			service.stop();
 		}

@@ -504,7 +504,7 @@ public class AndroidMethods {
 
 	}
 
-
+	
 
 	public void clickId(AndroidMethods genMeth, String id)
 			throws InterruptedException, IOException {
