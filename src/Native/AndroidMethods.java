@@ -78,6 +78,79 @@ public class AndroidMethods {
 	String LoginUser;
 	
 	
+	
+	
+	@SuppressWarnings("unchecked")
+	public AndroidDriver<MobileElement> setCapabilitiesAndroid(AndroidMethods genMeth, AppiumDriverLocalService service)
+			throws IOException {
+		
+		// Login with an existing account
+ 
+		DesiredCapabilities capabilities =  DesiredCapabilities.android();
+		capabilities.setCapability(MobileCapabilityType.APP, genMeth.getValueFromPropFile("appPath"));
+		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, genMeth.getValueFromPropFile("deviceName"));
+		capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 1200);
+		 
+	  //DesiredCapabilities capabilities = new DesiredCapabilities();
+
+		//capabilities.setCapability("appium-version", genMeth.getValueFromPropFile("appiumVersion"));
+	    //capabilities.setCapability(MobileCapabilityType.APPIUM_VERSION, genMeth.getValueFromPropFile("appiumVersion"));
+	    
+	
+
+		//capabilities.setCapability("platformVersion", genMeth.getValueFromPropFile("platformVersion"));
+	   // capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, genMeth.getValueFromPropFile("platformVersion"));
+
+		//capabilities.setCapability("deviceName", genMeth.getValueFromPropFile("deviceName"));
+	    
+
+		
+		//capabilities.setCapability("app",genMeth.getValueFromPropFile("appPath"));
+	   
+
+
+
+	    //capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, genMeth.getValueFromPropFile("automationName"));
+
+	    
+		//capabilities.setCapability("newCommandTimeout", genMeth.getValueFromPropFile("newCommandTimeout"));
+
+		//capabilities.setCapability("automationName","uiautomator2");
+		
+		
+		//capabilities.setCapability("platformName", genMeth.getValueFromPropFile("platformName"));
+		//capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
+	    
+		//capabilities.setCapability("appPackage", genMeth.getValueFromPropFile("appPackage"));
+	    //capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1.2");
+	    //capabilities.setCapability(MobileCapabilityType.APPIUM_VERSION, "1.6.4");
+	    
+		//capabilities.setCapability("appActivity", genMeth.getValueFromPropFile("appLauncherActivity"));
+		//capabilities.setCapability(AndroidMobileCapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
+
+
+		
+
+		try {
+			
+			driver = new AndroidDriver<MobileElement>(service.getUrl(),capabilities);
+//			driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+		//	driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
+
+
+					
+
+		}
+		
+		catch (AppiumServerHasNotBeenStartedLocallyException e) {
+
+			genMeth.takeScreenShot(driver, genMeth,"Faliled to open Appium driver");
+			org.testng.Assert.fail("WebElement"+ " Faliled to open Appium driver");
+		}
+
+		return driver;
+	}
+	
 
 	public void cleanLoginDroid(AndroidMethods genMeth, EnvironmentMode mode) throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -217,77 +290,6 @@ public class AndroidMethods {
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/application_logout_button_icon");
 	}
 
-		
-	@SuppressWarnings("unchecked")
-	public AndroidDriver<MobileElement> setCapabilitiesAndroid(AndroidMethods genMeth, AppiumDriverLocalService service)
-			throws IOException {
-		
-		// Login with an existing account
- 
-		DesiredCapabilities capabilities =  DesiredCapabilities.android();
-		capabilities.setCapability(MobileCapabilityType.APP, genMeth.getValueFromPropFile("appPath"));
-		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, genMeth.getValueFromPropFile("deviceName"));
-		capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
-		 
-	  //DesiredCapabilities capabilities = new DesiredCapabilities();
-
-		//capabilities.setCapability("appium-version", genMeth.getValueFromPropFile("appiumVersion"));
-	    //capabilities.setCapability(MobileCapabilityType.APPIUM_VERSION, genMeth.getValueFromPropFile("appiumVersion"));
-	    
-	
-
-		//capabilities.setCapability("platformVersion", genMeth.getValueFromPropFile("platformVersion"));
-	   // capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, genMeth.getValueFromPropFile("platformVersion"));
-
-		//capabilities.setCapability("deviceName", genMeth.getValueFromPropFile("deviceName"));
-	    
-
-		
-		//capabilities.setCapability("app",genMeth.getValueFromPropFile("appPath"));
-	   
-
-
-
-	    //capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, genMeth.getValueFromPropFile("automationName"));
-
-	    
-		//capabilities.setCapability("newCommandTimeout", genMeth.getValueFromPropFile("newCommandTimeout"));
-
-		//capabilities.setCapability("automationName","uiautomator2");
-		
-		
-		//capabilities.setCapability("platformName", genMeth.getValueFromPropFile("platformName"));
-		//capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
-	    
-		//capabilities.setCapability("appPackage", genMeth.getValueFromPropFile("appPackage"));
-	    //capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1.2");
-	    //capabilities.setCapability(MobileCapabilityType.APPIUM_VERSION, "1.6.4");
-	    
-		//capabilities.setCapability("appActivity", genMeth.getValueFromPropFile("appLauncherActivity"));
-		//capabilities.setCapability(AndroidMobileCapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
-
-
-		
-
-		try {
-			
-			driver = new AndroidDriver<MobileElement>(service.getUrl(),capabilities);
-//			driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
-		//	driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
-
-
-					
-
-		}
-		
-		catch (AppiumServerHasNotBeenStartedLocallyException e) {
-
-			genMeth.takeScreenShot(driver, genMeth,"Faliled to open Appium driver");
-			org.testng.Assert.fail("WebElement"+ " Faliled to open Appium driver");
-		}
-
-		return driver;
-	}
 	
 	
 
