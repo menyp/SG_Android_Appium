@@ -1939,7 +1939,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer Row action",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android1" })
 	public void JTR_Same_Report() throws ParserConfigurationException, SAXException,
 	IOException, InterruptedException {
 
@@ -2199,8 +2199,8 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.clickXpthName_CheckedTextView(genMeth, "Employee Directory");
 		Thread.sleep(2000);
 		genMeth.clickXpthName_TextView(genMeth, "Legal");
-		genMeth.clickXpthName_TextView(genMeth, "Cell Phone");
-		Thread.sleep(12000);
+		genMeth.clickXpthName_TextView(genMeth, "BranchID");
+		Thread.sleep(15000);
 		genMeth.eyesCheckWindow("JTR To Slicer report - JTR from ED", useEye, genMeth, skipfailure);
 		genMeth.backDroidButton();
 		
