@@ -105,7 +105,7 @@ import com.applitools.eyes.Eyes;
 				genMeth.swipeUpLongNexus5X(4, 1000);
 				Thread.sleep(4000);
 			} catch (Exception e1) {
-
+				//change the driver quite with reset (will open the login screen)
 				driver.quit();
 				driver = genMeth.setCapabilitiesAndroid(genMeth, service);
 				DroidData = genMeth.setElements(webElementXmlPath, webElementXmlLang);
@@ -204,7 +204,7 @@ import com.applitools.eyes.Eyes;
 		//Open Dashboard  Tab
 		Thread.sleep(8000);
 		genMeth.clickXpthName_TextView(genMeth, "DashB/Cards/Employee");
-		Thread.sleep(10000);
+		Thread.sleep(14000);
 		genMeth.eyesCheckWindow("All Tabs (Droid)- Dashboard Default Layout", useEye, genMeth, skipfailure);
 
 		
@@ -442,7 +442,7 @@ import com.applitools.eyes.Eyes;
 
 		// go to List
 		genMeth.clickXpthName_TextView(genMeth, "List / Grid");
-		Thread.sleep(12000);
+		Thread.sleep(14000);
 		genMeth.eyesCheckWindow("Tabs_List_AdvancedColumns (Droid)- List", useEye, genMeth, skipfailure);
 
 		//Phone
@@ -792,13 +792,13 @@ import com.applitools.eyes.Eyes;
 		
 		//Social Networks - Facebook
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/employee_directory_detail_person_social_net_facebook");
-		Thread.sleep(8000);
+		Thread.sleep(14000);
 		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Facebook",useEye, genMeth, skipfailure);				
 		genMeth.backDroidButton();
 
 		//Twitter
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/employee_directory_detail_person_social_net_twitter");
-		Thread.sleep(5000);
+		Thread.sleep(14000);
 		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Twitter",useEye, genMeth, skipfailure);				
 		genMeth.backDroidButton();
 
@@ -810,7 +810,7 @@ import com.applitools.eyes.Eyes;
 
 		//Google+
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/employee_directory_detail_person_social_net_google_plus");
-		Thread.sleep(5000);
+		Thread.sleep(14000);
 		genMeth.eyesCheckWindow("All Tabs- Employee Directory (Droid) - Google+",useEye, genMeth, skipfailure);				
 		genMeth.backDroidButton();
 		
@@ -1343,14 +1343,15 @@ import com.applitools.eyes.Eyes;
 		Thread.sleep(3000);
 		genMeth.clickXpthName_TextView(genMeth, "Branch ID");
 		genMeth.eyesCheckWindow("List Actions Cell (Droid) - Branch ID(PSL_VAR) = 1", useEye, genMeth, skipfailure);
+		Thread.sleep(2000);
 		genMeth.clickXpthName_TextView(genMeth, "2");
-		Thread.sleep(10000);
+		Thread.sleep(12000);
 		genMeth.eyesCheckWindow("List Actions Cell (Droid) - Branch ID(PSL_VAR)- Success", useEye, genMeth, skipfailure);
 		
 		//Assign To (Dynamic List)
 		genMeth.clickXpthName_TextView(genMeth, "Assigned To");
 		genMeth.clickXpthName_TextView(genMeth, "John Grant");
-		Thread.sleep(10000);
+		Thread.sleep(12000);
 		genMeth.eyesCheckWindow("List Actions Cell (Droid) - cell Assign To (DL)", useEye, genMeth, skipfailure);
 		
 		//Action in second layer
@@ -1413,7 +1414,8 @@ import com.applitools.eyes.Eyes;
 
 		genMeth.clickXpthName_TextView(genMeth, "Device_Type_SL_DI");
 		//genMeth.clickXpthName_TextView(genMeth, "Laptop");
-		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/action_submit_button");
+		//genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/action_submit_button");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_cancel_button");
 
 
 		genMeth.clickXpthName_TextView(genMeth, "Device_Model_DL");
@@ -1448,6 +1450,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/image_picker_fragment_open_gallery_btn");
 		genMeth.eyesCheckWindow("List Actions Row (Droid) - Gallery opened",useEye, genMeth, skipfailure);
 		genMeth.backDroidButton();
+		Thread.sleep(2000);
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/image_picker_fragment_close_btn");
 		Thread.sleep(5000);
 		//genMeth.backDroidButton();
@@ -1533,6 +1536,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		
 		genMeth.clickXpthName_TextView(genMeth, "Device_Model_DL");
 		genMeth.clickXpthName_TextView(genMeth, "iPhone6");
+		Thread.sleep(2000);
 
 		genMeth.swipeDownShortNexus5X(1, 1000);
 
@@ -1564,32 +1568,28 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.eyesCheckWindow("Actions_List_Inline (Droid) - No Image selected", useEye, genMeth, skipfailure);
 		
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/image_picker_fragment_open_camera_btn");
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		genMeth.eyesCheckWindow("Actions_List_Inline (Droid) -Camera is Open ", useEye, genMeth, skipfailure);
 
 		genMeth.backDroidButton();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/image_picker_fragment_open_gallery_btn");
 		genMeth.eyesCheckWindow("Actions_List_Inline (Droid)- Gallery opened", useEye, genMeth, skipfailure);
+		Thread.sleep(2000);
 		genMeth.backDroidButton();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		genMeth.backDroidButton();
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_fragment_submit_button");
-		Thread.sleep(4000);
-		genMeth.eyesCheckWindow("Actions_List_Inline (Droid)- PN success", useEye, genMeth, skipfailure);
-	//	genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/push_notification_dialog_cancel_btn");
-//*************************Appium Dismiss popup bug*********************************************
-		
-
-		//Verify Startup screen is open
+		Thread.sleep(10000);
+		genMeth.eyesCheckWindow("Actions_List_Inline (Droid)- PN success", useEye, genMeth, skipfailure);		
+		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/push_notification_dialog_cancel_btn");
 		genMeth.backDroidButton();
 		genMeth.swipeUpShortNexus5X(1, 1000);
 		Thread.sleep(2000);
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 		
-		//Kill the driver due to the appium bug mention above
-		driver.quit();
+	
 
 	}
 	
@@ -1776,6 +1776,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/image_picker_fragment_open_camera_btn");
 		Thread.sleep(1000);
 		genMeth.backDroidButton();
+		Thread.sleep(1000);
 
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/image_picker_fragment_open_gallery_btn");
 		genMeth.eyesCheckWindow("Actions_Grid_One_Layer_Row (Droid) - Gallery opened", useEye,genMeth, skipfailure);
@@ -1939,7 +1940,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer Row action",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android" })
 	public void JTR_Same_Report() throws ParserConfigurationException, SAXException,
 	IOException, InterruptedException {
 
