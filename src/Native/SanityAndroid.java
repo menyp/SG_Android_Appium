@@ -69,7 +69,13 @@ import com.applitools.eyes.Eyes;
 		appIdentifier = genMeth.getValueFromPropFile("appIdentifier");
 		
 		DroidData = genMeth.setElements(webElementXmlPath, webElementXmlLang);
-		service = genMeth.startAppiumService();
+		try {
+			service = genMeth.startAppiumService();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+			
+		}
 		
 		driver = genMeth.setCapabilitiesAndroid(genMeth, service);		
 		genMeth.cleanLoginDroid(genMeth, EnvMode); 
@@ -2026,6 +2032,12 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.clickXpthName_TextView(genMeth, "JTR- Nav to Param");
 		Thread.sleep(4000);
 		
+		// JTR from List to HIDDEN REPORT
+		genMeth.clickXpthName_TextView(genMeth, "int");
+		Thread.sleep(10000);
+		genMeth.eyesCheckWindow("JTR Param report - JTR from List To Hidden Report", useEye, genMeth, skipfailure);
+		genMeth.backDroidButton();
+		
 		//JTR from List
 		genMeth.clickXpthName_TextView(genMeth, "id");
 		Thread.sleep(4000);
@@ -2126,6 +2138,12 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		Thread.sleep(2000);
 		genMeth.clickXpthName_TextView(genMeth, "JTR- To SlicerReport");
 		Thread.sleep(10000);
+		
+		// JTR from List to HIDDEN Report
+		genMeth.clickXpthName_TextView(genMeth, "Service Call ID");
+		Thread.sleep(14000);
+		genMeth.eyesCheckWindow("Droid JTR To Slicer report - JTR from List to HIDDEN Report", useEye, genMeth,skipfailure);
+		genMeth.backDroidButton();		
 		
 		//JTR from List
 		genMeth.clickXpthName_TextView(genMeth, "Branch ID");
