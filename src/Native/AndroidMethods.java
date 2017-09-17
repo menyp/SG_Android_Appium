@@ -3,8 +3,6 @@ package Native;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-//import io.appium.java_client.ios.AndroidDriver;
-
 import com.applitools.eyes.Eyes;
 import com.applitools.eyes.MatchLevel;
 import com.applitools.eyes.RectangleSize;
@@ -32,12 +30,10 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.appium.java_client.remote.MobileCapabilityType;
-import io.appium.java_client.remote.MobilePlatform;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyException;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
@@ -80,7 +76,6 @@ public class AndroidMethods {
 	
 	
 	
-	@SuppressWarnings("unchecked")
 	public AndroidDriver<MobileElement> setCapabilitiesAndroid(AndroidMethods genMeth, AppiumDriverLocalService service)
 			throws IOException {
 		
@@ -90,6 +85,13 @@ public class AndroidMethods {
 		capabilities.setCapability(MobileCapabilityType.APP, genMeth.getValueFromPropFile("appPath"));
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, genMeth.getValueFromPropFile("deviceName"));
 		capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 1200);
+
+		//capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
+		//capabilities.setCapability("automationName","uiautomator2");
+
+		capabilities.setCapability("appPackage", genMeth.getValueFromPropFile("appPackage"));
+		capabilities.setCapability("appActivity", genMeth.getValueFromPropFile("appLauncherActivity"));
+
 		 
 	  //DesiredCapabilities capabilities = new DesiredCapabilities();
 
@@ -115,17 +117,14 @@ public class AndroidMethods {
 	    
 		//capabilities.setCapability("newCommandTimeout", genMeth.getValueFromPropFile("newCommandTimeout"));
 
-		//capabilities.setCapability("automationName","uiautomator2");
 		
 		
 		//capabilities.setCapability("platformName", genMeth.getValueFromPropFile("platformName"));
 		//capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
 	    
-		//capabilities.setCapability("appPackage", genMeth.getValueFromPropFile("appPackage"));
 	    //capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1.2");
 	    //capabilities.setCapability(MobileCapabilityType.APPIUM_VERSION, "1.6.4");
 	    
-		//capabilities.setCapability("appActivity", genMeth.getValueFromPropFile("appLauncherActivity"));
 		//capabilities.setCapability(AndroidMobileCapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
 
 
@@ -134,8 +133,8 @@ public class AndroidMethods {
 		try {
 			
 			driver = new AndroidDriver<MobileElement>(service.getUrl(),capabilities);
-//			driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
-		//	driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
+			//driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+			//driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"),capabilities);
 
 
 					
@@ -489,6 +488,7 @@ public class AndroidMethods {
 
 	}
 
+	/*
 	public void tapBy(AndroidDriver<MobileElement> driver, AndroidMethods genMeth, By by)
 			throws InterruptedException {
 
@@ -505,7 +505,7 @@ public class AndroidMethods {
 		}
 
 	}
-
+*/
 	
 
 	public void clickId(AndroidMethods genMeth, String id)
@@ -528,6 +528,7 @@ public class AndroidMethods {
 		}
 	}
 
+	/*
 	public void tapId(AndroidMethods genMeth, String id)
 			throws InterruptedException {
 
@@ -544,7 +545,7 @@ public class AndroidMethods {
 
 		}
 	}
-
+*/
 
 	public void clickXpth(AndroidMethods genMeth, String xpth)
 			throws InterruptedException, IOException {
@@ -731,7 +732,7 @@ public class AndroidMethods {
 	
 
 
-	
+	/*
 	public void tapXpth(AndroidMethods genMeth, String xpth)
 			throws InterruptedException, IOException {
 
@@ -750,7 +751,9 @@ public class AndroidMethods {
 		}
 
 	}
-
+*/
+	
+	/*
 	public void clickName(AndroidMethods genMeth, String name)
 			throws InterruptedException {
 
@@ -767,7 +770,7 @@ public class AndroidMethods {
 
 		}
 	}
-
+*/
 
 
 	// ======================== SEND ELEMENT====
@@ -797,7 +800,8 @@ public class AndroidMethods {
 
 		try {
 
-			WebElement myElement = genMeth.fluentwait(driver, By.id(id));
+			//WebElement myElement = genMeth.fluentwait(driver, By.id(id));
+			MobileElement myElement = genMeth.fluentwait(driver, By.id(id));
 			myElement.sendKeys(send);
 
 		}
@@ -1249,18 +1253,20 @@ public class AndroidMethods {
 		return curDate;
 	}
 
+	/*
 	public void backgroundToForeground(AndroidDriver<MobileElement> driver,
 			int numOfTimes) {
 
 		for (int count = 0; count < numOfTimes; count++) {
 
 			driver.runAppInBackground(2);
+			
 
 		}
 
-	}
+	*/
 
-
+	/*
 	public void longPressElement(AndroidDriver<MobileElement> driver,
 			AndroidMethods genMeth, By By) {
 		TouchAction action;
@@ -1276,7 +1282,7 @@ public class AndroidMethods {
 
 	}
 
-	
+	*/
 	/*
 	public void setLandscapeMode() {
 
@@ -1501,6 +1507,24 @@ public class AndroidMethods {
 
 	}
 	
+	public void swipeUpShortNexus5X1(int NumOfSwipe, int miliseconds) throws InterruptedException {
+
+		int i;
+
+		for (i = 0; i < NumOfSwipe; i++) {
+			
+			TouchAction ta = new TouchAction(driver);
+			ta.press(600, 400).waitAction().moveTo(600, 1000).release().perform();
+			Thread.sleep(2000);
+
+		}
+		
+		
+		
+
+	}
+	
+	
 
 	
 	
@@ -1559,7 +1583,7 @@ public class AndroidMethods {
 		 //AppiumDriverLocalService service =AppiumDriverLocalService.buildDefaultService();
 
 		AppiumServiceBuilder c = new AppiumServiceBuilder() ;
-		 AppiumDriverLocalService service =  AppiumDriverLocalService.buildService(c.usingPort(4723).withIPAddress("0.0.0.0"));
+		AppiumDriverLocalService service =  AppiumDriverLocalService.buildService(c.usingPort(4724).withIPAddress("0.0.0.0"));
 		 
 		boolean isServiceRunning =  service.isRunning();
 		if (isServiceRunning){
