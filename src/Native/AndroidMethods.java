@@ -81,7 +81,7 @@ public class AndroidMethods {
 		
 		// Login with an existing account
  
-		DesiredCapabilities capabilities =  DesiredCapabilities.android();
+ 		DesiredCapabilities capabilities =  DesiredCapabilities.android();
 		capabilities.setCapability(MobileCapabilityType.APP, genMeth.getValueFromPropFile("appPath"));
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, genMeth.getValueFromPropFile("deviceName"));
 		capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 1200);
@@ -133,7 +133,7 @@ public class AndroidMethods {
 		try {
 			
 			driver = new AndroidDriver<MobileElement>(service.getUrl(),capabilities);
-			//driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+		//	driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
 			//driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"),capabilities);
 
 
@@ -1583,13 +1583,14 @@ public class AndroidMethods {
 		 //AppiumDriverLocalService service =AppiumDriverLocalService.buildDefaultService();
 
 		AppiumServiceBuilder c = new AppiumServiceBuilder() ;
-		AppiumDriverLocalService service =  AppiumDriverLocalService.buildService(c.usingPort(4724).withIPAddress("0.0.0.0"));
+		AppiumDriverLocalService service =  AppiumDriverLocalService.buildService(c.usingPort(4723).withIPAddress("0.0.0.0"));
 		 
 		boolean isServiceRunning =  service.isRunning();
 		if (isServiceRunning){
 			
 			service.stop();
 		}
+		service.stop();
 		service.start();
 		return service;
 
@@ -1603,51 +1604,69 @@ public class AndroidMethods {
       }
 
  	  
-	public EnvironmentMode UserSetEnvironmentMode(EnvironmentMode EnvMode) {
-		@SuppressWarnings("resource")
-		Scanner scanner = new Scanner(System.in);
-		System.out
-				.print("Please choose Environment mode(1 for QA, 2 for Staging or 3 for PROD):");
-		byte number = scanner.nextByte();
-		
-		//Add a timer where after 10 seconds if no input was inserted then a default value will be setup
+	public EnvironmentMode UserSetEnvironmentMode(EnvironmentMode EnvMode, boolean AskUseENV) {
 
-		if (number == 1) {
-			EnvMode = EnvironmentMode.QA;
-			System.out.println("Testing against QA Environment");
+		if (AskUseENV == true) {
+			@SuppressWarnings("resource")
+			Scanner scanner = new Scanner(System.in);
+			System.out.print("Please choose Environment mode(1 for QA, 2 for Staging or 3 for PROD):");
+			byte number = scanner.nextByte();
 
+			// Add a timer where after 10 seconds if no input was inserted then
+			// a default value will be setup
 
-		} else if (number == 2) {
-			EnvMode = EnvironmentMode.Staging;
-			System.out.println("Testing against Stagins Environment");
+			if (number == 1) {
+				EnvMode = EnvironmentMode.QA;
+				System.out.println("Testing against QA Environment");
 
+			} else if (number == 2) {
+				EnvMode = EnvironmentMode.Staging;
+				System.out.println("Testing against Stagins Environment");
 
-		} else if (number == 3) {
-			EnvMode = EnvironmentMode.Prod;
-			System.out.println("Testing against PROD Environment");
+			} else if (number == 3) {
+				EnvMode = EnvironmentMode.Prod;
+				System.out.println("Testing against PROD Environment");
 
-		}
-		return EnvMode;
-	}
-	
-	public boolean UseEye() {
-		boolean UseEye;
-		@SuppressWarnings("resource")
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("Do you want to use Applitools eye?(1 for Yes, or continue for No):");
-		byte number = scanner.nextByte();
-		//String choose = scanner.next();
-
-		if (number == 1) {
-			UseEye = true;
-			System.out.println("Testing with Applitools visual testing");
-
+			}
 		} else {
-			UseEye = false;
-			System.out.println("Testing without Applitools visual testing");
+
+			EnvMode = EnvironmentMode.QA;
 
 		}
+
+		return EnvMode;
+
+	}
+		
+		
+	public boolean UseEye(boolean AskUseEye) {
+
+		boolean UseEye;
+
+		if (AskUseEye) {
+			@SuppressWarnings("resource")
+			Scanner scanner = new Scanner(System.in);
+			System.out.print("Do you want to use Applitools eye?(1 for Yes, or continue for No):");
+			byte number = scanner.nextByte();
+			// String choose = scanner.next();
+
+			if (number == 1) {
+				UseEye = true;
+				System.out.println("Testing with Applitools visual testing");
+
+			} else {
+				UseEye = false;
+				System.out.println("Testing without Applitools visual testing");
+			}
+		}
+
+		else {
+			UseEye = false;
+
+		}
+
 		return UseEye;
+
 	}
  	  
 	// public void changeConnectionType(String mode) {

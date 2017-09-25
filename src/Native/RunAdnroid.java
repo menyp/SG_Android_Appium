@@ -23,9 +23,14 @@ public class RunAdnroid {
 		
 		//Run the first suite
 //		
+		
+		
+		//StartServerPath = genMeth.getValueFromPropFile("StartServerPath");
+		//StopServerPath = genMeth.getValueFromPropFile("StopServerPath");
+	
 		TestNG testng1 = new TestNG();
 		testng1.setTestClasses(new Class[] { SanityAndroid.class });
-		testng1.setGroups("Sanity Android");
+		testng1.setGroups("Sanity Android3");
 		testng1.addListener(tla);
 		testng1.run();
 		

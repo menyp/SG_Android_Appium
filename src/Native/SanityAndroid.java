@@ -45,6 +45,8 @@ import com.applitools.eyes.Eyes;
 	String appIdentifier;
 	Boolean skipfailure = true;
 	Boolean useEye;
+	Boolean AskUseEye = true;
+	boolean AskUseENV = true;
 	EnvironmentMode EnvMode;
 
 	AndroidDriver<MobileElement> driver;
@@ -59,13 +61,11 @@ import com.applitools.eyes.Eyes;
 	public void setupBeforeSuite(ITestContext context) throws ParserConfigurationException, SAXException, IOException, InterruptedException, jdk.internal.org.xml.sax.SAXException {
 			
 		//Set the tests configuration
-		EnvMode = genMeth.UserSetEnvironmentMode(EnvMode);
-		useEye = genMeth.UseEye();
-		//StartServerPath = genMeth.getValueFromPropFile("StartServerPath");
-		//StopServerPath = genMeth.getValueFromPropFile("StopServerPath");
+		EnvMode = genMeth.UserSetEnvironmentMode(EnvMode, this.AskUseENV);
+		useEye = genMeth.UseEye(AskUseEye);
 		webElementXmlPath = genMeth.getValueFromPropFile("webElementXmlPath");
 		webElementXmlLang = genMeth.getValueFromPropFile("webElementXmlLang");
-		appIdentifier = genMeth.getValueFromPropFile("appIdentifier");
+		//appIdentifier = genMeth.getValueFromPropFile("appIdentifier");
 		
 		DroidData = genMeth.setElements(webElementXmlPath, webElementXmlLang);
 		
@@ -73,9 +73,10 @@ import com.applitools.eyes.Eyes;
 			service = genMeth.startAppiumService();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			service = genMeth.startAppiumService();
+
 
 		}
+		
 		
 		
 		driver = genMeth.setCapabilitiesAndroid(genMeth, service);	
@@ -142,7 +143,7 @@ import com.applitools.eyes.Eyes;
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the URL tab",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android3" })
 
 	public void tabs_URL() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -204,7 +205,7 @@ import com.applitools.eyes.Eyes;
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the URL tab",
-			groups = { "Sanity Android2" })
+			groups = { "Sanity Android" })
 
 	public void tabs_Dashboard() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -259,7 +260,7 @@ import com.applitools.eyes.Eyes;
 
 
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class,
-			description = "Check the URL tab",groups = { "Sanity Android123" })
+			description = "Check the URL tab",groups = { "Sanity Android2" })
 	//@AfterTest
 	public void Tabs_Map() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -276,7 +277,9 @@ import com.applitools.eyes.Eyes;
 		Thread.sleep(3000);		
 		//genMeth.clickXpthName_ViewView(genMeth, "19501 Biscayne Blvd, Aventura, FL 33180. 19501 Biscayne Boulevard,Aventura, FL 33180.");
 		//The following line will fail due to bug 3352 (Null in the address string)
-		By by = By.xpath("//android.view.View[@content-desc='19501 Biscayne Blvd, Aventura, FL 33180. 19501 Biscayne Boulevard,Aventura, FL 33180.']");
+		By by = By.xpath("//android.view.View[@content-desc='19501 Biscayne Blvd, Aventura, FL 33180. 19501 Biscayne Blvd, Aventura, FL 33180, USA.']");
+															 
+		
 		//driver.findElement(by).click();
 		genMeth.clickBy(driver, genMeth, by);
 		
@@ -311,7 +314,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
 		genMeth.clickXpthName_CheckedTextView(genMeth, "Map By GPS");
 		
-		genMeth.clickXpthName_ViewView(genMeth, "40.918116,-74.076363. 1 Garden State Plaza Boulevard,Paramus, NJ 07652.");
+		genMeth.clickXpthName_ViewView(genMeth, "40.918116,-74.076363. 1 Garden State Plaza Blvd, Paramus, NJ 07652, USA.");
 		//by = By.xpath("//android.view.View[@content-desc='40.918116,-74.076363. 1 Garden State Plaza Boulevard,Paramus, NJ 07652.']");
 		//genMeth.clickBy(driver, genMeth, by);
 		
@@ -529,7 +532,7 @@ import com.applitools.eyes.Eyes;
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity Android2" })
+			groups = { "Sanity Android1" })
 
 	public void tabs_List_VirtualDI_Virtualolumn() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -646,7 +649,7 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer tab Advanced & navigation",
-			groups = { "Sanity Android2" })
+			groups = { "Sanity Android1" })
 
 	public void tabs_Grid_One_Layer_Advance_Navigation() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -730,7 +733,7 @@ import com.applitools.eyes.Eyes;
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab",
-			groups = { "Sanity Android2" })
+			groups = { "Sanity Android" })
 
 	public void tabs_Employee_Directory() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -1148,7 +1151,7 @@ import com.applitools.eyes.Eyes;
 		
 	}
 	
-	@Test(enabled = true, groups = { "Sanity Android3" }, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
+	@Test(enabled = true, groups = { "Sanity Android" }, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Employee Directory tab")
 	public void param_Report_Chart()
 			throws ParserConfigurationException, SAXException, IOException,
 			InterruptedException {
@@ -1525,7 +1528,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 
 	//@AfterSuite(alwaysRun = true)
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity Android" })
+			groups = { "Sanity Android1" })
 
 	public void actions_List_Inline_Row() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -1722,7 +1725,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer Row action",
-			groups = { "Sanity Android2" })
+			groups = { "Sanity Android1" })
 	public void actions_Grid_One_Layer_Row() throws ParserConfigurationException, SAXException,
 	IOException, InterruptedException {
 
@@ -1953,7 +1956,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer Row action",
-			groups = { "Sanity Android2" })
+			groups = { "Sanity Android" })
 	public void JTR_Same_Report() throws ParserConfigurationException, SAXException,
 	IOException, InterruptedException {
 
@@ -1992,7 +1995,10 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		
 		// JTR from Map
 		// The next line will not work due to bug 3352 (Null in the address string)
-		By by = By.xpath("//android.view.View[@content-desc='690 W Dekalb Pike, King of Prussia, Pennsylvania. 690 West Dekalb Pike,King of Prussia, PA 19406.']");
+		By by = By.xpath("//android.view.View[@content-desc='690 W Dekalb Pike, King of Prussia, Pennsylvania. 690 W Dekalb Pike, King of Prussia, PA 19406, USA.']");
+															 
+		
+																
 
 		genMeth.clickBy(driver, genMeth, by);
 
@@ -2030,7 +2036,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	
 
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer Row action",
-			groups = { "Sanity Android2" })
+			groups = { "Sanity Android" })
 	public void JTR_Param_Report_AutoSubmit() throws ParserConfigurationException, SAXException,
 	IOException, InterruptedException {
 
@@ -2078,7 +2084,8 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.clickXpthName_CheckedTextView(genMeth, "AutoSubAllDataTypes4");
 		Thread.sleep(2000);
 		//The next line will not work due to bug 3352 (Null in the address)
-		By by = By.xpath("//android.view.View[@content-desc='690 W Dekalb Pike, King of Prussia, Pennsylvania. 690 West Dekalb Pike,King of Prussia, PA 19406.']");
+		By by = By.xpath("//android.view.View[@content-desc='690 W Dekalb Pike, King of Prussia, Pennsylvania. 690 W Dekalb Pike, King of Prussia, PA 19406, USA.']");
+		
 
 		genMeth.clickBy(driver, genMeth, by);
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_adress_container");
@@ -2140,7 +2147,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer Row action",
-			groups = { "Sanity Android2" })
+			groups = { "Sanity Android" })
 	public void JTR_To_Slicer_Report() throws ParserConfigurationException, SAXException,
 	IOException, InterruptedException {
 
