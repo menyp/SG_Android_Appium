@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="208452" started-at="2017-09-26T08:10:10Z" finished-at="2017-09-26T08:13:39Z">
+    <groups>
+      <group name="Sanity Android2">
+        <method signature="SanityAndroid.actions_Grid_One_Layer_Row()[pri:0, instance:Native.SanityAndroid@568ff82]" name="actions_Grid_One_Layer_Row" class="Native.SanityAndroid"/>
+      </group> <!-- Sanity Android2 -->
+    </groups>
+    <test name="Regression" duration-ms="208452" started-at="2017-09-26T08:10:10Z" finished-at="2017-09-26T08:13:39Z">
+      <class name="Native.SanityAndroid">
+        <test-method status="PASS" signature="setupBeforeSuite(org.testng.ITestContext)[pri:0, instance:Native.SanityAndroid@568ff82]" name="setupBeforeSuite" is-config="true" duration-ms="100544" started-at="2017-09-26T11:08:30Z" finished-at="2017-09-26T11:10:10Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@511d5d04]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupBeforeSuite -->
+        <test-method status="PASS" signature="checkHomeScreen()[pri:0, instance:Native.SanityAndroid@568ff82]" name="checkHomeScreen" is-config="true" duration-ms="10745" started-at="2017-09-26T11:10:10Z" finished-at="2017-09-26T11:10:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkHomeScreen -->
+        <test-method status="PASS" signature="actions_Grid_One_Layer_Row()[pri:0, instance:Native.SanityAndroid@568ff82]" name="actions_Grid_One_Layer_Row" duration-ms="197694" started-at="2017-09-26T11:10:21Z" description="Check the Grid one layer Row action" finished-at="2017-09-26T11:13:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- actions_Grid_One_Layer_Row -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:Native.SanityAndroid@568ff82]" name="tearDown" is-config="true" duration-ms="17551" started-at="2017-09-26T11:13:44Z" finished-at="2017-09-26T11:14:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- Native.SanityAndroid -->
+    </test> <!-- Regression -->
+  </suite> <!-- Suite -->
+</testng-results>

@@ -203,7 +203,6 @@ import com.applitools.eyes.Eyes;
 	}
 
 	
-	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the URL tab",
 			groups = { "Sanity Android" })
 
@@ -258,9 +257,8 @@ import com.applitools.eyes.Eyes;
 	}
 	
 
-
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class,
-			description = "Check the URL tab",groups = { "Sanity Android2" })
+			description = "Check the URL tab",groups = { "Sanity Android" })
 	//@AfterTest
 	public void Tabs_Map() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -300,6 +298,7 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 
 		//Navigation to URL tab
+		Thread.sleep(4000);
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/map_add_info_item_jump_to");
 		Thread.sleep(15000);
 		genMeth.eyesCheckWindow("Tabs (Droid)- URL Data Item", useEye, genMeth, skipfailure);
@@ -315,7 +314,8 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickXpthName_CheckedTextView(genMeth, "Map By GPS");
 		
 		genMeth.clickXpthName_ViewView(genMeth, "40.918116,-74.076363. 1 Garden State Plaza Blvd, Paramus, NJ 07652, USA.");
-		//by = By.xpath("//android.view.View[@content-desc='40.918116,-74.076363. 1 Garden State Plaza Boulevard,Paramus, NJ 07652.']");
+		
+	//	by = By.xpath("//android.view.View[@content-desc='40.918116,-74.076363. 1 Garden State Plaza Blvd, Paramus, NJ 07652, USA.']");												
 		//genMeth.clickBy(driver, genMeth, by);
 		
 		Thread.sleep(3000);
@@ -532,7 +532,7 @@ import com.applitools.eyes.Eyes;
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android123" })
 
 	public void tabs_List_VirtualDI_Virtualolumn() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -560,7 +560,6 @@ import com.applitools.eyes.Eyes;
 		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
 
 	}
-	
 	
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid two layer tab",
@@ -649,13 +648,10 @@ import com.applitools.eyes.Eyes;
 	}
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer tab Advanced & navigation",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android" })
 
 	public void tabs_Grid_One_Layer_Advance_Navigation() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
-
-		
-		//Need to find a solution to the find element by xpath for the Address/Mobile Phone etc since it keeps failing (seems like Appium bug with Android 7)
 		
 		// go to Grid
 		genMeth.clickXpthName_TextView(genMeth, "List / Grid");
@@ -670,64 +666,36 @@ import com.applitools.eyes.Eyes;
 		genMeth.clickXpthName_LinearLayout(genMeth, "3");
 		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Address", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
-//      **********Appium Dismiss popup bug (need to delete the driver quite after  appium fix)*********
-		driver.quit();
 
 		// Mobile Phone
  		genMeth.clickXpthName_LinearLayout(genMeth, "4");
 		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Phone", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
-		genMeth.backDroidButton();
 		
-		
-		genMeth.clickXpthName_TextView(genMeth, "List / Grid");
-		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickXpthName_CheckedTextView(genMeth, "Grid - One Layer");		
-		Thread.sleep(3000);
-		
-		genMeth.swipeRightLongNexus5X(2, 1000);
+		genMeth.swipeRightLongNexus5X(1, 1000);
 		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Swipe to the right", useEye, genMeth, skipfailure);
 
-		// MiniMap - Navigation to slicer report
-		genMeth.clickXpth(genMeth, "//android.view.View[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.ImageView[1]");
-		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Mini Map Navigation", useEye, genMeth, skipfailure);
-		genMeth.backDroidButton();
-		
-		
-
-		// Email
-		genMeth.clickXpth(genMeth, "//android.view.View[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[3]");
-		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Email", useEye, genMeth, skipfailure);
+		//Email
+		genMeth.clickXpthName_LinearLayout(genMeth, "6");
+		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/base_dialog_submit_button");
+		Thread.sleep(2000);
+		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Email compose", useEye, genMeth, skipfailure);
+		genMeth.clickId(genMeth, "com.google.android.gm:id/send");
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
-		genMeth.backDroidButton();
-		
-		genMeth.clickXpthName_TextView(genMeth, "List / Grid");
-		genMeth.clickId(genMeth, DroidData.TabBarTitle_Name);
-		genMeth.clickXpthName_CheckedTextView(genMeth, "Grid - One Layer");		
-		Thread.sleep(3000);
 
 		// URL
-		//genMeth.clickXpth(genMeth, "//android.view.View[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[4]");
-		genMeth.swipeRightLongNexus5X(2, 1000);
-		
-		genMeth.clickXpth(genMeth, "//android.view.View[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[4]/android.widget.ImageView[1]");
+		genMeth.clickXpthName_LinearLayout(genMeth, "7");
 		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - URL", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNsubmit);
-		Thread.sleep(4000);
-		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Go To URL", useEye, genMeth, skipfailure);
+		Thread.sleep(8000);
 		genMeth.backDroidButton();
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		
 		// Landline
-		genMeth.clickXpthName_LinearLayout(genMeth, "4");
-	//	genMeth.clickXpth(genMeth, "//android.view.View[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.HorizontalScrollView[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[5]/android.widget.ImageView[1]");
+		genMeth.clickXpthName_LinearLayout(genMeth, "8");
 		genMeth.eyesCheckWindow("All Tabs- Grid one layer (Droid) - Landline", useEye, genMeth, skipfailure);
 		genMeth.clickId(genMeth, DroidData.BTNCancelName);
 		genMeth.clickId(genMeth, DroidData.IconHome);
-				
-		//Verify Startup screen is open
-		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
-	
 	
 	}
 	
@@ -1528,7 +1496,7 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 
 	//@AfterSuite(alwaysRun = true)
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the List tab",
-			groups = { "Sanity Android1" })
+			groups = { "Sanity Android" })
 
 	public void actions_List_Inline_Row() throws ParserConfigurationException, SAXException,
 			IOException, InterruptedException {
@@ -1561,12 +1529,11 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		genMeth.clickXpthName_TextView(genMeth, "This is QR");
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/barcode_activity_manual_input_button");
 		Thread.sleep(2000);
-		driver.pressKeyCode(AndroidKeyCode.KEYCODE_0);
-		driver.pressKeyCode(AndroidKeyCode.KEYCODE_1);
+		genMeth.sendId(genMeth, "com.skygiraffe.operationaldata:id/qr_manual_input_edit_text", "01");
 		Thread.sleep(2000);
 		driver.hideKeyboard();
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/qr_manual_input_submit_btn");
-		
+		Thread.sleep(2000);
 		genMeth.swipeDownShortNexus5X(2, 1000);
 
 		genMeth.clickXpthName_TextView(genMeth, "SL_Manual_List");
@@ -1596,16 +1563,15 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		Thread.sleep(2000);
 		genMeth.backDroidButton();
 		genMeth.clickId(genMeth, "com.skygiraffe.operationaldata:id/action_fragment_submit_button");
-		Thread.sleep(10000);
+		Thread.sleep(30000);
+		
+		//Check PN
 		genMeth.eyesCheckWindow("Actions_List_Inline (Droid)- PN success", useEye, genMeth, skipfailure);		
 		genMeth.clickId(genMeth,"com.skygiraffe.operationaldata:id/push_notification_dialog_cancel_btn");
 		genMeth.backDroidButton();
 		genMeth.swipeUpShortNexus5X(1, 1000);
-		Thread.sleep(2000);
-		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App", useEye, genMeth, skipfailure);
-		
+		Thread.sleep(2000);		
 	
-
 	}
 	
 	@Test(enabled = true, testName = "Regression", retryAnalyzer = Retry.class, description = "Check the Grid one layer cell action",
@@ -1738,7 +1704,9 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		// Set one row
 		genMeth.clickId(genMeth, "action_slicer");
 		genMeth.clickXpthName_TextView(genMeth, "Service Call ID");
+		Thread.sleep(1000);
 		genMeth.clickXpthName_TextView(genMeth, "1");
+		Thread.sleep(1000);
 		genMeth.backDroidButton();
 		genMeth.clickXpthName_TextView(genMeth, "Done");
 
@@ -1806,7 +1774,6 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		// Verify Startup screen is open
 		genMeth.clickId(genMeth, DroidData.IconHome);
 		genMeth.swipeUpShortNexus5X(1, 1000);
-		genMeth.eyesCheckWindow("Default app is open (Droid) - SQL Golden App",useEye, genMeth, skipfailure);
 
 	}
 
@@ -2438,9 +2405,8 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 		try {
 			driver.findElement(By.id(DroidData.IconHome)).click();
 			driver.findElement(By.id(DroidData.BTNlogoutID)).click();
-			driver.removeApp(appIdentifier);
-			driver.quit();
 			service.stop();
+			driver.quit();
 			
 			
 			/*
@@ -2452,13 +2418,8 @@ genMeth.clickId(genMeth, DroidData.BTNsubmit_ID);
 	
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			driver.resetApp();
-			genMeth.cleanLoginDroid(genMeth, EnvMode);
-			driver.findElement(By.id(DroidData.IconHome)).click();
-			driver.findElement(By.id(DroidData.BTNlogoutID)).click();
-			driver.quit();
 			service.stop();
+			driver.quit();
 		}
 
 		SendResults sr = new SendResults("elicherni444@gmail.com",

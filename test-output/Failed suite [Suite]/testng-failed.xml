@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Failed suite [Suite]]">
+  <test name="Regression(failed)(failed)">
+    <groups>
+      <run>
+        <include name="Sanity Android2"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="Native.SanityAndroid">
+        <methods>
+          <include name="setupBeforeSuite"/>
+          <include name="checkHomeScreen"/>
+          <include name="tearDown"/>
+          <include name="actions_List_Inline_Row"/>
+        </methods>
+      </class> <!-- Native.SanityAndroid -->
+    </classes>
+  </test> <!-- Regression(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Suite]] -->

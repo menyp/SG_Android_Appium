@@ -711,8 +711,7 @@ public class AndroidMethods {
 	public void clickXpthName_ViewView(AndroidMethods genMeth, String xpthName)
 			throws InterruptedException, IOException {
 
-		By by = By.xpath("//android.View.View[@content-desc='" + xpthName + "']");
-
+		By by = By.xpath("//android.view.View[@content-desc='" + xpthName + "']");
 		
 		
 		try {
