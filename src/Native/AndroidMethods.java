@@ -1423,6 +1423,7 @@ public class AndroidMethods {
 
 	public void swipeDownLongNexus5X(int NumOfSwipe, int miliseconds) throws InterruptedException {
 
+	
 		int i;
 
 		for (i = 0; i < NumOfSwipe; i++) {
@@ -1667,7 +1668,26 @@ public class AndroidMethods {
 		return UseEye;
 
 	}
- 	  
+ 	
+	public void ReleaseAlert() {
+
+		int count = 0;
+		while (count < 3) {
+			try {
+
+				Thread.sleep(3000);
+				driver.switchTo().alert().accept();
+				count = 3;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				count++;
+			}
+
+		}
+	}
+
+	
+	
 	// public void changeConnectionType(String mode) {
 	//
 	// NetworkConnection mobileDriver = (NetworkConnection) driver;
