@@ -58,7 +58,6 @@ public class AndroidMethods {
 	final String QAclient_ID = "099153c2625149bc8ecb3e85e03f0022";
 	final String QAclient_Secret = "IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw";
 
-	
 	//Staging Variables
 	final String StagingAuthorizationURL = "https://skygiraffeauthorizationserver-staging.azurewebsites.net/oauth2/token";
 	final String StagingDistributionURL = "https://skygiraffepublisher-staging.azurewebsites.net/api/v1";
@@ -84,14 +83,17 @@ public class AndroidMethods {
  		DesiredCapabilities capabilities =  DesiredCapabilities.android();
 		capabilities.setCapability(MobileCapabilityType.APP, genMeth.getValueFromPropFile("appPath"));
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, genMeth.getValueFromPropFile("deviceName"));
-		capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 1200);
+		capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 60);
 
 		//capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
-		//capabilities.setCapability("automationName","uiautomator2");
+		capabilities.setCapability("automationName","UiAutomator2");
 
 		capabilities.setCapability("appPackage", genMeth.getValueFromPropFile("appPackage"));
 		capabilities.setCapability("appActivity", genMeth.getValueFromPropFile("appLauncherActivity"));
+		capabilities.setCapability("platformName", genMeth.getValueFromPropFile("Android"));
 
+		
+		
 		 
 	  //DesiredCapabilities capabilities = new DesiredCapabilities();
 
@@ -1390,6 +1392,7 @@ public class AndroidMethods {
 		}
 
 	}
+	
 
 	
 	
